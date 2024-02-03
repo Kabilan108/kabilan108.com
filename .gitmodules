@@ -1,0 +1,9 @@
+[submodule "cv.kabilan108.com"]
+	path = cv.kabilan108.com
+	url = git@github.com:Kabilan108/cv.kabilan108.com.git
+[submodule "blog.kabilan108.com"]
+	path = blog.kabilan108.com
+	url = git@github.com:Kabilan108/blog.kabilan108.com.git
+[submodule "wakapi.kabilan108.com"]
+	path = wakapi.kabilan108.com
+	url = git@github.com:Kabilan108/wakapi.kabilan108.com.git
