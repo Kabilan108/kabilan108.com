@@ -10,6 +10,8 @@ services:
       - 3000:3000
     environment:
       - NODE_ENV=production
+    volumes:
+      - ./cv.kabilan108.com:/usr/src/app
     restart: unless-stopped
     deploy:
       replicas: 1
