@@ -13,3 +13,17 @@ repos:
       - id: prettier
         files: \.(js|jsx|ts|tsx|json|css|md)$
         args: [--config, .prettierrc.js]
+
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: ruff check
+        entry: ruff check
+        language: system
+        types: [python]
+        args: [--fix]
+      - id: ruff-format
+        name: ruff format
+        entry: ruff format
+        language: system
+        types: [python]
