@@ -25,9 +25,9 @@ jobs:
 
       - name: Add remote and push
         run: |
-          git remote add dokku dokku@${{ secrets.DOKKU_HOST }}:blog.meddibia.com
+          git remote add dokku-frontend dokku@${{ secrets.DOKKU_HOST }}:blog.meddibia.com
           GIT_SSH_COMMAND="ssh -v \
             -i private_key.pem \
             -o UserKnownHostsFile=/dev/null \
             -o StrictHostKeyChecking=no" \
-          git push dokku-backend `git subtree split --prefix frontend`:main -f
+          git push dokku-frontend `git subtree split --prefix frontend`:main -f
