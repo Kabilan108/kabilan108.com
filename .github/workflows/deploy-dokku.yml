@@ -31,3 +31,25 @@ jobs:
             -o UserKnownHostsFile=/dev/null \
             -o StrictHostKeyChecking=no" \
           git push dokku-frontend `git subtree split --prefix frontend`:main -f
+
+  # deploy-backend:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+
+  #     - name: Install SSH key
+  #       run: |
+  #         echo "${{ secrets.DOKKU_SSH_PRIVATE_KEY }}" > private_key.pem
+  #         chmod 600 private_key.pem
+
+  #     - name: Add remote and push
+  #       run: |
+  #         git remote add dokku-backend dokku@${{ secrets.DOKKU_HOST }}:api.meddibia.com
+  #         GIT_SSH_COMMAND="ssh -v \
+  #           -i private_key.pem \
+  #           -o UserKnownHostsFile=/dev/null \
+  #           -o StrictHostKeyChecking=no" \
+  #         git push dokku-backend `git subtree split --prefix backend`:main -f
