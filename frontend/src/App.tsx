@@ -1,4 +1,10 @@
-import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+} from 'react-router-dom';
 
 import HomePage from './pages/home';
 import ResumePage from './pages/resume';
@@ -23,6 +29,7 @@ const App = () => {
 };
 
 const Header = () => {
+  const location = useLocation();
   const pages = [
     {name: 'home', path: '/'},
     {name: 'projects', path: '/projects'},
@@ -37,7 +44,9 @@ const Header = () => {
             <li key={page.name}>
               <Link
                 to={page.path}
-                className="hover:text-accent transition-colors"
+                className={`hover:text-accent transition-colors ${
+                  location.pathname === page.path ? 'text-accent' : ''
+                }`}
               >
                 ~/{page.name}
               </Link>
