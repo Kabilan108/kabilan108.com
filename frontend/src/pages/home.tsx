@@ -1,15 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Terminal, Code, ChevronRight} from 'lucide-react';
+import {ChevronRight} from 'lucide-react';
 
 const bio = {
   name: 'tony kabilan okeke',
   title: 'machine learning engineer',
-  company: 'moberg analytics',
   bio: `Passionate about leveraging AI and software engineering to solve
   complex problems. Expertise in machine learning algorithms and
   full-stack development. Creating innovative solutions that make a
   difference.`,
+  imageUrl: 'https://images.kabilan108.com/profile.jpeg',
 };
 
 const latestPosts = [
@@ -55,74 +55,99 @@ const featuredProjects = [
 
 const HomePage: React.FC = () => {
   return (
-    <>
-      <section className="mb-16">
-        <h1 className="text-4xl font-bold mb-4 text-accent">
-          {bio.name}
-          <span className="animate-blink">|</span>
-        </h1>
-        <p className="text-xl mb-4">
-          {bio.title}
-          {bio.title && <span className="text-accent"> @ {bio.company}</span>}
-        </p>
+    <div className="space-y-10">
+      <Bio />
+      <RecentPosts />
+      <FeaturedProjects />
+    </div>
+  );
+};
+
+const Bio: React.FC = () => {
+  return (
+    <section className="flex flex-col md:flex-row">
+      <div className="flex-1 mr-0 md:mr-8">
+        <h1 className="text-4xl font-bold mb-4 text-accent">{bio.name}</h1>
+        <p className="text-2xl mb-4">{bio.title}</p>
         <p className="max-w-2xl leading-relaxed">
-          $ cat about.txt
+          <Code text="cat about.txt" />
           <br />
           {bio.bio}
         </p>
-      </section>
+      </div>
+      <div className="hidden md:block flex-shrink-0 w-1/3 mt-8 md:mt-0">
+        <img
+          src={bio.imageUrl}
+          alt="Profile"
+          className="w-full h-full object-cover rounded-lg"
+        />
+      </div>
+    </section>
+  );
+};
 
-      <section className="mb-16">
-        <h2 className="text-2xl font-semibold mb-6 flex items-center">
-          <Terminal className="mr-2" /> Latest_Posts
-        </h2>
-        <div className="space-y-6">
-          {latestPosts.map(post => (
-            <div
-              key={post.id}
-              className="border border-gray-700 p-6 rounded-md"
+const RecentPosts: React.FC = () => {
+  return (
+    <section>
+      <h2 className="font-semibold mb-2 flex items-center">
+        <Code text="cat recent-posts.csv" />
+      </h2>
+      <div className="space-y-4">
+        {latestPosts.map(post => (
+          <div key={post.id} className="border-b border-border pl-4 pb-2">
+            <h3 className="text-lg font-semibold mb-2 text-accent">
+              {post.title}
+            </h3>
+            <p className="mb-2">{post.excerpt}</p>
+            <Link
+              to={`/blog/${post.slug}`}
+              className="text-blue-400 hover:underline inline-flex items-center"
             >
-              <h3 className="text-xl font-semibold mb-2 text-green-400">
-                {post.title}.md
-              </h3>
-              <p className="mb-4">{post.excerpt}</p>
-              <Link
-                to={`/blog/${post.slug}`}
-                className="text-blue-400 hover:underline inline-flex items-center"
-              >
-                cat full_post <ChevronRight className="ml-1 h-4 w-4" />
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
+              cat full_post <ChevronRight className="ml-1 h-4 w-4" />
+            </Link>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-6 flex items-center">
-          <Code className="mr-2" /> Featured_Projects
-        </h2>
-        <div className="grid gap-6 md:grid-cols-2">
-          {featuredProjects.map(project => (
-            <div
-              key={project.id}
-              className="border border-gray-700 p-6 rounded-md"
+const FeaturedProjects: React.FC = () => {
+  return (
+    <section>
+      <h2 className="text-2xl font-semibold mb-6 flex items-center">
+        <Code text="cat featured-projects.csv" />
+      </h2>
+      <div className="grid gap-6 md:grid-cols-2">
+        {featuredProjects.map(project => (
+          <div
+            key={project.id}
+            className="border border-gray-700 p-6 rounded-md"
+          >
+            <h3 className="text-xl font-semibold mb-2 text-green-400">
+              {project.title}.py
+            </h3>
+            <p className="mb-4">{project.description}</p>
+            <Link
+              to={`/projects/${project.slug}`}
+              className="text-blue-400 hover:underline inline-flex items-center"
             >
-              <h3 className="text-xl font-semibold mb-2 text-green-400">
-                {project.title}.py
-              </h3>
-              <p className="mb-4">{project.description}</p>
-              <Link
-                to={`/projects/${project.slug}`}
-                className="text-blue-400 hover:underline inline-flex items-center"
-              >
-                python {project.title.toLowerCase().replace(/ /g, '_')}.py{' '}
-                <ChevronRight className="ml-1 h-4 w-4" />
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
-    </>
+              python {project.title.toLowerCase().replace(/ /g, '_')}.py{' '}
+              <ChevronRight className="ml-1 h-4 w-4" />
+            </Link>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+const Code: React.FC<{text: string}> = ({text}) => {
+  return (
+    <span className="text-command text-xl">
+      $ {text}
+      <span className="animate-blink font-extrabold">▋</span>
+    </span>
   );
 };
 
