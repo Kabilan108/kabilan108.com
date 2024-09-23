@@ -5,7 +5,9 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "boto3>=1.35.24",
     "fastapi[standard]>=0.115.0",
+    "pydantic-settings>=2.5.2",
     "pydantic>=2.9.2",
     "sqlmodel>=0.0.22",
 ]
