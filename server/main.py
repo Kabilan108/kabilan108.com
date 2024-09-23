@@ -34,12 +34,13 @@ def get_objects():
 
 
 @app.post("/r2/upload", response_model=UploadResponse)
-async def upload_file(file: UploadFile = File(...)):
+async def upload_file(file: UploadFile = File(...), key: str | None = None):
     """Upload a file to the R2 bucket."""
     try:
         content = await file.read()
-        upload_object(file.filename, content)
-        return UploadResponse(message="File uploaded successfully.")
+        object_key = key if key is not None else file.filename
+        upload_object(object_key, content)
+        return UploadResponse(message=f"File uploaded successfully as {object_key}.")
     except ClientError as e:
         raise HTTPException(status_code=500, detail=str(e))
 
