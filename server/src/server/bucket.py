@@ -3,7 +3,8 @@ from botocore.exceptions import ClientError
 import boto3
 
 from datetime import datetime
-from config import settings
+
+from server.config import settings
 
 
 class Object(BaseModel):

@@ -12,3 +12,21 @@ dependencies = [
     "pydantic>=2.9.2",
     "sqlmodel>=0.0.22",
 ]
+
+[dependency-groups]
+dev = [
+    "ipdb>=0.13.13",
+    "ipython-icat>=0.2.0",
+]
+test = [
+    "pytest>=8.3.3",
+    "pytest-asyncio>=0.24.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

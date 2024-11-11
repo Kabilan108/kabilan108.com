@@ -6,6 +6,8 @@ from logfire import Logfire
 class Settings(BaseSettings):
     NAME: str = "api.kabilan108.com"
 
+    API_KEY: str
+
     R2_ACCESS_KEY_ID: str
     R2_BUCKET_NAME: str
     R2_ENDPOINT_URL: str
