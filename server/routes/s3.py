@@ -8,7 +8,7 @@ router = APIRouter(prefix="/s3", tags=["s3"])
 
 
 @router.get("/objects", response_model=ServerResponse)
-def get_objects() -> ServerResponse:
+def get_objects() -> dict:
     """Retrieve a list of all objects in the R2 bucket."""
     try:
         objects = list_objects()
@@ -22,7 +22,7 @@ def get_objects() -> ServerResponse:
 @router.post("/upload", response_model=ServerResponse)
 async def upload_file(
     file: UploadFile = File(...), key: str | None = None
-) -> ServerResponse:
+) -> dict:
     """Upload a file to the R2 bucket."""
     try:
         content = await file.read()
@@ -46,7 +46,7 @@ def download_file(object_key: str) -> Response:
 
 
 @router.delete("/delete/{object_key}", response_model=ServerResponse)
-def delete_file(object_key: str) -> ServerResponse:
+def delete_file(object_key: str) -> dict:
     """Delete a file from the R2 bucket."""
     try:
         delete_object(object_key)
