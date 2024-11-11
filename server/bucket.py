@@ -35,6 +35,7 @@ class Object(BaseModel):
 
 
 # Initialize boto3 client for Cloudflare R2
+# TODO: make the bucket not public
 r2_client = boto3.client(
     "s3",
     endpoint_url=settings.R2_ENDPOINT_URL,
