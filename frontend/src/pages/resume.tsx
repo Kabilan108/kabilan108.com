@@ -1,90 +1,43 @@
-import React, {useState} from 'react';
 import {
-  Terminal,
-  Briefcase,
-  GraduationCap,
   Award,
-  Download,
   Book,
+  Briefcase,
   ChevronDown,
   ChevronUp,
-} from 'lucide-react';
+  Download,
+  GraduationCap,
+  Terminal,
+} from "lucide-react";
+import type React from "react";
+import { useState } from "react";
 
-interface WorkExperience {
-  position: string;
-  company: string;
-  duration: string;
-  responsibilities: string[];
-}
-
-interface Education {
-  degree: string;
-  institution: string;
-  duration: string;
-  details: string;
-}
-
-interface Publication {
-  title: string;
-  journal: string;
-  authors: string[];
-}
+import { useDataStore } from "../lib/data-stores";
 
 const ResumePage: React.FC = () => {
   const [showFullCV, setShowFullCV] = useState<boolean>(false);
-
   const toggleCV = () => setShowFullCV(!showFullCV);
 
-  const workExperiences: WorkExperience[] = [
-    {
-      position: 'Senior_Machine_Learning_Engineer',
-      company: 'TechCorp Inc.',
-      duration: '2020 - Present',
-      responsibilities: [
-        'Led development of advanced ML models for predictive analytics',
-        'Improved model accuracy by 25% through innovative feature engineering',
-        'Mentored junior engineers and conducted knowledge sharing sessions',
-      ],
-    },
-    // Add more work experiences here
-  ];
+  const resume = useDataStore((state) => state.resume);
 
-  const education: Education[] = [
-    {
-      degree: 'M.S._Computer_Science',
-      institution: 'Stanford University',
-      duration: '2016 - 2018',
-      details: 'Specialization in Machine Learning and Artificial Intelligence',
-    },
-    // Add more education details here
-  ];
-
-  const publications: Publication[] = [
-    {
-      title:
-        '"Advanced Machine Learning Techniques for Predictive Maintenance"',
-      journal: 'Journal of Artificial Intelligence, 2022',
-      authors: ['John Doe', 'Jane Smith', 'Robert Johnson'],
-    },
-    // Add more publications here
-  ];
+  if (!resume) return null;
 
   return (
     <>
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-4xl font-bold text-green-400 flex items-center">
-          <Terminal className="mr-2" /> John_Doe.resume-cv
+          <Terminal className="mr-2" />
+          {resume.profile.username}
           <span className="animate-blink">_</span>
         </h1>
         <div className="space-x-4">
           <a
-            href="#"
+            href="#download-resume-pdf"
             className="bg-green-600 text-gray-900 px-4 py-2 rounded hover:bg-green-500 inline-flex items-center transition-colors"
           >
             <Download className="mr-2 h-5 w-5" /> Resume PDF
           </a>
           <a
-            href="#"
+            href="#download-full-cv-pdf"
             className="bg-blue-600 text-gray-900 px-4 py-2 rounded hover:bg-blue-500 inline-flex items-center transition-colors"
           >
             <Download className="mr-2 h-5 w-5" /> Full CV PDF
@@ -98,17 +51,21 @@ const ResumePage: React.FC = () => {
           <Briefcase className="mr-2 h-6 w-6" /> Work_Experience
         </h2>
         <div className="space-y-6">
-          {workExperiences.map((work, index) => (
-            <div key={index} className="border border-gray-700 rounded-md p-4">
+          {resume.workExperience.map((work) => (
+            <div
+              key={work.id}
+              className="border border-gray-700 rounded-md p-4"
+            >
               <h3 className="text-xl font-semibold text-green-400">
                 {work.position}
               </h3>
               <p className="text-gray-400">
-                {work.company} | {work.duration}
+                {work.company} | {work.startDate.toLocaleDateString()} -{" "}
+                {work.endDate?.toLocaleDateString() || "Present"}
               </p>
               <ul className="list-disc list-inside mt-2 text-gray-400">
-                {work.responsibilities.map((res, resIndex) => (
-                  <li key={resIndex}>{res}</li>
+                {work.responsibilities.map((res) => (
+                  <li key={res}>{res}</li>
                 ))}
               </ul>
             </div>
@@ -120,9 +77,9 @@ const ResumePage: React.FC = () => {
         <h2 className="text-2xl font-semibold mb-4 flex items-center text-blue-400">
           <GraduationCap className="mr-2 h-6 w-6" /> Education
         </h2>
-        {education.map((edu, index) => (
+        {resume.education.map((edu) => (
           <div
-            key={index}
+            key={edu.id}
             className="border border-gray-700 rounded-md p-4 mb-6"
           >
             <h3 className="text-xl font-semibold text-green-400">
@@ -140,26 +97,23 @@ const ResumePage: React.FC = () => {
         <h2 className="text-2xl font-semibold mb-4 flex items-center text-blue-400">
           <Award className="mr-2 h-6 w-6" /> Skills
         </h2>
-        <div className="flex flex-wrap gap-2">
-          {[
-            'Python',
-            'TensorFlow',
-            'PyTorch',
-            'Scikit-learn',
-            'JavaScript',
-            'React',
-            'Node.js',
-            'SQL',
-            'Git',
-            'Docker',
-            'AWS',
-          ].map((skill, index) => (
-            <span
-              key={index}
-              className="bg-gray-800 text-green-400 px-3 py-1 rounded-md text-sm border border-gray-700"
-            >
-              {skill}
-            </span>
+        <div className="space-y-4">
+          {Object.entries(resume.skills).map(([category, skills]) => (
+            <div key={category} className="flex items-center">
+              <h3 className="text-md font-medium text-gray-400 w-56">
+                {category}
+              </h3>
+              <div className="flex flex-wrap gap-2 flex-1">
+                {skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="bg-gray-800 text-green-400 px-2 py-1 rounded-md text-sm border border-gray-700"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </section>
@@ -167,6 +121,7 @@ const ResumePage: React.FC = () => {
       {/* Toggle for Full CV */}
       <button
         onClick={toggleCV}
+        type="button"
         className="w-full py-2 px-4 bg-gray-800 text-green-400 rounded-md hover:bg-gray-700 transition-colors mb-8 flex items-center justify-center"
       >
         {showFullCV ? (
@@ -188,16 +143,16 @@ const ResumePage: React.FC = () => {
               <Book className="mr-2 h-6 w-6" /> Publications
             </h2>
             <div className="space-y-4">
-              {publications.map((pub, index) => (
+              {resume.publications.map((pub) => (
                 <div
-                  key={index}
+                  key={pub.id}
                   className="border border-gray-700 rounded-md p-4"
                 >
                   <h3 className="text-xl font-semibold text-green-400">
                     {pub.title}
                   </h3>
                   <p className="text-gray-400">{pub.journal}</p>
-                  <p>Authors: {pub.authors.join(', ')}</p>
+                  <p>Authors: {pub.authors.join(", ")}</p>
                 </div>
               ))}
             </div>

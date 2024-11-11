@@ -1,57 +1,8 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import {ChevronRight} from 'lucide-react';
+import { ChevronRight, ExternalLink, Github, Hash } from "lucide-react";
+import type React from "react";
+import { Link } from "react-router-dom";
 
-const bio = {
-  name: 'tony kabilan okeke',
-  title: 'machine learning engineer',
-  bio: `Passionate about leveraging AI and software engineering to solve
-  complex problems. Expertise in machine learning algorithms and
-  full-stack development. Creating innovative solutions that make a
-  difference.`,
-  imageUrl: 'https://images.kabilan108.com/profile.jpeg',
-};
-
-const latestPosts = [
-  {
-    id: 1,
-    title: 'Exploring Advanced NLP Techniques',
-    excerpt:
-      'A deep dive into the latest natural language processing methods...',
-    slug: 'exploring-advanced-nlp-techniques',
-  },
-  {
-    id: 2,
-    title: 'Optimizing ML Models for Production',
-    excerpt:
-      'Best practices for deploying machine learning models in production environments...',
-    slug: 'optimizing-ml-models-for-production',
-  },
-  {
-    id: 3,
-    title: 'The Future of AI in Healthcare',
-    excerpt:
-      'Examining the potential impact of artificial intelligence on medical diagnostics and treatment...',
-    slug: 'future-of-ai-in-healthcare',
-  },
-];
-
-const featuredProjects = [
-  {
-    id: 1,
-    title: 'Predictive Maintenance System',
-    description:
-      'An ML-powered system for predicting equipment failures in industrial settings, reducing downtime by 30%.',
-    slug: 'predictive-maintenance-system',
-  },
-  {
-    id: 2,
-    title: 'NLP-driven Chatbot',
-    description:
-      'A sophisticated chatbot using advanced NLP techniques to provide human-like interactions in customer service.',
-    slug: 'nlp-driven-chatbot',
-  },
-];
+import { useDataStore } from "../lib/data-stores";
 
 const HomePage: React.FC = () => {
   return (
@@ -64,20 +15,24 @@ const HomePage: React.FC = () => {
 };
 
 const Bio: React.FC = () => {
+  const profile = useDataStore((state) => state.profile);
+
+  if (!profile) return null;
+
   return (
     <section className="flex flex-col md:flex-row">
       <div className="flex-1 mr-0 md:mr-8">
-        <h1 className="text-4xl font-bold mb-4 text-accent">{bio.name}</h1>
-        <p className="text-2xl mb-4">{bio.title}</p>
+        <h1 className="text-4xl font-bold mb-4 text-accent">{profile.name}</h1>
+        <p className="text-2xl mb-4">{profile.title}</p>
         <p className="max-w-2xl leading-relaxed">
-          <Code text="cat about.txt" />
+          <Heading text="cat about.txt" />
           <br />
-          {bio.bio}
+          {profile.bio}
         </p>
       </div>
       <div className="hidden md:block flex-shrink-0 w-1/3 mt-8 md:mt-0">
         <img
-          src={bio.imageUrl}
+          src={profile.imageUrl}
           alt="Profile"
           className="w-full h-full object-cover rounded-lg"
         />
@@ -87,13 +42,25 @@ const Bio: React.FC = () => {
 };
 
 const RecentPosts: React.FC = () => {
+  const posts = useDataStore((state) => state.posts);
+
+  if (!posts) return null;
+
+  const sortedPosts = [...posts]
+    .filter((post) => post.featured)
+    .sort(
+      (a, b) =>
+        new Date(b.published).getTime() - new Date(a.published).getTime(),
+    )
+    .slice(0, 4);
+
   return (
     <section>
       <h2 className="font-semibold mb-2 flex items-center">
-        <Code text="cat recent-posts.csv" />
+        <Heading text="cat recent-posts.csv" />
       </h2>
       <div className="space-y-4">
-        {latestPosts.map(post => (
+        {sortedPosts.map((post) => (
           <div key={post.id} className="border-b border-border pl-4 pb-2">
             <h3 className="text-lg font-semibold mb-2 text-accent">
               {post.title}
@@ -113,13 +80,25 @@ const RecentPosts: React.FC = () => {
 };
 
 const FeaturedProjects: React.FC = () => {
+  const projects = useDataStore((state) => state.projects);
+
+  if (!projects) return null;
+
+  const sortedProjects = [...projects]
+    .filter((project) => project.featured)
+    .sort(
+      (a, b) =>
+        new Date(b.published).getTime() - new Date(a.published).getTime(),
+    )
+    .slice(0, 4);
+
   return (
     <section>
       <h2 className="text-2xl font-semibold mb-6 flex items-center">
-        <Code text="cat featured-projects.csv" />
+        <Heading text="cat featured-projects.csv" />
       </h2>
       <div className="grid gap-6 md:grid-cols-2">
-        {featuredProjects.map(project => (
+        {sortedProjects.map((project) => (
           <div
             key={project.id}
             className="border border-gray-700 p-6 rounded-md"
@@ -128,13 +107,26 @@ const FeaturedProjects: React.FC = () => {
               {project.title}.py
             </h3>
             <p className="mb-4">{project.description}</p>
-            <Link
-              to={`/projects/${project.slug}`}
-              className="text-blue-400 hover:underline inline-flex items-center"
-            >
-              python {project.title.toLowerCase().replace(/ /g, '_')}.py{' '}
-              <ChevronRight className="ml-1 h-4 w-4" />
-            </Link>
+            <div className="flex gap-4">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:underline inline-flex items-center"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:underline inline-flex items-center"
+                >
+                  <ExternalLink className="h-5 w-5" />
+                </a>
+              )}
+            </div>
           </div>
         ))}
       </div>
@@ -142,12 +134,15 @@ const FeaturedProjects: React.FC = () => {
   );
 };
 
-const Code: React.FC<{text: string}> = ({text}) => {
+const Heading: React.FC<{ text: string; className?: string }> = ({
+  text,
+  className,
+}) => {
   return (
-    <span className="text-command text-xl">
-      $ {text}
-      <span className="animate-blink font-extrabold">▋</span>
-    </span>
+    <div className="flex items-center gap-2">
+      <Hash className="h-5 w-5 text-highlight" />
+      <span className={`text-gray-400 ${className || ""}`}>{text}</span>
+    </div>
   );
 };
 
