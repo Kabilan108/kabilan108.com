@@ -26,7 +26,7 @@ const ResumePage: React.FC = () => {
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-4xl font-bold text-green-400 flex items-center">
           <Terminal className="mr-2" />
-          {resume.profile.username}
+          {resume.bio.name}
           <span className="animate-blink">_</span>
         </h1>
         <div className="space-x-4">

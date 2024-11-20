@@ -142,7 +142,14 @@ class APIClient {
   async getResume(): Promise<Resume> {
     // return this.fetchWithCache<Resume>('/api/resume');
     return {
-      profile: await this.getProfile(),
+      bio: {
+        name: "tony kabilan okeke",
+        title: "machine learning engineer",
+        bio: `Passionate about leveraging AI and software engineering to solve
+      complex problems. Expertise in machine learning algorithms and
+      full-stack development. Creating innovative solutions that make a
+      difference.`,
+      },
       education: [
         {
           id: 2,

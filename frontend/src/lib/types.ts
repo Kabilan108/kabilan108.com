@@ -39,6 +39,12 @@ export interface Project {
   published: Date;
 }
 
+export interface Bio {
+  name: string;
+  title: string;
+  bio?: string;
+}
+
 export interface Education {
   id: number;
   degree: string;
@@ -47,6 +53,7 @@ export interface Education {
   details: string;
 }
 
+// TODO: support unpublished publications
 export interface Publication {
   id: number;
   title: string;
@@ -88,7 +95,7 @@ export interface Organization {
 }
 
 export interface Resume {
-  profile: Profile;
+  bio: Bio;
   education: Education[];
   workExperience: WorkExperience[];
   publications: Publication[];
