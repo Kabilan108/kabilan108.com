@@ -1,15 +1,12 @@
 from pydantic import BaseModel, HttpUrl, EmailStr, RootModel
 
 from datetime import datetime
-from enum import Enum
 from typing import Any
 
 
-class LinkType(str, Enum):
-    EMAIL = "email"
-    GITHUB = "github"
-    X = "x"
-    LINKEDIN = "linkedin"
+class ServerResponse(BaseModel):
+    message: str | None = None
+    data: Any | None = None
 
 
 class Links(BaseModel):
@@ -26,7 +23,7 @@ class Profile(BaseModel):
     bio: str
     image_url: HttpUrl
     location: str
-    links: dict[LinkType, str]
+    links: Links
 
 
 class Post(BaseModel):
@@ -49,6 +46,12 @@ class Project(BaseModel):
     demo: HttpUrl | None = None
     featured: bool
     published: datetime
+
+
+class Bio(BaseModel):
+    name: str
+    title: str
+    bio: str | None = None
 
 
 class Education(BaseModel):
@@ -108,8 +111,3 @@ class Resume(BaseModel):
     skills: Skills
     awards: list[Award]
     organizations: list[Organization]
-
-
-class ServerResponse(BaseModel):
-    message: str | None = None
-    data: Any | None = None
