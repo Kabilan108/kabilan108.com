@@ -7,9 +7,9 @@ module.exports = {
         accent: "var(--accent-color)",
         background: "var(--background-color)",
         border: "var(--border-color)",
-        command: "var(--text-command-color)",
         highlight: "var(--highlight-color)",
         text: "var(--text-color)",
+        muted: "var(--muted-color)",
       },
       keyframes: {
         blink: {
