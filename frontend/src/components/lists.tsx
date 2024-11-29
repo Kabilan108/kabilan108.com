@@ -5,12 +5,19 @@ import type { Post, Project } from "../lib/types";
 import { formatDate } from "../lib/utils";
 import { NumberedSection, Tag } from "./ui";
 
-export const PostList: React.FC<{
-  posts: Post[];
-  numPosts?: number;
+interface ListProps<T> {
+  items: T[];
+  numItems?: number;
   startIndex?: number;
   handleTagClick?: (tag: string) => void;
-}> = ({ posts, numPosts, startIndex = 0, handleTagClick }) => {
+}
+
+export const PostList: React.FC<ListProps<Post>> = ({
+  items: posts,
+  numItems: numPosts,
+  startIndex = 0,
+  handleTagClick,
+}) => {
   if (numPosts) {
     posts = posts.slice(0, numPosts);
   }
@@ -41,11 +48,12 @@ export const PostList: React.FC<{
   );
 };
 
-export const ProjectList: React.FC<{
-  projects: Project[];
-  numProjects?: number;
-  handleTagClick?: (tag: string) => void;
-}> = ({ projects, numProjects, handleTagClick }) => {
+export const ProjectList: React.FC<ListProps<Project>> = ({
+  items: projects,
+  numItems: numProjects,
+  startIndex = 0,
+  handleTagClick,
+}) => {
   if (numProjects) {
     projects = projects.slice(0, numProjects);
   }
@@ -53,7 +61,7 @@ export const ProjectList: React.FC<{
   return (
     <div className="space-y-6">
       {projects.map((project, index) => (
-        <NumberedSection key={project.title} index={index}>
+        <NumberedSection key={project.title} index={startIndex + index}>
           <h2 className="font-mono text-ctp-green flex items-center gap-2">
             <ChevronRight className="w-4 h-4" /> {project.title}
           </h2>

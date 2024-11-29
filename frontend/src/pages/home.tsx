@@ -57,7 +57,7 @@ const Writing: React.FC = () => {
       <Link to="/writing">
         <Heading text="## writing" />
       </Link>
-      <PostList posts={featuredPosts} />
+      <PostList items={featuredPosts} />
     </section>
   );
 };
@@ -72,7 +72,7 @@ const Projects: React.FC = () => {
       <Link to="/projects">
         <Heading text="## stuff i've built" />
       </Link>
-      <ProjectList projects={featuredProjects} />
+      <ProjectList items={featuredProjects} />
     </section>
   );
 };
