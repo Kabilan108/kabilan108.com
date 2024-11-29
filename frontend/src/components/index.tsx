@@ -36,16 +36,35 @@ export const NumberedSection: React.FC<{
   );
 };
 
-const TagList: React.FC<{ tags: string[] }> = ({ tags }) => {
+export const Tag: React.FC<{
+  tag: string;
+  handleTagClick?: (tag: string) => void;
+}> = ({ tag, handleTagClick }) => {
+  return (
+    <button
+      type="button"
+      tabIndex={0}
+      className="text-ctp-lavender hover:text-ctp-peach transition-colors"
+      onClick={() => handleTagClick?.(tag)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          handleTagClick?.(tag);
+        }
+      }}
+    >
+      #{tag.toLowerCase().replace(" ", "-")}
+    </button>
+  );
+};
+
+const TagList: React.FC<{
+  tags: string[];
+  handleTagClick?: (tag: string) => void;
+}> = ({ tags, handleTagClick }) => {
   return (
     <>
       {tags.map((tag) => (
-        <span
-          key={tag}
-          className="text-ctp-lavender hover:text-ctp-peach transition-colors"
-        >
-          #{tag.toLowerCase().replace(" ", "-")}
-        </span>
+        <Tag key={tag} tag={tag} handleTagClick={handleTagClick} />
       ))}
     </>
   );
@@ -65,7 +84,9 @@ export const Heading: React.FC<{ text: string; className?: string }> = ({
 export const PostList: React.FC<{
   posts: Post[];
   numPosts?: number;
-}> = ({ posts, numPosts }) => {
+  startIndex?: number;
+  handleTagClick?: (tag: string) => void;
+}> = ({ posts, numPosts, startIndex = 0, handleTagClick }) => {
   if (numPosts) {
     posts = posts.slice(0, numPosts);
   }
@@ -73,7 +94,7 @@ export const PostList: React.FC<{
   return (
     <div className="space-y-6">
       {posts.map((post, index) => (
-        <NumberedSection key={post.slug} index={index}>
+        <NumberedSection key={post.slug} index={startIndex + index}>
           <h2 className="font-mono text-ctp-subtext1 flex items-center gap-2">
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-ctp-subtext0 mx-1" />
             {formatDate(post.publishedOn)} -
@@ -86,7 +107,7 @@ export const PostList: React.FC<{
           </h2>
           <p className="text-ctp-subtext0 pl-6">{post.excerpt}</p>
           <div className="flex items-center gap-2 text-sm pl-6">
-            <TagList tags={post.tags} />
+            <TagList tags={post.tags} handleTagClick={handleTagClick} />
           </div>
         </NumberedSection>
       ))}

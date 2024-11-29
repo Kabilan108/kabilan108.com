@@ -54,7 +54,7 @@ export function formatDate(date: Date, format: DateFormat = "short"): string {
   }
 }
 
-export function sortItems<T extends Item>(
+export function groupFeaturedItems<T extends Item>(
   items: Array<T>,
   n?: number,
 ): [Array<T>, Array<T>] {

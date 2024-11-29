@@ -11,9 +11,9 @@ import {
 import { useDataStore } from "./lib/data-stores";
 import type { Profile } from "./lib/types";
 import HomePage from "./pages/home";
-import PostsPage from "./pages/posts";
 import ProjectsPage from "./pages/projects";
 import ResumePage from "./pages/resume";
+import PostsPage from "./pages/writing";
 
 const App = () => {
   const fetchData = useDataStore((state) => state.fetchData);
@@ -27,8 +27,8 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen font-mono ctp-mocha bg-ctp-mantle text-ctp-text">
-        <main className="max-w-4xl mx-auto p-4">
+      <div className="min-h-screen font-mono ctp-mocha bg-ctp-mantle text-ctp-text flex flex-col">
+        <main className="flex-grow max-w-4xl w-full mx-auto p-4">
           <NavBar profile={profile} />
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -36,8 +36,8 @@ const App = () => {
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/resume" element={<ResumePage />} />
           </Routes>
-          <Footer profile={profile} />
         </main>
+        <Footer profile={profile} />
       </div>
     </BrowserRouter>
   );
@@ -84,7 +84,7 @@ const NavBar = ({ profile }: { profile: Profile }) => {
 
 const Footer = ({ profile }: { profile: Profile }) => {
   return (
-    <footer className="mt-10">
+    <footer className="w-full max-w-4xl mx-auto pt-4 pb-2 border-t border-ctp-surface1">
       <p className="flex items-center justify-center text-sm text-ctp-subtext0">
         <Copyright className="mr-1 h-4 w-4 mr-2" /> {new Date().getFullYear()}
         {" -"}

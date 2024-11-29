@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import { Heading, PostList, ProjectList, Section } from "../components";
 import { useDataStore } from "../lib/data-stores";
 import type { Post, Profile, Project } from "../lib/types";
-import { sortItems } from "../lib/utils";
+import { groupFeaturedItems } from "../lib/utils";
 
 const HomePage: React.FC = () => {
   return (
     <div className="space-y-8">
       <Bio />
-      <RecentPosts />
-      <FeaturedProjects />
+      <Writing />
+      <Projects />
     </div>
   );
 };
@@ -46,10 +46,10 @@ const Bio: React.FC = () => {
   );
 };
 
-const RecentPosts: React.FC = () => {
+const Writing: React.FC = () => {
   const posts: Post[] | null = useDataStore((state) => state.posts);
   if (!posts || posts.length === 0) return null;
-  const [featuredPosts] = sortItems<Post>(posts, 4);
+  const [featuredPosts] = groupFeaturedItems<Post>(posts, 4);
 
   return (
     <section className="pb-10 border-b border-ctp-surface1">
@@ -61,13 +61,13 @@ const RecentPosts: React.FC = () => {
   );
 };
 
-const FeaturedProjects: React.FC = () => {
+const Projects: React.FC = () => {
   const projects: Project[] | null = useDataStore((state) => state.projects);
   if (!projects) return null;
-  const [featuredProjects] = sortItems<Project>(projects, 4);
+  const [featuredProjects] = groupFeaturedItems<Project>(projects, 4);
 
   return (
-    <section className="pb-10 border-b border-ctp-surface1">
+    <section className="pb-10">
       <Link to="/projects">
         <Heading text="## stuff i've built" />
       </Link>
