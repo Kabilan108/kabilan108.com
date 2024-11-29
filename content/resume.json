@@ -1,0 +1,114 @@
+{
+  "education": [
+    {
+      "id": 2,
+      "degree": "M.S. in Biomedical Engineering",
+      "institution": "Drexel University",
+      "duration": "2022 - 2024",
+      "details": "Concentration in Bioinformatics",
+      "location": "Philadelphia, PA"
+    },
+    {
+      "id": 1,
+      "degree": "B.S. in Biomedical Engineering",
+      "institution": "Drexel University",
+      "duration": "2019 - 2024",
+      "details": "Concentration in Neuroengineering",
+      "location": "Philadelphia, PA"
+    }
+  ],
+  "workExperience": [
+    {
+      "id": 1,
+      "position": "Machine Learning Engineer",
+      "company": "Moberg Analytics",
+      "startDate": "2024-08-01",
+      "endDate": null,
+      "location": "Philadelphia, PA",
+      "responsibilities": [
+        "Developing models for artifact detection in arterial blood pressure waveforms. lorem lipsum dolor sit amet, consectetur adipiscing elit.",
+        "Developing models for artifact detection in arterial blood pressure waveforms. lorem lipsum dolor sit amet, consectetur adipiscing elit."
+      ]
+    }
+  ],
+  "skills": {
+    "programming languages": ["Python", "R", "SQL"],
+    "frameworks": ["PyTorch", "TensorFlow", "Scikit-learn"]
+  },
+  "publications": [
+    {
+      "id": 1,
+      "title": "Artifact Detection in Arterial Blood Pressure Waveforms",
+      "journal": "Journal of Biomedical Engineering",
+      "authors": ["Tony Kabilan Okeke", "John Doe"],
+      "me": 1,
+      "publishedOn": "2024-01-15",
+      "isPublished": false,
+      "citation": "Niroshana, S. I., Kuroda, S., Tanaka, K., & Chen, W. (2023). Beat-wise segmentation of electrocardiogram using adaptive windowing and deep neural network. Scientific Reports, 13(1), 11039.",
+      "url": "",
+      "pdfPath": "/pdf/publication/artifact-detection.pdf"
+    },
+    {
+      "id": 2,
+      "title": "Persistent Depletion of Neuroprotective Factors Accompanies Neuroinflammatory, Neurodegenerative, and Vascular Remodeling Spectra in Serum Three Months after Non-Emergent Cardiac Surger",
+      "journal": "Journal of Biomedical Engineering",
+      "authors": [
+        "Laudanski, K.",
+        "Liu, D.",
+        "Okeke, T.",
+        "Restrepo, M.",
+        "Szeto, W.Y."
+      ],
+      "me": 3,
+      "publishedOn": "2022-01-15",
+      "isPublished": true,
+      "citation": "Niroshana, S. I., Kuroda, S., Tanaka, K., & Chen, W. (2023). Beat-wise segmentation of electrocardiogram using adaptive windowing and deep neural network. Scientific Reports, 13(1), 11039.",
+      "url": "https://doi.org/10.1038/s41598-023-37773-y",
+      "pdfPath": "/pdf/publication/artifact-detection.pdf"
+    }
+  ],
+  "abstracts": [
+    {
+      "id": 1,
+      "title": "Artifact Detection in Arterial Blood Pressure Waveforms",
+      "journal": "Journal of Biomedical Engineering",
+      "authors": ["Tony Kabilan Okeke", "John Doe"],
+      "me": 1,
+      "publishedOn": "2024-01-15",
+      "isPublished": true,
+      "citation": "",
+      "url": "",
+      "pdfPath": "/pdf/abstract/artifact-detection.pdf"
+    }
+  ],
+  "awards": [
+    {
+      "id": 1,
+      "title": "Drexel University Dean's List",
+      "startDate": "2022-05-01",
+      "endDate": "2024-05-01"
+    },
+    {
+      "id": 2,
+      "title": "Drexel Startups Fund",
+      "amount": 1000,
+      "startDate": "2022-05-01",
+      "endDate": null,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    }
+  ],
+  "organizations": [
+    {
+      "id": 1,
+      "name": "IEEE",
+      "position": "Member",
+      "duration": "2022 - Present"
+    },
+    {
+      "id": 2,
+      "name": "Tau Beta Pi",
+      "position": "Member",
+      "duration": "2022 - Present"
+    }
+  ]
+}

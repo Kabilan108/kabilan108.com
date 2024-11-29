@@ -1,0 +1,31 @@
+[
+  {
+    "id": 1,
+    "title": "Predictive_Maintenance_ML",
+    "description": "Machine learning model to predict equipment failures, reducing downtime by 30%.",
+    "tags": ["Python", "TensorFlow", "Scikit-learn"],
+    "github": "https://github.com/johndoe/predictive-maintenance",
+    "demo": "https://demo.predictive-maintenance.com",
+    "featured": true,
+    "date": "2024-01-15"
+  },
+  {
+    "id": 2,
+    "title": "Realtime_Data_Pipeline",
+    "description": "Scalable data pipeline using Apache Kafka and Spark for processing millions of events per second.",
+    "tags": ["Scala", "Apache Kafka", "Apache Spark"],
+    "github": "https://github.com/johndoe/realtime-pipeline",
+    "featured": false,
+    "date": "2024-01-10"
+  },
+  {
+    "id": 3,
+    "title": "NLP_Chatbot",
+    "description": "AI-powered chatbot capable of understanding and responding to complex queries in multiple languages.",
+    "tags": ["Python", "NLTK", "Transformer Models"],
+    "github": "https://github.com/johndoe/nlp-chatbot",
+    "demo": "https://chatbot-demo.johndoe.com",
+    "featured": true,
+    "date": "2024-01-05"
+  }
+]

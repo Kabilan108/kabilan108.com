@@ -1,8 +1,15 @@
+import { useEffect, useState } from "react";
+
 import { TaggedItemList } from "../components/tagged-item-list";
-import { useDataStore } from "../lib/data-stores";
+import { getPosts } from "../lib/content";
+import type { Post } from "../lib/types";
 
 const PostsPage: React.FC = () => {
-  const posts = useDataStore((state) => state.posts);
+  const [posts, setPosts] = useState<Post[] | null>(null);
+
+  useEffect(() => {
+    getPosts().then(setPosts);
+  }, []);
 
   if (!posts || posts.length === 0) return null;
 

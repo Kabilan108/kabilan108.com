@@ -14,7 +14,7 @@ import {
   Tooltip,
   TooltipButton,
 } from "../components/ui";
-import { useDataStore } from "../lib/data-stores";
+import { getProfile, getProjects, getResume } from "../lib/content";
 import type {
   Award,
   Education,
@@ -28,11 +28,11 @@ import type {
 import { cn, formatDate } from "../lib/utils";
 
 const ResumePage: React.FC = () => {
-  const resume = useDataStore((state) => state.resume);
-  const profile = useDataStore((state) => state.profile);
-  const projects = useDataStore((state) => state.projects);
-
+  const resume = getResume();
+  const profile = getProfile();
+  const projects = getProjects();
   if (!profile || !resume) return null;
+
   resume.featuredProjects = projects?.filter((project) => project.featured);
 
   return (

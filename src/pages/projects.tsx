@@ -1,9 +1,8 @@
 import { TaggedItemList } from "../components/tagged-item-list";
-import { useDataStore } from "../lib/data-stores";
+import { getProjects } from "../lib/content";
 
 const ProjectsPage: React.FC = () => {
-  const projects = useDataStore((state) => state.projects);
-
+  const projects = getProjects();
   if (!projects || projects.length === 0) return null;
 
   return (

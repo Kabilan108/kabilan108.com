@@ -77,8 +77,6 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
 
   const renderList = (items: (Post | Project)[], startIndex = 0) => {
     if (type === "post") {
-      console.log("post items", items);
-      console.log("post startIndex", startIndex);
       if (!items.every(isPost)) {
         throw new Error("Invalid item type: expected Post[]");
       }
@@ -94,7 +92,6 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
     if (!items.every(isProject)) {
       throw new Error("Invalid item type: expected Project[]");
     }
-    console.log("project startIndex", startIndex);
     return (
       <ProjectList
         items={items}

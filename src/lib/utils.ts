@@ -60,7 +60,7 @@ export function groupFeaturedItems<T extends TaggedItem>(
   n?: number,
 ): [Array<T>, Array<T>] {
   const sorted = [...items].sort(
-    (a: T, b: T) => b.createdOn.getTime() - a.createdOn.getTime(),
+    (a: T, b: T) => b.date.getTime() - a.date.getTime(),
   );
 
   const featured = sorted.filter((item) => item.featured);

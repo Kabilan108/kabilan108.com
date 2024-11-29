@@ -3,7 +3,7 @@ export interface TaggedItem {
   title: string;
   tags: string[];
   featured: boolean;
-  createdOn: Date;
+  date: Date;
 }
 
 export interface Profile {
@@ -26,26 +26,15 @@ export enum LinkType {
   MAL = "myanimelist",
 }
 
-export interface Post {
-  id: number;
-  title: string;
+export interface Post extends TaggedItem {
+  content: string;
   excerpt: string;
-  slug: string;
-  tags: string[];
-  createdOn: Date;
-  featured: boolean;
-  content?: string;
 }
 
-export interface Project {
-  id: number;
-  title: string;
+export interface Project extends TaggedItem {
   description: string;
-  tags: string[];
   github: string;
   demo?: string;
-  featured: boolean;
-  createdOn: Date;
 }
 
 export interface Education {
@@ -57,7 +46,6 @@ export interface Education {
   location: string;
 }
 
-// TODO: support unpublished publications
 export interface Publication {
   id: number;
   title: string;

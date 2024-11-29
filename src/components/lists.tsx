@@ -30,7 +30,7 @@ export const PostList: React.FC<ListProps<Post>> = ({
             <div className="flex flex-wrap items-center">
               <span className="flex items-center whitespace-nowrap">
                 <Dot className="w-6 h-6 text-ctp-subtext0 flex-shrink-0 hidden sm:block" />
-                {formatDate(post.createdOn)}
+                {formatDate(post.date)}
                 <span className="mx-2">-</span>
               </span>
               <Link

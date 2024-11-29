@@ -1,9 +1,9 @@
-import type React from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { PostList, ProjectList } from "../components/lists";
 import { Heading, Section, SocialLinks } from "../components/ui";
-import { useDataStore } from "../lib/data-stores";
+import { getPosts, getProfile, getProjects } from "../lib/content";
 import type { Post, Profile, Project } from "../lib/types";
 import { groupFeaturedItems } from "../lib/utils";
 
@@ -18,7 +18,7 @@ const HomePage: React.FC = () => {
 };
 
 const Bio: React.FC = () => {
-  const profile: Profile | null = useDataStore((state) => state.profile);
+  const profile: Profile | null = getProfile();
   if (!profile) return null;
 
   return (
@@ -51,7 +51,12 @@ const Bio: React.FC = () => {
 };
 
 const Writing: React.FC = () => {
-  const posts: Post[] | null = useDataStore((state) => state.posts);
+  const [posts, setPosts] = useState<Post[] | null>(null);
+
+  useEffect(() => {
+    getPosts().then(setPosts);
+  }, []);
+
   if (!posts || posts.length === 0) return null;
   const [featuredPosts] = groupFeaturedItems<Post>(posts, 4);
 
@@ -66,7 +71,7 @@ const Writing: React.FC = () => {
 };
 
 const Projects: React.FC = () => {
-  const projects: Project[] | null = useDataStore((state) => state.projects);
+  const projects: Project[] | null = getProjects();
   if (!projects) return null;
   const [featuredProjects] = groupFeaturedItems<Project>(projects, 4);
 

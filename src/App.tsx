@@ -1,5 +1,5 @@
 import { Copyright, Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   BrowserRouter,
   Link,
@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import { SocialLinks } from "./components/ui";
-import { useDataStore } from "./lib/data-stores";
+import { getProfile } from "./lib/content";
 import type { Profile } from "./lib/types";
 import HomePage from "./pages/home";
 import ProjectsPage from "./pages/projects";
@@ -17,13 +17,7 @@ import ResumePage from "./pages/resume";
 import PostsPage from "./pages/writing";
 
 const App = () => {
-  const fetchData = useDataStore((state) => state.fetchData);
-  const profile = useDataStore((state) => state.profile);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
+  const profile = getProfile();
   if (!profile) return null;
 
   return (
