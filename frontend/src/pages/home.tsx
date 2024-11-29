@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { PostList, ProjectList } from "../components/lists";
 import { Heading, Section } from "../components/ui";
 import { useDataStore } from "../lib/data-stores";
-import type { Post, Profile, Project } from "../lib/types";
+import type { LinkType, Post, Profile, Project } from "../lib/types";
 import { groupFeaturedItems } from "../lib/utils";
 
 const HomePage: React.FC = () => {
@@ -31,8 +31,24 @@ const Bio: React.FC = () => {
           <Section className="text-lg text-ctp-green pl-6 pb-1 pt-1">
             {profile.title}
           </Section>
-          <Section className="text-sm sm:text-base text-ctp-subtext0 pl-6">
-            {profile.bio}
+          <Section className="text-sm sm:text-base text-ctp-subtext0 pl-6 space-y-4">
+            <p>{profile.bio}</p>
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(profile.links).map(([key, url]) => {
+                const linkType = key as LinkType;
+                return (
+                  <a
+                    key={linkType}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-ctp-subtext1 hover:text-ctp-pink transition-colors"
+                  >
+                    [{linkType}]
+                  </a>
+                );
+              })}
+            </div>
           </Section>
         </div>
       </div>

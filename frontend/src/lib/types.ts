@@ -13,7 +13,7 @@ export interface Profile {
 export enum LinkType {
   EMAIL = "email",
   GITHUB = "github",
-  X = "x",
+  X = "x_dot_com",
   LINKEDIN = "linkedin",
 }
 
@@ -94,6 +94,7 @@ export interface Organization {
   duration: string;
 }
 
+// TODO: add featured publications
 export interface Resume {
   bio: Bio;
   education: Education[];
