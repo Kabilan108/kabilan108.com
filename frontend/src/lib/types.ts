@@ -39,12 +39,6 @@ export interface Project {
   publishedOn: Date;
 }
 
-export interface Bio {
-  name: string;
-  title: string;
-  bio?: string;
-}
-
 export interface Education {
   id: number;
   degree: string;
@@ -96,7 +90,6 @@ export interface Organization {
 
 // TODO: add featured publications
 export interface Resume {
-  bio: Bio;
   education: Education[];
   workExperience: WorkExperience[];
   publications: Publication[];

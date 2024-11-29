@@ -1,13 +1,4 @@
-import {
-  Copyright,
-  ExternalLink,
-  Github,
-  Globe,
-  Linkedin,
-  Mail,
-  Menu,
-  X,
-} from "lucide-react";
+import { Copyright, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
   BrowserRouter,
@@ -17,7 +8,7 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import XLogo from "./assets/x-logo.svg?react";
+import { SocialLinks } from "./components/ui";
 import { useDataStore } from "./lib/data-stores";
 import type { Profile } from "./lib/types";
 import HomePage from "./pages/home";
@@ -62,14 +53,6 @@ const NavBar = ({ profile }: { profile: Profile }) => {
     { name: "projects", path: "/projects" },
     { name: "resume", path: "/resume" },
   ];
-
-  const iconMap = {
-    github: Github,
-    x_dot_com: () => <XLogo className="w-6 h-6 fill-current text-inherit" />,
-    linkedin: Linkedin,
-    email: Mail,
-    website: Globe,
-  } as const;
 
   return (
     <header className="pt-4 pb-2 mb-8 border-b border-ctp-surface1">
@@ -142,21 +125,7 @@ const NavBar = ({ profile }: { profile: Profile }) => {
 
             {/* Social Links */}
             <div className="absolute bottom-12 flex space-x-6">
-              {Object.entries(profile.links).map(([key, url]) => {
-                const IconComponent =
-                  iconMap[key as keyof typeof iconMap] || ExternalLink;
-                return (
-                  <a
-                    key={key}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-ctp-yellow hover:text-ctp-peach transition-colors"
-                  >
-                    <IconComponent size={24} />
-                  </a>
-                );
-              })}
+              <SocialLinks links={profile.links} />
             </div>
           </div>
         </div>

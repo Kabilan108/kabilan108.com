@@ -1,4 +1,27 @@
+import { ExternalLink, Github, Globe, Linkedin, Mail } from "lucide-react";
+
+import XLogo from "../assets/x-logo.svg?react";
+import type { Profile } from "../lib/types";
 import { cn } from "../lib/utils";
+
+interface IconWrapperProps {
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
+  size?: number;
+  className?: string;
+}
+
+const IconWrapper: React.FC<IconWrapperProps> = ({
+  icon: Icon,
+  size = 24,
+  className,
+}) => {
+  return (
+    <Icon
+      className={cn("fill-current text-inherit", className)}
+      style={{ width: size, height: size }}
+    />
+  );
+};
 
 export const Section: React.FC<{
   children: React.ReactNode;
@@ -63,5 +86,50 @@ export const Heading: React.FC<{ text: string; className?: string }> = ({
     <h1 className={cn("text-ctp-mauve text-xl font-bold mb-4", className)}>
       {text}
     </h1>
+  );
+};
+
+export const SocialLinks: React.FC<{
+  links: Profile["links"];
+  size?: number;
+  useIcons?: boolean;
+}> = ({ links, size = 24, useIcons = true }) => {
+  const iconMap = {
+    github: Github,
+    x_dot_com: XLogo,
+    linkedin: Linkedin,
+    email: Mail,
+    website: Globe,
+  } as const;
+
+  return (
+    <>
+      {Object.entries(links).map(([key, url]) => {
+        const IconComponent =
+          iconMap[key as keyof typeof iconMap] || ExternalLink;
+        return (
+          <a
+            key={key}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              "text-ctp-yellow hover:text-ctp-peach transition-colors",
+              useIcons && "flex items-center",
+            )}
+          >
+            {useIcons ? (
+              key === "x_dot_com" ? (
+                <IconWrapper icon={IconComponent} size={size} />
+              ) : (
+                <IconComponent size={size} />
+              )
+            ) : (
+              <span>[{key}]</span>
+            )}
+          </a>
+        );
+      })}
+    </>
   );
 };
