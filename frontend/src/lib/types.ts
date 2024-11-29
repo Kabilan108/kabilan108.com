@@ -23,7 +23,7 @@ export interface Post {
   excerpt: string;
   slug: string;
   tags: string[];
-  published: Date;
+  publishedOn: Date;
   featured: boolean;
   content?: string;
 }
@@ -36,7 +36,7 @@ export interface Project {
   github: string;
   demo?: string;
   featured: boolean;
-  published: Date;
+  publishedOn: Date;
 }
 
 export interface Bio {

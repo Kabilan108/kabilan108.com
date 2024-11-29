@@ -27,13 +27,13 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-background text-text font-mono">
-        <main className="container max-w-3xl mx-auto">
-          <Header profile={profile} />
+      <div className="min-h-screen font-mono ctp-mocha bg-ctp-mantle text-ctp-text">
+        <main className="max-w-4xl mx-auto p-4">
+          <NavBar profile={profile} />
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/writing" element={<PostsPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/posts" element={<PostsPage />} />
             <Route path="/resume" element={<ResumePage />} />
           </Routes>
           <Footer profile={profile} />
@@ -43,19 +43,22 @@ const App = () => {
   );
 };
 
-const Header = ({ profile }: { profile: Profile }) => {
+const NavBar = ({ profile }: { profile: Profile }) => {
   const location = useLocation();
   const pages = [
     { name: "home", path: "/" },
+    { name: "writing", path: "/writing" },
     { name: "projects", path: "/projects" },
-    { name: "posts", path: "/posts" },
     { name: "resume", path: "/resume" },
   ];
 
   return (
-    <header className="py-4 mb-4">
-      <nav className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-lg font-bold text-accent">
+    <header className="py-2 mb-8 border-b border-ctp-surface1">
+      <nav className="flex justify-between items-center">
+        <Link
+          to="/"
+          className="text-lg font-bold text-ctp-maroon hover:text-ctp-red transition-colors"
+        >
           {profile.username}
         </Link>
         <ul className="flex space-x-6 text-md">
@@ -63,8 +66,10 @@ const Header = ({ profile }: { profile: Profile }) => {
             <li key={page.name}>
               <Link
                 to={page.path}
-                className={`hover:text-accent transition-colors ${
-                  location.pathname === page.path ? "text-accent underline" : ""
+                className={`hover:text-ctp-peach transition-colors ${
+                  location.pathname === page.path
+                    ? "text-ctp-peach border-b border-ctp-peach"
+                    : "text-ctp-yellow"
                 }`}
               >
                 {page.name}
@@ -79,15 +84,14 @@ const Header = ({ profile }: { profile: Profile }) => {
 
 const Footer = ({ profile }: { profile: Profile }) => {
   return (
-    <footer className="mt-16">
-      <div className="container mx-auto py-4 text-center">
-        <p className="flex items-center justify-center">
-          <Copyright className="mr-1 h-4 w-4 mr-2" /> {new Date().getFullYear()}{" "}
-          <Link to="/" className="underline ml-1">
-            {profile.username}
-          </Link>
-        </p>
-      </div>
+    <footer className="mt-10">
+      <p className="flex items-center justify-center text-sm text-ctp-subtext0">
+        <Copyright className="mr-1 h-4 w-4 mr-2" /> {new Date().getFullYear()}
+        {" -"}
+        <Link to="/" className="ml-2">
+          {profile.username}
+        </Link>
+      </p>
     </footer>
   );
 };

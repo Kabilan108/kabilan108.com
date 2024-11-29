@@ -68,7 +68,7 @@ class APIClient {
           "A comprehensive guide to building production-ready machine learning pipelines using modern tools and best practices.",
         slug: "building-scalable-ml-pipelines",
         tags: ["Machine Learning", "MLOps", "Python", "Docker"],
-        published: new Date("2024-01-15"),
+        publishedOn: new Date("2024-01-15"),
         featured: true,
       },
       {
@@ -78,7 +78,7 @@ class APIClient {
           "Exploring state-of-the-art deep learning architectures for computer vision tasks, from classification to object detection.",
         slug: "deep-learning-computer-vision",
         tags: ["Deep Learning", "Computer Vision", "PyTorch", "CNN"],
-        published: new Date("2024-01-10"),
+        publishedOn: new Date("2024-01-10"),
         featured: false,
       },
       {
@@ -88,7 +88,7 @@ class APIClient {
           "Advanced techniques for improving neural network performance, including hyperparameter tuning and architecture search.",
         slug: "optimizing-neural-networks",
         tags: ["Neural Networks", "Optimization", "TensorFlow", "Performance"],
-        published: new Date("2024-01-05"),
+        publishedOn: new Date("2024-01-05"),
         featured: true,
       },
     ];
@@ -113,7 +113,7 @@ class APIClient {
         github: "https://github.com/johndoe/predictive-maintenance",
         demo: "https://demo.predictive-maintenance.com",
         featured: true,
-        published: new Date("2024-01-15"),
+        publishedOn: new Date("2024-01-15"),
       },
       {
         id: 2,
@@ -123,7 +123,7 @@ class APIClient {
         tags: ["Scala", "Apache Kafka", "Apache Spark"],
         github: "https://github.com/johndoe/realtime-pipeline",
         featured: false,
-        published: new Date("2024-01-10"),
+        publishedOn: new Date("2024-01-10"),
       },
       {
         id: 3,
@@ -134,13 +134,14 @@ class APIClient {
         github: "https://github.com/johndoe/nlp-chatbot",
         demo: "https://chatbot-demo.johndoe.com",
         featured: true,
-        published: new Date("2024-01-05"),
+        publishedOn: new Date("2024-01-05"),
       },
     ];
   }
 
   async getResume(): Promise<Resume> {
     // return this.fetchWithCache<Resume>('/api/resume');
+    // TODO: featured projects should be included in the resume
     return {
       bio: {
         name: "tony kabilan okeke",

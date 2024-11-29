@@ -43,7 +43,9 @@ const PostsPage: React.FC = () => {
   const sortedPosts = [...filteredPosts].sort((a, b) => {
     if (a.featured && !b.featured) return -1;
     if (!a.featured && b.featured) return 1;
-    return new Date(b.published).getTime() - new Date(a.published).getTime();
+    return (
+      new Date(b.publishedOn).getTime() - new Date(a.publishedOn).getTime()
+    );
   });
 
   // Split posts into featured and archived
@@ -105,7 +107,7 @@ const PostsPage: React.FC = () => {
               </h2>
             </div>
             <p className="text-gray-400 mb-2">
-              {new Date(post.published).toLocaleDateString()}
+              {new Date(post.publishedOn).toLocaleDateString()}
             </p>
             <p className="text-gray-400 mb-4">{post.excerpt}</p>
             <div className="flex flex-wrap gap-2 mb-4">
@@ -161,7 +163,7 @@ const PostsPage: React.FC = () => {
                       </h2>
                     </div>
                     <p className="text-gray-400 mb-2">
-                      {new Date(post.published).toLocaleDateString()}
+                      {new Date(post.publishedOn).toLocaleDateString()}
                     </p>
                     <p className="text-gray-400 mb-4">{post.excerpt}</p>
                     <div className="flex flex-wrap gap-2 mb-4">
