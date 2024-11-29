@@ -1,85 +1,9 @@
-import { ExternalLink } from "lucide-react";
-import { ChevronRight, Github } from "lucide-react";
+import { ChevronRight, ExternalLink, Github } from "lucide-react";
 import { Link } from "react-router-dom";
+
 import type { Post, Project } from "../lib/types";
-import { cn, formatDate } from "../lib/utils";
-
-export const Section: React.FC<{
-  children: React.ReactNode;
-  className?: string;
-}> = ({ children, className }) => {
-  return (
-    <div
-      className={cn(
-        "relative pl-2 border-l-4 border-ctp-surface0 py-2",
-        "hover:border-ctp-blue hover:bg-ctp-surface0 hover:bg-opacity-50 transition-colors",
-        className,
-      )}
-    >
-      {children}
-    </div>
-  );
-};
-
-export const NumberedSection: React.FC<{
-  children: React.ReactNode;
-  index: number;
-  className?: string;
-}> = ({ children, index, className }) => {
-  return (
-    <Section className={className}>
-      <div className="absolute -left-4 -ml-4 text-ctp-overlay0 opacity-50 select-none">
-        {String(index + 1).padStart(2, "0")}
-      </div>
-      <div className="space-y-2">{children}</div>
-    </Section>
-  );
-};
-
-export const Tag: React.FC<{
-  tag: string;
-  handleTagClick?: (tag: string) => void;
-}> = ({ tag, handleTagClick }) => {
-  return (
-    <button
-      type="button"
-      tabIndex={0}
-      className="text-ctp-lavender hover:text-ctp-peach transition-colors"
-      onClick={() => handleTagClick?.(tag)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          handleTagClick?.(tag);
-        }
-      }}
-    >
-      #{tag.toLowerCase().replace(" ", "-")}
-    </button>
-  );
-};
-
-const TagList: React.FC<{
-  tags: string[];
-  handleTagClick?: (tag: string) => void;
-}> = ({ tags, handleTagClick }) => {
-  return (
-    <>
-      {tags.map((tag) => (
-        <Tag key={tag} tag={tag} handleTagClick={handleTagClick} />
-      ))}
-    </>
-  );
-};
-
-export const Heading: React.FC<{ text: string; className?: string }> = ({
-  text,
-  className,
-}) => {
-  return (
-    <h1 className={cn("text-ctp-mauve text-xl font-bold mb-4", className)}>
-      {text}
-    </h1>
-  );
-};
+import { formatDate } from "../lib/utils";
+import { NumberedSection, Tag } from "./ui";
 
 export const PostList: React.FC<{
   posts: Post[];
@@ -107,7 +31,9 @@ export const PostList: React.FC<{
           </h2>
           <p className="text-ctp-subtext0 pl-6">{post.excerpt}</p>
           <div className="flex items-center gap-2 text-sm pl-6">
-            <TagList tags={post.tags} handleTagClick={handleTagClick} />
+            {post.tags.map((tag) => (
+              <Tag key={tag} tag={tag} handleTagClick={handleTagClick} />
+            ))}
           </div>
         </NumberedSection>
       ))}
@@ -118,7 +44,8 @@ export const PostList: React.FC<{
 export const ProjectList: React.FC<{
   projects: Project[];
   numProjects?: number;
-}> = ({ projects, numProjects }) => {
+  handleTagClick?: (tag: string) => void;
+}> = ({ projects, numProjects, handleTagClick }) => {
   if (numProjects) {
     projects = projects.slice(0, numProjects);
   }
@@ -155,7 +82,9 @@ export const ProjectList: React.FC<{
               </a>
             )}
             <div className="flex items-center gap-2">
-              <TagList tags={project.tags} />
+              {project.tags.map((tag) => (
+                <Tag key={tag} tag={tag} handleTagClick={handleTagClick} />
+              ))}
             </div>
           </div>
         </NumberedSection>

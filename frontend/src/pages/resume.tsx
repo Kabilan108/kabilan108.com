@@ -8,7 +8,6 @@ import {
   GraduationCap,
   Terminal,
 } from "lucide-react";
-import type React from "react";
 import { useState } from "react";
 
 import { useDataStore } from "../lib/data-stores";

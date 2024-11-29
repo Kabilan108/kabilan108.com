@@ -1,7 +1,8 @@
 import { ChevronsDown, ChevronsUp, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
-import { PostList, Tag } from "../components";
+import { PostList } from "../components/lists";
+import { Section, Tag } from "../components/ui";
 import { useDataStore } from "../lib/data-stores";
 import type { Post } from "../lib/types";
 import { groupFeaturedItems } from "../lib/utils";
@@ -69,31 +70,33 @@ const PostsPage: React.FC = () => {
       </h1>
 
       <div className="mb-6 mt-4">
-        <div className="flex flex-wrap gap-2">
-          {allTags.map((tag) => (
-            <button
-              key={tag}
-              type="button"
-              onClick={() => handleTagClick(tag)}
-              className={`px-2 py-0.5 rounded text-sm ${
-                selectedTags.includes(tag)
-                  ? "bg-ctp-surface0 text-ctp-green"
-                  : "text-ctp-subtext0"
-              } transition-colors`}
-            >
-              <Tag tag={tag} />
-            </button>
-          ))}
-          {selectedTags.length > 0 && (
-            <button
-              type="button"
-              onClick={clearFilters}
-              className="text-ctp-subtext0 hover:text-ctp-red flex items-center py-0.5 text-sm"
-            >
-              [<X className="h-3 w-3" />]
-            </button>
-          )}
-        </div>
+        <Section hover={false}>
+          <div className="flex flex-wrap gap-2">
+            {allTags.map((tag) => (
+              <button
+                key={tag}
+                type="button"
+                onClick={() => handleTagClick(tag)}
+                className={`px-2 py-0.5 rounded text-sm ${
+                  selectedTags.includes(tag)
+                    ? "bg-ctp-surface0 text-ctp-green"
+                    : "text-ctp-subtext0"
+                } transition-colors`}
+              >
+                <Tag tag={tag} />
+              </button>
+            ))}
+            {selectedTags.length > 0 && (
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="text-ctp-subtext0 hover:text-ctp-red flex items-center py-0.5 text-sm"
+              >
+                [<X className="h-3 w-3" />]
+              </button>
+            )}
+          </div>
+        </Section>
       </div>
 
       <PostList posts={filteredFeaturedPosts} handleTagClick={handleTagClick} />

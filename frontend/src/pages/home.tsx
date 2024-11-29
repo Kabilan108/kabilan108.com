@@ -1,7 +1,8 @@
 import type React from "react";
-
 import { Link } from "react-router-dom";
-import { Heading, PostList, ProjectList, Section } from "../components";
+
+import { PostList, ProjectList } from "../components/lists";
+import { Heading, Section } from "../components/ui";
 import { useDataStore } from "../lib/data-stores";
 import type { Post, Profile, Project } from "../lib/types";
 import { groupFeaturedItems } from "../lib/utils";
