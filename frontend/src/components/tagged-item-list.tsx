@@ -1,19 +1,10 @@
 import { ChevronsDown, ChevronsUp, Tags, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
-import type { Post, Project } from "../lib/types";
+import type { Post, Project, TaggedItem } from "../lib/types";
 import { groupFeaturedItems } from "../lib/utils";
 import { PostList, ProjectList } from "./lists";
 import { Section, Tag } from "./ui";
-
-// Base interface for items that can be tagged
-interface TaggedItem {
-  id: number;
-  title: string;
-  tags: string[];
-  featured: boolean;
-  publishedOn: Date;
-}
 
 // Type guard to check if an item is a Post
 function isPost(item: TaggedItem): item is Post {
@@ -36,7 +27,7 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
   const [isTagMenuOpen, setIsTagMenuOpen] = useState(false);
 
   const [featuredItems, archivedItems] = useMemo(
-    () => groupFeaturedItems<Post | Project>(items),
+    () => groupFeaturedItems<TaggedItem>(items),
     [items],
   );
 
@@ -162,7 +153,7 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
         </Section>
       </div>
 
-      {renderList(filteredFeaturedItems)}
+      {renderList(filteredFeaturedItems as Post[])}
 
       {filteredArchivedItems.length > 0 && (
         <>
@@ -186,7 +177,10 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
               showArchived ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
             }`}
           >
-            {renderList(filteredArchivedItems, filteredFeaturedItems.length)}
+            {renderList(
+              filteredArchivedItems as Project[],
+              filteredFeaturedItems.length,
+            )}
           </div>
         </>
       )}

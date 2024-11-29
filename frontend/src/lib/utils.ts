@@ -1,12 +1,9 @@
 import clsx, { type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-interface Item {
-  featured: boolean;
-  publishedOn: Date;
-}
+import type { TaggedItem } from "./types";
 
-export type DateFormat = "short" | "long" | "time" | "full";
+export type DateFormat = "short" | "long" | "time" | "medium" | "full";
 
 export const cn = (...classes: ClassValue[]) => twMerge(clsx(...classes));
 
@@ -17,6 +14,21 @@ export function formatDate(date: Date, format: DateFormat = "short"): string {
   const hours = date.getHours();
   const minutes = date.getMinutes();
 
+  const months = [
+    "jan",
+    "feb",
+    "mar",
+    "apr",
+    "may",
+    "jun",
+    "jul",
+    "aug",
+    "sep",
+    "oct",
+    "nov",
+    "dec",
+  ];
+
   // Pad single digits with leading zero
   const pad = (n: number) => n.toString().padStart(2, "0");
 
@@ -24,22 +36,11 @@ export function formatDate(date: Date, format: DateFormat = "short"): string {
     case "short": // mm.dd.yyyy
       return `${pad(month)}.${pad(day)}.${year.toString()}`;
 
+    case "medium": // mon yyyy
+      return `${months[month - 1]} ${year}`;
+
     case "long": {
       // mon dd, yyyy
-      const months = [
-        "jan",
-        "feb",
-        "mar",
-        "apr",
-        "may",
-        "jun",
-        "jul",
-        "aug",
-        "sep",
-        "oct",
-        "nov",
-        "dec",
-      ];
       return `${months[month - 1]} ${day}, ${year}`;
     }
 
@@ -54,12 +55,12 @@ export function formatDate(date: Date, format: DateFormat = "short"): string {
   }
 }
 
-export function groupFeaturedItems<T extends Item>(
+export function groupFeaturedItems<T extends TaggedItem>(
   items: Array<T>,
   n?: number,
 ): [Array<T>, Array<T>] {
   const sorted = [...items].sort(
-    (a: T, b: T) => b.publishedOn.getTime() - a.publishedOn.getTime(),
+    (a: T, b: T) => b.createdOn.getTime() - a.createdOn.getTime(),
   );
 
   const featured = sorted.filter((item) => item.featured);

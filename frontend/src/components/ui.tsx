@@ -10,7 +10,7 @@ interface IconWrapperProps {
   className?: string;
 }
 
-const IconWrapper: React.FC<IconWrapperProps> = ({
+export const IconWrapper: React.FC<IconWrapperProps> = ({
   icon: Icon,
   size = 24,
   className,
@@ -114,7 +114,7 @@ export const SocialLinks: React.FC<{
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              "text-ctp-yellow hover:text-ctp-peach transition-colors",
+              "text-ctp-overlay0 hover:text-ctp-pink underline transition-colors",
               useIcons && "flex items-center",
             )}
           >
@@ -125,11 +125,85 @@ export const SocialLinks: React.FC<{
                 <IconComponent size={size} />
               )
             ) : (
-              <span>[{key}]</span>
+              <span>{key}</span>
             )}
           </a>
         );
       })}
     </>
+  );
+};
+
+export const Tooltip: React.FC<{
+  children: React.ReactNode;
+  tooltip: string;
+  className?: string;
+}> = ({ children, tooltip, className }) => {
+  return (
+    <div className={cn("relative group", className)}>
+      {children}
+      <span
+        className={cn(
+          "bg-ctp-surface0 text-ctp-text text-xs",
+          "absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1",
+          "rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity",
+        )}
+      >
+        {tooltip}
+      </span>
+    </div>
+  );
+};
+
+export const TooltipButton: React.FC<{
+  children: React.ReactNode;
+  onClick: () => void;
+  tooltip: string;
+  className?: string;
+}> = ({ children, onClick, tooltip, className }) => {
+  return (
+    <Tooltip tooltip={tooltip}>
+      <button
+        type="button"
+        onClick={onClick}
+        className={cn("transition-all duration-100 border-none", className)}
+      >
+        {children}
+      </button>
+    </Tooltip>
+  );
+};
+
+export const BadgeColor = {
+  Teal: "teal",
+  Lavender: "lavender",
+  Green: "green",
+  Red: "red",
+  Peach: "peach",
+} as const;
+
+export const Badge: React.FC<{
+  children: React.ReactNode;
+  color?: (typeof BadgeColor)[keyof typeof BadgeColor];
+  className?: string;
+}> = ({ children, color = BadgeColor.Peach, className }) => {
+  const colorClasses = {
+    [BadgeColor.Teal]: "bg-ctp-teal/10 text-ctp-teal",
+    [BadgeColor.Green]: "bg-ctp-green/10 text-ctp-green",
+    [BadgeColor.Red]: "bg-ctp-red/10 text-ctp-red",
+    [BadgeColor.Peach]: "bg-ctp-peach/10 text-ctp-peach",
+    [BadgeColor.Lavender]: "bg-ctp-lavender/10 text-ctp-lavender",
+  } as const;
+
+  return (
+    <span
+      className={cn(
+        "px-2 py-0.5 text-center text-xs leading-normal rounded inline-flex items-center",
+        colorClasses[color],
+        className,
+      )}
+    >
+      {children}
+    </span>
   );
 };

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import type { Post, Project } from "../lib/types";
 import { formatDate } from "../lib/utils";
-import { NumberedSection, Tag } from "./ui";
+import { NumberedSection, Tag, TooltipButton } from "./ui";
 
 interface ListProps<T> {
   items: T[];
@@ -30,7 +30,7 @@ export const PostList: React.FC<ListProps<Post>> = ({
             <div className="flex flex-wrap items-center">
               <span className="flex items-center whitespace-nowrap">
                 <Dot className="w-6 h-6 text-ctp-subtext0 flex-shrink-0 hidden sm:block" />
-                {formatDate(post.publishedOn)}
+                {formatDate(post.createdOn)}
                 <span className="mx-2">-</span>
               </span>
               <Link
@@ -41,10 +41,10 @@ export const PostList: React.FC<ListProps<Post>> = ({
               </Link>
             </div>
           </h2>
-          <p className="text-sm md:text-base text-ctp-subtext0 pl-4 md:pl-6">
+          <p className="text-sm md:text-base text-ctp-subtext0 pl-4 md:pl-6 pr-2 md:pr-4">
             {post.excerpt}
           </p>
-          <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm pl-4 md:pl-6">
+          <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm pl-4 md:pl-6 pr-2 md:pr-4">
             {post.tags.map((tag) => (
               <Tag key={tag} tag={tag} handleTagClick={handleTagClick} />
             ))}
@@ -76,29 +76,39 @@ export const ProjectList: React.FC<ListProps<Project>> = ({
           <p className="text-sm md:text-base text-ctp-subtext0 pl-4 md:pl-6">
             {project.description}
           </p>
-          <div className="pl-4 md:pl-6 font-mono text-xs md:text-sm text-ctp-subtext0 flex flex-wrap items-center gap-4">
-            {project.github && (
-              <a
-                href={project.github}
-                className="inline-flex items-center gap-1 hover:text-ctp-peach transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github className="w-4 h-4" />
-                <span>source</span>
-              </a>
-            )}
-            {project.demo && (
-              <a
-                href={project.demo}
-                className="inline-flex items-center gap-1 hover:text-ctp-peach transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ExternalLink className="w-4 h-4" />
-                <span>demo</span>
-              </a>
-            )}
+          <div className="pl-4 md:pl-6 pr-2 md:pr-4 font-mono text-xs md:text-sm text-ctp-subtext0 flex flex-wrap items-center justify-between gap-4">
+            <div className="flex gap-4">
+              {project.github && (
+                <TooltipButton
+                  tooltip="Source Code"
+                  onClick={() => window.open(project.github, "_blank")}
+                >
+                  <a
+                    href={project.github}
+                    className="inline-flex items-center gap-1 hover:text-ctp-peach transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Github className="w-5 h-5" />
+                  </a>
+                </TooltipButton>
+              )}
+              {project.demo && (
+                <TooltipButton
+                  tooltip="Demo"
+                  onClick={() => window.open(project.demo, "_blank")}
+                >
+                  <a
+                    href={project.demo}
+                    className="inline-flex items-center gap-1 hover:text-ctp-peach transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLink className="w-5 h-5" />
+                  </a>
+                </TooltipButton>
+              )}
+            </div>
             <div className="flex items-center gap-2">
               {project.tags.map((tag) => (
                 <Tag key={tag} tag={tag} handleTagClick={handleTagClick} />

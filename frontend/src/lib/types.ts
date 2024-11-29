@@ -1,3 +1,11 @@
+export interface TaggedItem {
+  id: number;
+  title: string;
+  tags: string[];
+  featured: boolean;
+  createdOn: Date;
+}
+
 export interface Profile {
   name: string;
   username: string;
@@ -23,7 +31,7 @@ export interface Post {
   excerpt: string;
   slug: string;
   tags: string[];
-  publishedOn: Date;
+  createdOn: Date;
   featured: boolean;
   content?: string;
 }
@@ -36,7 +44,7 @@ export interface Project {
   github: string;
   demo?: string;
   featured: boolean;
-  publishedOn: Date;
+  createdOn: Date;
 }
 
 export interface Education {
@@ -45,6 +53,7 @@ export interface Education {
   institution: string;
   duration: string;
   details: string;
+  location: string;
 }
 
 // TODO: support unpublished publications
@@ -53,18 +62,19 @@ export interface Publication {
   title: string;
   journal: string;
   authors: string[];
-  published: Date;
-  featured: boolean;
-  bibtex: string;
+  me: number;
+  publishedOn: Date;
+  isPublished: boolean;
   citation: string;
-  doiUrl: string;
-  pdfUrl?: string;
+  url?: string;
+  pdfPath: string;
 }
 
 export interface WorkExperience {
   id: number;
   position: string;
   company: string;
+  location: string;
   startDate: Date;
   endDate: Date | null;
   responsibilities: string[];
@@ -77,8 +87,10 @@ export interface Skills {
 export interface Award {
   id: number;
   title: string;
-  date: Date;
+  startDate: Date;
+  endDate: Date | null;
   description?: string;
+  amount?: number;
 }
 
 export interface Organization {
@@ -88,7 +100,6 @@ export interface Organization {
   duration: string;
 }
 
-// TODO: add featured publications
 export interface Resume {
   education: Education[];
   workExperience: WorkExperience[];
@@ -97,4 +108,5 @@ export interface Resume {
   skills: Skills;
   awards: Award[];
   organizations: Organization[];
+  featuredProjects?: Project[];
 }

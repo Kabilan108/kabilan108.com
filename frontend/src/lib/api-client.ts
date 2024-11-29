@@ -68,7 +68,7 @@ class APIClient {
           "A comprehensive guide to building production-ready machine learning pipelines using modern tools and best practices.",
         slug: "building-scalable-ml-pipelines",
         tags: ["Machine Learning", "MLOps", "Python", "Docker"],
-        publishedOn: new Date("2024-01-15"),
+        createdOn: new Date("2024-01-15"),
         featured: true,
       },
       {
@@ -78,7 +78,7 @@ class APIClient {
           "Exploring state-of-the-art deep learning architectures for computer vision tasks, from classification to object detection.",
         slug: "deep-learning-computer-vision",
         tags: ["Deep Learning", "Computer Vision", "PyTorch", "CNN"],
-        publishedOn: new Date("2024-01-10"),
+        createdOn: new Date("2024-01-10"),
         featured: false,
       },
       {
@@ -88,7 +88,7 @@ class APIClient {
           "Advanced techniques for improving neural network performance, including hyperparameter tuning and architecture search.",
         slug: "optimizing-neural-networks",
         tags: ["Neural Networks", "Optimization", "TensorFlow", "Performance"],
-        publishedOn: new Date("2024-01-05"),
+        createdOn: new Date("2024-01-05"),
         featured: true,
       },
     ];
@@ -113,7 +113,7 @@ class APIClient {
         github: "https://github.com/johndoe/predictive-maintenance",
         demo: "https://demo.predictive-maintenance.com",
         featured: true,
-        publishedOn: new Date("2024-01-15"),
+        createdOn: new Date("2024-01-15"),
       },
       {
         id: 2,
@@ -123,7 +123,7 @@ class APIClient {
         tags: ["Scala", "Apache Kafka", "Apache Spark"],
         github: "https://github.com/johndoe/realtime-pipeline",
         featured: false,
-        publishedOn: new Date("2024-01-10"),
+        createdOn: new Date("2024-01-10"),
       },
       {
         id: 3,
@@ -134,7 +134,7 @@ class APIClient {
         github: "https://github.com/johndoe/nlp-chatbot",
         demo: "https://chatbot-demo.johndoe.com",
         featured: true,
-        publishedOn: new Date("2024-01-05"),
+        createdOn: new Date("2024-01-05"),
       },
     ];
   }
@@ -143,14 +143,6 @@ class APIClient {
     // return this.fetchWithCache<Resume>('/api/resume');
     // TODO: featured projects should be included in the resume
     return {
-      bio: {
-        name: "tony kabilan okeke",
-        title: "machine learning engineer",
-        bio: `Passionate about leveraging AI and software engineering to solve
-      complex problems. Expertise in machine learning algorithms and
-      full-stack development. Creating innovative solutions that make a
-      difference.`,
-      },
       education: [
         {
           id: 2,
@@ -158,6 +150,7 @@ class APIClient {
           institution: "Drexel University",
           duration: "2022 - 2024",
           details: "Concentration in Bioinformatics",
+          location: "Philadelphia, PA",
         },
         {
           id: 1,
@@ -165,6 +158,7 @@ class APIClient {
           institution: "Drexel University",
           duration: "2019 - 2024",
           details: "Concentration in Neuroengineering",
+          location: "Philadelphia, PA",
         },
       ],
       workExperience: [
@@ -174,14 +168,16 @@ class APIClient {
           company: "Moberg Analytics",
           startDate: new Date("2024-08-01"),
           endDate: null,
+          location: "Philadelphia, PA",
           responsibilities: [
-            "Developing models for artifact detection in arterial blood pressure waveforms",
+            "Developing models for artifact detection in arterial blood pressure waveforms. lorem lipsum dolor sit amet, consectetur adipiscing elit.",
+            "Developing models for artifact detection in arterial blood pressure waveforms. lorem lipsum dolor sit amet, consectetur adipiscing elit.",
           ],
         },
       ],
       skills: {
-        "Programming Languages": ["Python", "R", "SQL"],
-        Frameworks: ["PyTorch", "TensorFlow", "Scikit-learn"],
+        "programming languages": ["Python", "R", "SQL"],
+        frameworks: ["PyTorch", "TensorFlow", "Scikit-learn"],
       },
       publications: [
         {
@@ -189,11 +185,33 @@ class APIClient {
           title: "Artifact Detection in Arterial Blood Pressure Waveforms",
           journal: "Journal of Biomedical Engineering",
           authors: ["Tony Kabilan Okeke", "John Doe"],
-          published: new Date("2024-01-15"),
-          featured: true,
-          bibtex: "",
-          citation: "",
-          doiUrl: "",
+          me: 1,
+          publishedOn: new Date("2024-01-15"),
+          isPublished: false,
+          citation:
+            "Niroshana, S. I., Kuroda, S., Tanaka, K., & Chen, W. (2023). Beat-wise segmentation of electrocardiogram using adaptive windowing and deep neural network. Scientific Reports, 13(1), 11039.",
+          url: "",
+          pdfPath: "/pdf/publication/artifact-detection.pdf",
+        },
+        {
+          id: 2,
+          title:
+            "Persistent Depletion of Neuroprotective Factors Accompanies Neuroinflammatory, Neurodegenerative, and Vascular Remodeling Spectra in Serum Three Months after Non-Emergent Cardiac Surger",
+          journal: "Journal of Biomedical Engineering",
+          authors: [
+            "Laudanski, K.",
+            "Liu, D.",
+            "Okeke, T.",
+            "Restrepo, M.",
+            "Szeto, W.Y.",
+          ],
+          me: 3,
+          publishedOn: new Date("2022-01-15"),
+          isPublished: true,
+          citation:
+            "Niroshana, S. I., Kuroda, S., Tanaka, K., & Chen, W. (2023). Beat-wise segmentation of electrocardiogram using adaptive windowing and deep neural network. Scientific Reports, 13(1), 11039.",
+          url: "https://doi.org/10.1038/s41598-023-37773-y",
+          pdfPath: "/pdf/publication/artifact-detection.pdf",
         },
       ],
       abstracts: [
@@ -202,24 +220,41 @@ class APIClient {
           title: "Artifact Detection in Arterial Blood Pressure Waveforms",
           journal: "Journal of Biomedical Engineering",
           authors: ["Tony Kabilan Okeke", "John Doe"],
-          published: new Date("2024-01-15"),
-          featured: true,
-          bibtex: "",
+          me: 1,
+          publishedOn: new Date("2024-01-15"),
+          isPublished: true,
           citation: "",
-          doiUrl: "",
+          url: "",
+          pdfPath: "/pdf/abstract/artifact-detection.pdf",
         },
       ],
       awards: [
         {
           id: 1,
           title: "Drexel University Dean's List",
-          date: new Date("2022-05-01"),
+          startDate: new Date("2022-05-01"),
+          endDate: new Date("2024-05-01"),
+        },
+        {
+          id: 2,
+          title: "Drexel Startups Fund",
+          amount: 1000,
+          startDate: new Date("2022-05-01"),
+          endDate: null,
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         },
       ],
       organizations: [
         {
           id: 1,
           name: "IEEE",
+          position: "Member",
+          duration: "2022 - Present",
+        },
+        {
+          id: 2,
+          name: "Tau Beta Pi",
           position: "Member",
           duration: "2022 - Present",
         },
