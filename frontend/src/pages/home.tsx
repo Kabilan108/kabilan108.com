@@ -27,16 +27,16 @@ const Bio: React.FC = () => {
         <h1 className="text-2xl font-bold mb-4 text-ctp-mauve">
           <span className="text-ctp-mauve">{profile.name}</span>
         </h1>
-        <div>
-          <Section className="text-lg text-ctp-green pl-6">
+        <div className="space-y-4">
+          <Section className="text-lg text-ctp-green pl-6 pb-1 pt-1">
             {profile.title}
           </Section>
-          <Section className="text-base text-ctp-subtext0 pl-6">
+          <Section className="text-sm sm:text-base text-ctp-subtext0 pl-6">
             {profile.bio}
           </Section>
         </div>
       </div>
-      <div className="hidden md:block flex-shrink-0 xl:w-1/3 w-1/4 mt-8 md:mt-0">
+      <div className="w-2/3 mx-auto md:w-1/4 xl:w-1/3 md:mx-0 flex-shrink-0 mt-8 md:mt-0">
         <img
           src={profile.imageUrl}
           alt="Profile"

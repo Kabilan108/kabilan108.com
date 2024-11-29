@@ -1,4 +1,4 @@
-import { ChevronRight, ExternalLink, Github } from "lucide-react";
+import { ChevronRight, Dot, ExternalLink, Github } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import type { Post, Project } from "../lib/types";
@@ -23,21 +23,28 @@ export const PostList: React.FC<ListProps<Post>> = ({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       {posts.map((post, index) => (
         <NumberedSection key={post.slug} index={startIndex + index}>
-          <h2 className="font-mono text-ctp-subtext1 flex items-center gap-2">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-ctp-subtext0 mx-1" />
-            {formatDate(post.publishedOn)} -
-            <Link
-              to={`/writing/${post.slug}`}
-              className="text-ctp-green hover:underline"
-            >
-              {post.title}
-            </Link>
+          <h2 className="font-mono text-sm md:text-base text-ctp-subtext1 pl-4 sm:pl-0">
+            <div className="flex flex-wrap items-center">
+              <span className="flex items-center whitespace-nowrap">
+                <Dot className="w-6 h-6 text-ctp-subtext0 flex-shrink-0 hidden sm:block" />
+                {formatDate(post.publishedOn)}
+                <span className="mx-2">-</span>
+              </span>
+              <Link
+                to={`/writing/${post.slug}`}
+                className="text-ctp-green hover:underline"
+              >
+                {post.title}
+              </Link>
+            </div>
           </h2>
-          <p className="text-ctp-subtext0 pl-6">{post.excerpt}</p>
-          <div className="flex items-center gap-2 text-sm pl-6">
+          <p className="text-sm md:text-base text-ctp-subtext0 pl-4 md:pl-6">
+            {post.excerpt}
+          </p>
+          <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm pl-4 md:pl-6">
             {post.tags.map((tag) => (
               <Tag key={tag} tag={tag} handleTagClick={handleTagClick} />
             ))}
@@ -62,11 +69,14 @@ export const ProjectList: React.FC<ListProps<Project>> = ({
     <div className="space-y-6">
       {projects.map((project, index) => (
         <NumberedSection key={project.title} index={startIndex + index}>
-          <h2 className="font-mono text-ctp-green flex items-center gap-2">
-            <ChevronRight className="w-4 h-4" /> {project.title}
+          <h2 className="font-mono text-sm md:text-base text-ctp-green flex items-center gap-2 pl-4 sm:pl-0">
+            <ChevronRight className="w-4 h-4 flex-shrink-0 hidden sm:block" />
+            {project.title}
           </h2>
-          <p className="text-ctp-subtext0 pl-6">{project.description}</p>
-          <div className="pl-6 font-mono text-sm text-ctp-subtext0 flex items-center gap-4">
+          <p className="text-sm md:text-base text-ctp-subtext0 pl-4 md:pl-6">
+            {project.description}
+          </p>
+          <div className="pl-4 md:pl-6 font-mono text-xs md:text-sm text-ctp-subtext0 flex flex-wrap items-center gap-4">
             {project.github && (
               <a
                 href={project.github}

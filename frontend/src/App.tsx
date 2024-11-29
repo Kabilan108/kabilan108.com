@@ -1,5 +1,5 @@
-import { Copyright } from "lucide-react";
-import { useEffect } from "react";
+import { Copyright, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import {
   BrowserRouter,
   Link,
@@ -28,7 +28,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="min-h-screen font-mono ctp-mocha bg-ctp-mantle text-ctp-text flex flex-col">
-        <main className="flex-grow max-w-4xl w-full mx-auto p-4">
+        <main className="flex-grow max-w-4xl w-full mx-auto px-6 sm:px-12 md:px-8">
           <NavBar profile={profile} />
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -45,6 +45,7 @@ const App = () => {
 
 const NavBar = ({ profile }: { profile: Profile }) => {
   const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pages = [
     { name: "home", path: "/" },
     { name: "writing", path: "/writing" },
@@ -53,7 +54,7 @@ const NavBar = ({ profile }: { profile: Profile }) => {
   ];
 
   return (
-    <header className="py-2 mb-8 border-b border-ctp-surface1">
+    <header className="pt-4 pb-2 mb-8 border-b border-ctp-surface1">
       <nav className="flex justify-between items-center">
         <Link
           to="/"
@@ -61,7 +62,9 @@ const NavBar = ({ profile }: { profile: Profile }) => {
         >
           {profile.username}
         </Link>
-        <ul className="flex space-x-6 text-md">
+
+        {/* Desktop Navigation */}
+        <ul className="hidden md:flex space-x-6 text-md">
           {pages.map((page) => (
             <li key={page.name}>
               <Link
@@ -77,7 +80,50 @@ const NavBar = ({ profile }: { profile: Profile }) => {
             </li>
           ))}
         </ul>
+
+        {/* Mobile Navigation */}
+        <div className="md:hidden">
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-ctp-yellow p-2"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </nav>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden fixed inset-0 z-50 bg-ctp-mantle bg-opacity-95">
+          <div className="flex flex-col items-center justify-center h-full">
+            <button
+              type="button"
+              onClick={() => setIsMenuOpen(false)}
+              className="absolute top-4 right-4 text-ctp-yellow p-2"
+            >
+              <X size={24} />
+            </button>
+            <ul className="flex flex-col space-y-6 text-xl">
+              {pages.map((page) => (
+                <li key={page.name}>
+                  <Link
+                    to={page.path}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`hover:text-ctp-peach transition-colors ${
+                      location.pathname === page.path
+                        ? "text-ctp-peach border-b border-ctp-peach"
+                        : "text-ctp-yellow"
+                    }`}
+                  >
+                    {page.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

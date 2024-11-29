@@ -1,4 +1,4 @@
-import { ChevronsDown, ChevronsUp, X } from "lucide-react";
+import { ChevronsDown, ChevronsUp, Tags, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 import type { Post, Project } from "../lib/types";
@@ -33,6 +33,7 @@ interface TaggedItemListProps {
 export function TaggedItemList({ items, type }: TaggedItemListProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [showArchived, setShowArchived] = useState(false);
+  const [isTagMenuOpen, setIsTagMenuOpen] = useState(false);
 
   const [featuredItems, archivedItems] = useMemo(
     () => groupFeaturedItems<Post | Project>(items),
@@ -85,6 +86,8 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
 
   const renderList = (items: (Post | Project)[], startIndex = 0) => {
     if (type === "post") {
+      console.log("post items", items);
+      console.log("post startIndex", startIndex);
       if (!items.every(isPost)) {
         throw new Error("Invalid item type: expected Post[]");
       }
@@ -100,6 +103,7 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
     if (!items.every(isProject)) {
       throw new Error("Invalid item type: expected Project[]");
     }
+    console.log("project startIndex", startIndex);
     return (
       <ProjectList
         items={items}
@@ -111,33 +115,50 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
 
   return (
     <>
-      <div className="mb-6 mt-4">
-        <Section hover={false}>
-          <div className="flex flex-wrap gap-2">
-            {allTags.map((tag) => (
-              <button
-                key={tag}
-                type="button"
-                onClick={() => handleTagClick(tag)}
-                className={`px-2 py-0.5 rounded text-sm ${
-                  selectedTags.includes(tag)
-                    ? "bg-ctp-surface0 text-ctp-green"
-                    : "text-ctp-subtext0"
-                } transition-colors`}
-              >
-                <Tag tag={tag} />
-              </button>
-            ))}
-            {selectedTags.length > 0 && (
-              <button
-                type="button"
-                onClick={clearFilters}
-                className="text-ctp-subtext0 hover:text-ctp-red flex items-center py-0.5 text-sm"
-              >
-                [<X className="h-3 w-3" />]
-              </button>
-            )}
-          </div>
+      <div className="mb-4 md:mb-6 mt-2 md:mt-4">
+        <button
+          type="button"
+          onClick={() => setIsTagMenuOpen(!isTagMenuOpen)}
+          className="md:hidden flex items-center gap-2 text-ctp-subtext0 hover:text-ctp-text mb-2"
+        >
+          <Tags className="h-4 w-4" />
+          <span className="text-sm">filter tags</span>
+          {isTagMenuOpen ? (
+            <ChevronsUp className="h-4 w-4" />
+          ) : (
+            <ChevronsDown className="h-4 w-4" />
+          )}
+        </button>
+
+        <Section
+          hover={false}
+          className={`flex flex-wrap gap-1.5 md:gap-2 pl-6 ${
+            isTagMenuOpen ? "block" : "hidden"
+          } md:block`}
+        >
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              type="button"
+              onClick={() => handleTagClick(tag)}
+              className={`px-2 py-0.5 rounded text-sm ${
+                selectedTags.includes(tag)
+                  ? "bg-ctp-surface0 text-ctp-green"
+                  : "text-ctp-subtext0"
+              } transition-colors`}
+            >
+              <Tag tag={tag} />
+            </button>
+          ))}
+          {selectedTags.length > 0 && (
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="text-ctp-subtext0 hover:text-ctp-red flex items-center py-0.5 text-sm"
+            >
+              [<X className="h-3 w-3" />]
+            </button>
+          )}
         </Section>
       </div>
 
@@ -161,11 +182,11 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
           </div>
 
           <div
-            className={`transition-all duration-300 ease-in-out overflow-hidden ${
+            className={`transition-all duration-300 ease-in-out  ${
               showArchived ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
             }`}
           >
-            {renderList(filteredArchivedItems, featuredItems.length)}
+            {renderList(filteredArchivedItems, filteredFeaturedItems.length)}
           </div>
         </>
       )}

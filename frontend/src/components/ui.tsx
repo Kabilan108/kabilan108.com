@@ -26,7 +26,7 @@ export const NumberedSection: React.FC<{
 }> = ({ children, index, className }) => {
   return (
     <Section className={className}>
-      <div className="absolute -left-4 -ml-4 text-ctp-overlay0 opacity-50 select-none">
+      <div className="absolute -left-4 -ml-4 text-ctp-overlay0 opacity-50 select-none invisible sm:visible">
         {String(index + 1).padStart(2, "0")}
       </div>
       <div className="space-y-2">{children}</div>
