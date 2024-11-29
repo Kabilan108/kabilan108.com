@@ -54,6 +54,7 @@ class APIClient {
         [LinkType.GITHUB]: "https://github.com/kabilan108",
         [LinkType.X]: "https://x.com/kabilan108",
         [LinkType.LINKEDIN]: "https://www.linkedin.com/in/kabilan108",
+        [LinkType.MAL]: "https://myanimelist.net/animelist/Kabilan108",
       },
     };
   }

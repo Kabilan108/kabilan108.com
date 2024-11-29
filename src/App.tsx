@@ -122,10 +122,8 @@ const NavBar = ({ profile }: { profile: Profile }) => {
                 </li>
               ))}
             </ul>
-
-            {/* Social Links */}
             <div className="absolute bottom-12 flex space-x-6">
-              <SocialLinks links={profile.links} />
+              <SocialLinks links={profile.links} color="yellow" />
             </div>
           </div>
         </div>

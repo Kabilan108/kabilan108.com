@@ -93,7 +93,15 @@ export const SocialLinks: React.FC<{
   links: Profile["links"];
   size?: number;
   useIcons?: boolean;
-}> = ({ links, size = 24, useIcons = true }) => {
+  color?: string;
+  hoverColor?: string;
+}> = ({
+  links,
+  size = 24,
+  useIcons = true,
+  color = "overlay0",
+  hoverColor = "pink",
+}) => {
   const iconMap = {
     github: Github,
     x_dot_com: XLogo,
@@ -114,14 +122,14 @@ export const SocialLinks: React.FC<{
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              "text-ctp-overlay0 hover:text-ctp-pink underline transition-colors",
+              `text-ctp-${color} hover:text-ctp-${hoverColor} underline transition-colors`,
               useIcons && "flex items-center",
             )}
           >
             {useIcons ? (
               key === "x_dot_com" ? (
                 <IconWrapper icon={IconComponent} size={size} />
-              ) : (
+              ) : key === "myanimelist" ? null : (
                 <IconComponent size={size} />
               )
             ) : (

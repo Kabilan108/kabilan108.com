@@ -23,6 +23,7 @@ export enum LinkType {
   GITHUB = "github",
   X = "x_dot_com",
   LINKEDIN = "linkedin",
+  MAL = "myanimelist",
 }
 
 export interface Post {
