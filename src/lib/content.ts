@@ -69,6 +69,10 @@ export function getResume(): Resume {
   return formattedResume;
 }
 
+export async function getNumPosts(): Promise<number> {
+  return Object.keys(postFiles).length;
+}
+
 export async function getPosts(): Promise<Post[]> {
   const posts = await Promise.all(
     Object.entries(postFiles).map(async ([path, file], index) => {

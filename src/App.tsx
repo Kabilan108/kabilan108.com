@@ -1,5 +1,5 @@
 import { Copyright, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   BrowserRouter,
   Link,
@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import { SocialLinks } from "./components/ui";
-import { getProfile } from "./lib/content";
+import { getNumPosts, getProfile } from "./lib/content";
 import type { Profile } from "./lib/types";
 import HomePage from "./pages/home";
 import PostPage from "./pages/post";
@@ -18,18 +18,28 @@ import ProjectsPage from "./pages/projects";
 import ResumePage from "./pages/resume";
 
 const App = () => {
+  const [showPosts, setShowPosts] = useState(false);
   const profile = getProfile();
+
+  useEffect(() => {
+    getNumPosts().then((n) => setShowPosts(n > 0));
+  }, []);
+
   if (!profile) return null;
 
   return (
     <BrowserRouter>
       <div className="min-h-screen font-mono ctp-mocha bg-ctp-mantle text-ctp-text flex flex-col">
         <main className="flex-grow max-w-4xl w-full mx-auto px-6 sm:px-12 md:px-8">
-          <NavBar profile={profile} />
+          <NavBar profile={profile} showPosts={showPosts} />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/posts" element={<PostsPage />} />
-            <Route path="/posts/:slug" element={<PostPage />} />
+            {showPosts && (
+              <>
+                <Route path="/posts" element={<PostsPage />} />
+                <Route path="/posts/:slug" element={<PostPage />} />
+              </>
+            )}
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/resume" element={<ResumePage />} />
           </Routes>
@@ -40,15 +50,24 @@ const App = () => {
   );
 };
 
-const NavBar = ({ profile }: { profile: Profile }) => {
+const NavBar = ({
+  profile,
+  showPosts,
+}: {
+  profile: Profile;
+  showPosts: boolean;
+}) => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pages = [
-    { name: "home", path: "/" },
-    { name: "posts", path: "/posts" },
-    { name: "projects", path: "/projects" },
-    { name: "resume", path: "/resume" },
+    { name: "home", path: "/", show: true },
+    { name: "posts", path: "/posts", show: false },
+    { name: "projects", path: "/projects", show: true },
+    { name: "resume", path: "/resume", show: true },
   ];
+  if (showPosts) {
+    pages[1].show = true;
+  }
 
   return (
     <header className="pt-4 pb-2 mb-8 border-b border-ctp-surface1">
@@ -62,20 +81,22 @@ const NavBar = ({ profile }: { profile: Profile }) => {
 
         {/* Desktop Navigation */}
         <ul className="hidden md:flex space-x-6 text-md">
-          {pages.map((page) => (
-            <li key={page.name}>
-              <Link
-                to={page.path}
-                className={`hover:text-ctp-peach transition-colors ${
-                  location.pathname === page.path
-                    ? "text-ctp-peach border-b border-ctp-peach"
-                    : "text-ctp-yellow"
-                }`}
-              >
-                {page.name}
-              </Link>
-            </li>
-          ))}
+          {pages
+            .filter((page) => page.show)
+            .map((page) => (
+              <li key={page.name}>
+                <Link
+                  to={page.path}
+                  className={`hover:text-ctp-peach transition-colors ${
+                    location.pathname === page.path
+                      ? "text-ctp-peach border-b border-ctp-peach"
+                      : "text-ctp-yellow"
+                  }`}
+                >
+                  {page.name}
+                </Link>
+              </li>
+            ))}
         </ul>
 
         {/* Mobile Navigation */}
@@ -102,21 +123,23 @@ const NavBar = ({ profile }: { profile: Profile }) => {
               <X size={24} />
             </button>
             <ul className="flex flex-col space-y-6 text-xl">
-              {pages.map((page) => (
-                <li key={page.name}>
-                  <Link
-                    to={page.path}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`hover:text-ctp-peach transition-colors ${
-                      location.pathname === page.path
-                        ? "text-ctp-peach border-b border-ctp-peach"
-                        : "text-ctp-yellow"
-                    }`}
-                  >
-                    {page.name}
-                  </Link>
-                </li>
-              ))}
+              {pages
+                .filter((page) => page.show)
+                .map((page) => (
+                  <li key={page.name}>
+                    <Link
+                      to={page.path}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`hover:text-ctp-peach transition-colors ${
+                        location.pathname === page.path
+                          ? "text-ctp-peach border-b border-ctp-peach"
+                          : "text-ctp-yellow"
+                      }`}
+                    >
+                      {page.name}
+                    </Link>
+                  </li>
+                ))}
             </ul>
             <div className="absolute bottom-12 flex space-x-6">
               <SocialLinks links={profile.links} color="yellow" />
