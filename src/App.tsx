@@ -12,6 +12,7 @@ import { SocialLinks } from "./components/ui";
 import { getProfile } from "./lib/content";
 import type { Profile } from "./lib/types";
 import HomePage from "./pages/home";
+import PostPage from "./pages/post";
 import ProjectsPage from "./pages/projects";
 import ResumePage from "./pages/resume";
 import PostsPage from "./pages/writing";
@@ -28,6 +29,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/writing" element={<PostsPage />} />
+            <Route path="/writing/:slug" element={<PostPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/resume" element={<ResumePage />} />
           </Routes>

@@ -26,9 +26,15 @@ export enum LinkType {
   MAL = "myanimelist",
 }
 
-export interface Post extends TaggedItem {
-  content: string;
+export interface Post {
+  id: number;
+  slug: string;
+  title: string;
+  date: Date;
   excerpt: string;
+  tags: string[];
+  featured: boolean;
+  content: string;
 }
 
 export interface Project extends TaggedItem {

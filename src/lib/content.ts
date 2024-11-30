@@ -1,6 +1,5 @@
 import { Buffer } from "buffer";
 import matter from "gray-matter";
-import { marked } from "marked";
 
 import type { Post, Profile, Project, Resume } from "./types";
 
@@ -76,7 +75,6 @@ export async function getPosts(): Promise<Post[]> {
       const rawContent = await fetch(file.default).then((r) => r.text());
       const { data, content } = matter(rawContent);
       const frontmatter = data as Frontmatter;
-      const html = await marked(content);
       return {
         id: index,
         slug: path.replace("/content/posts/", "").replace(".md", ""),
@@ -85,7 +83,7 @@ export async function getPosts(): Promise<Post[]> {
         excerpt: frontmatter.excerpt,
         tags: frontmatter.tags,
         featured: frontmatter.featured,
-        content: html,
+        content: content,
       };
     }),
   );
@@ -100,4 +98,10 @@ export async function loadAllData() {
     resume: getResume(),
     posts: getPosts(),
   };
+}
+
+// Add this new function to get a single post by slug
+export async function getPostBySlug(slug: string): Promise<Post | undefined> {
+  const posts = await getPosts();
+  return posts.find((post) => post.slug === slug);
 }
