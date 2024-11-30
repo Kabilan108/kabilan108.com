@@ -13,9 +13,9 @@ import { getProfile } from "./lib/content";
 import type { Profile } from "./lib/types";
 import HomePage from "./pages/home";
 import PostPage from "./pages/post";
+import PostsPage from "./pages/posts";
 import ProjectsPage from "./pages/projects";
 import ResumePage from "./pages/resume";
-import PostsPage from "./pages/writing";
 
 const App = () => {
   const profile = getProfile();
@@ -28,8 +28,8 @@ const App = () => {
           <NavBar profile={profile} />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/writing" element={<PostsPage />} />
-            <Route path="/writing/:slug" element={<PostPage />} />
+            <Route path="/posts" element={<PostsPage />} />
+            <Route path="/posts/:slug" element={<PostPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/resume" element={<ResumePage />} />
           </Routes>
@@ -45,7 +45,7 @@ const NavBar = ({ profile }: { profile: Profile }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pages = [
     { name: "home", path: "/" },
-    { name: "writing", path: "/writing" },
+    { name: "posts", path: "/posts" },
     { name: "projects", path: "/projects" },
     { name: "resume", path: "/resume" },
   ];

@@ -14,13 +14,13 @@ const PostPage: FC = () => {
 
   useEffect(() => {
     if (!slug) {
-      navigate("/writing");
+      navigate("/posts");
       return;
     }
 
     getPostBySlug(slug).then((fetchedPost) => {
       if (!fetchedPost) {
-        navigate("/writing");
+        navigate("/posts");
         return;
       }
       setPost(fetchedPost);

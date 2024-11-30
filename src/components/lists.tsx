@@ -34,7 +34,7 @@ export const PostList: React.FC<ListProps<Post>> = ({
                 <span className="mx-2">-</span>
               </span>
               <Link
-                to={`/writing/${post.slug}`}
+                to={`/posts/${post.slug}`}
                 className="text-ctp-green hover:underline"
               >
                 {post.title}

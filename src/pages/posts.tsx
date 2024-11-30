@@ -21,7 +21,7 @@ const PostsPage: FC = () => {
   }, []);
 
   useEffect(() => {
-    setPageTitle("writing");
+    setPageTitle("posts");
   }, []);
 
   if (isLoading) return <div>Loading...</div>;
@@ -30,11 +30,11 @@ const PostsPage: FC = () => {
   return (
     <section className="pb-10">
       <h1 className="text-2xl font-bold mb-4 text-ctp-mauve">
-        <span className="text-ctp-mauve">writing</span>
+        <span className="text-ctp-mauve">posts</span>
       </h1>
       <div className="space-y-6">
         {posts.map((post: Post) => (
-          <Link key={post.slug} to={`/writing/${post.slug}`} className="block">
+          <Link key={post.slug} to={`/posts/${post.slug}`} className="block">
             <TaggedItemList items={[post]} type="post" />
           </Link>
         ))}

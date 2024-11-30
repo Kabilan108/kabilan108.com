@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="space-y-8">
       <Bio />
-      <Writing />
+      <Posts />
       <Projects />
     </div>
   );
@@ -55,7 +55,7 @@ const Bio: React.FC = () => {
   );
 };
 
-const Writing: React.FC = () => {
+const Posts: React.FC = () => {
   const [posts, setPosts] = useState<Post[] | null>(null);
 
   useEffect(() => {
@@ -67,8 +67,8 @@ const Writing: React.FC = () => {
 
   return (
     <section className="pb-10 border-b border-ctp-surface1">
-      <Link to="/writing">
-        <Heading text="## writing" />
+      <Link to="/posts">
+        <Heading text="## latest posts" />
       </Link>
       <PostList items={featuredPosts} />
     </section>
