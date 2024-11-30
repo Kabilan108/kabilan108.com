@@ -6,7 +6,7 @@
     "tags": ["Python", "TensorFlow", "Scikit-learn"],
     "github": "https://github.com/johndoe/predictive-maintenance",
     "demo": "https://demo.predictive-maintenance.com",
-    "featured": true,
+    "featured": false,
     "date": "2024-01-15"
   },
   {

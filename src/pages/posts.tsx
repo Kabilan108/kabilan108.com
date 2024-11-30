@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import type { FC } from "react";
-import { Link } from "react-router-dom";
 import { TaggedItemList } from "../components/tagged-item-list";
 import { getPosts } from "../lib/content";
 import type { Post } from "../lib/types";
@@ -29,15 +28,11 @@ const PostsPage: FC = () => {
 
   return (
     <section className="pb-10">
-      <h1 className="text-2xl font-bold mb-4 text-ctp-mauve">
+      <h1 className="text-2xl font-bold mb-4">
         <span className="text-ctp-mauve">posts</span>
       </h1>
       <div className="space-y-6">
-        {posts.map((post: Post) => (
-          <Link key={post.slug} to={`/posts/${post.slug}`} className="block">
-            <TaggedItemList items={[post]} type="post" />
-          </Link>
-        ))}
+        <TaggedItemList items={posts} type="post" />
       </div>
     </section>
   );

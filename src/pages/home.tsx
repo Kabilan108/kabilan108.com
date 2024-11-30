@@ -64,6 +64,7 @@ const Posts: React.FC = () => {
 
   if (!posts || posts.length === 0) return null;
   const [featuredPosts] = groupFeaturedItems<Post>(posts, 4);
+  if (featuredPosts.length === 0) return null;
 
   return (
     <section className="pb-10 border-b border-ctp-surface1">

@@ -31,6 +31,14 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
     [items],
   );
 
+  console.log(`items:\n""""\n${JSON.stringify(items, null, 2)}\n"""`);
+  console.log(
+    `featuredItems:\n""""\n${JSON.stringify(featuredItems, null, 2)}\n"""`,
+  );
+  console.log(
+    `archivedItems:\n""""\n${JSON.stringify(archivedItems, null, 2)}\n"""`,
+  );
+
   useEffect(() => {
     if (selectedTags.length > 0) {
       const hasMatchingFeatured = featuredItems.some((item) =>

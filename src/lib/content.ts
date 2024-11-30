@@ -90,17 +90,6 @@ export async function getPosts(): Promise<Post[]> {
   return posts.sort((a, b) => b.date.getTime() - a.date.getTime());
 }
 
-// Helper function to load all data at once if needed
-export async function loadAllData() {
-  return {
-    profile: getProfile(),
-    projects: getProjects(),
-    resume: getResume(),
-    posts: getPosts(),
-  };
-}
-
-// Add this new function to get a single post by slug
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {
   const posts = await getPosts();
   return posts.find((post) => post.slug === slug);
