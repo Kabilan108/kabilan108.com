@@ -1,11 +1,12 @@
-import type { FC } from "react";
 import { useEffect, useState } from "react";
+import type { FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
 import { MD } from "../components/md";
-import { Section, Tag } from "../components/ui";
+import { Tag } from "../components/ui";
 import { getPostBySlug } from "../lib/content";
 import type { Post } from "../lib/types";
-import { setPageTitle } from "../lib/utils";
+import { formatDate, setPageTitle } from "../lib/utils";
 
 const PostPage: FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -38,18 +39,15 @@ const PostPage: FC = () => {
 
   return (
     <article className="max-w-4xl mx-auto pb-10">
-      <Section className="mb-8">
-        <h1 className="text-3xl font-bold text-ctp-mauve mb-4">{post.title}</h1>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {post.tags.map((tag) => (
-            <Tag key={tag} tag={tag} />
-          ))}
-        </div>
-        <time className="text-ctp-subtext0 text-sm">
-          {post.date.toLocaleDateString()}
-        </time>
-      </Section>
-
+      <h1 className="text-3xl font-bold text-ctp-mauve mb-2">{post.title}</h1>
+      <div className="flex flex-wrap gap-2 mb-2">
+        {post.tags.map((tag) => (
+          <Tag key={tag} tag={tag} />
+        ))}
+      </div>
+      <div className="text-ctp-subtext0 text-sm mb-6 border-b border-ctp-surface0 pb-2">
+        {formatDate(post.date)}
+      </div>
       <MD content={post.content} />
     </article>
   );

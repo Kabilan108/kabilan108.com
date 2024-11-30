@@ -1,11 +1,12 @@
-import { Copy, CopyCheck, ExternalLink, FileDown, Github } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ExternalLink, FileDown, Github } from "lucide-react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import PDF from "../assets/pdf.svg?react";
 import {
   Badge,
   BadgeColor,
+  CopyButton,
   Heading,
   IconWrapper,
   Section,
@@ -206,7 +207,6 @@ const PublicationsSection: React.FC<{
   title: string;
 }> = ({ publications, title }) => {
   const PublicationItem: React.FC<{ pub: Publication }> = ({ pub }) => {
-    const [hasCopied, setHasCopied] = useState(false);
     return (
       <Section key={pub.id} className="pl-6 pr-4 text-sm">
         {!pub.isPublished && (
@@ -257,20 +257,12 @@ const PublicationsSection: React.FC<{
               </TooltipButton>
             )}
             {pub.citation && (
-              <TooltipButton
-                tooltip="Copy Citation"
-                onClick={() => {
-                  navigator.clipboard.writeText(pub.citation);
-                  setHasCopied(true);
-                  setTimeout(() => setHasCopied(false), 1500);
-                }}
-              >
-                {hasCopied ? (
-                  <CopyCheck className="w-5 h-5 text-ctp-green" />
-                ) : (
-                  <Copy className="w-5 h-5 text-ctp-blue hover:text-ctp-pink transition-colors" />
-                )}
-              </TooltipButton>
+              <CopyButton
+                text={pub.citation}
+                tooltip="Copy citation"
+                color="blue"
+                size={5}
+              />
             )}
           </div>
         </div>

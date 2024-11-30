@@ -1,5 +1,14 @@
-import { ExternalLink, Github, Globe, Linkedin, Mail } from "lucide-react";
+import {
+  Check,
+  Copy,
+  ExternalLink,
+  Github,
+  Globe,
+  Linkedin,
+  Mail,
+} from "lucide-react";
 
+import { useState } from "react";
 import XLogo from "../assets/x-logo.svg?react";
 import type { Profile } from "../lib/types";
 import { cn } from "../lib/utils";
@@ -213,5 +222,33 @@ export const Badge: React.FC<{
     >
       {children}
     </span>
+  );
+};
+
+export const CopyButton: React.FC<{
+  text: string;
+  tooltip: string;
+  size?: number;
+  color?: string;
+}> = ({ text, tooltip, size = 4, color = "blue" }) => {
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(text);
+    setIsCopied(true);
+    setTimeout(() => setIsCopied(false), 1500);
+  };
+
+  const iconSize = `w-${size} h-${size}`;
+  const iconColor = isCopied ? "text-ctp-green" : `text-ctp-${color}`;
+
+  return (
+    <TooltipButton tooltip={tooltip} onClick={handleCopy} className={iconColor}>
+      {isCopied ? (
+        <Check className={iconSize} />
+      ) : (
+        <Copy className={iconSize} />
+      )}
+    </TooltipButton>
   );
 };
