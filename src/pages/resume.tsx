@@ -84,7 +84,7 @@ const BioSection: React.FC<{ profile: Profile; pdfPath: string }> = ({
         <h1 className="text-2xl font-bold mb-4 text-ctp-mauve">
           {profile.name}
         </h1>
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-2 sm:gap-4">
           <SocialLinks links={profile.links} useIcons={false} />
         </div>
       </div>
@@ -107,15 +107,19 @@ const EducationSection: React.FC<{ education: Education[] }> = ({
       <div className="space-y-4">
         {education.map((edu) => (
           <Section key={edu.id} className="pl-6 pr-4">
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
               <h3 className="text-ctp-green font-mono">{edu.degree}</h3>
-              <p className="text-sm text-ctp-subtext1">{edu.duration}</p>
+              <p className="text-sm text-ctp-subtext1 mt-1 sm:mt-0">
+                {edu.duration}
+              </p>
             </div>
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-2 sm:mt-0">
               <p className="text-ctp-subtext1">{edu.institution}</p>
-              <p className="text-sm text-ctp-subtext0">{edu.location}</p>
+              <p className="text-sm text-ctp-subtext0 mt-1 sm:mt-0">
+                {edu.location}
+              </p>
             </div>
-            <p className="text-sm text-ctp-subtext0">{edu.details}</p>
+            <p className="text-sm text-ctp-subtext0 mt-2">{edu.details}</p>
           </Section>
         ))}
       </div>
@@ -132,16 +136,18 @@ const ExperienceSection: React.FC<{ experience: WorkExperience[] }> = ({
       <div className="space-y-4">
         {experience.map((exp) => (
           <Section key={exp.id} className="pl-6 pr-4">
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
               <h3 className="text-ctp-green font-mono">{exp.position}</h3>
-              <p className="text-sm text-ctp-subtext0">
+              <p className="text-sm text-ctp-subtext0 mt-1 sm:mt-0">
                 {formatDate(exp.startDate, "medium")} -{" "}
                 {exp.endDate ? formatDate(exp.endDate, "medium") : "Present"}
               </p>
             </div>
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-2 sm:mt-0">
               <p className="text-ctp-subtext1">{exp.company}</p>
-              <p className="text-sm text-ctp-subtext0">{exp.location}</p>
+              <p className="text-sm text-ctp-subtext0 mt-1 sm:mt-0">
+                {exp.location}
+              </p>
             </div>
             <ul className="list-disc pl-4 text-sm text-ctp-subtext0 mt-2 space-y-2">
               {exp.responsibilities.map((resp) => (
@@ -166,8 +172,8 @@ const ProjectsSection: React.FC<{ projects: Project[] }> = ({ projects }) => {
           <Section key={project.id} className="pl-6 pr-4 text-sm">
             <p className="text-ctp-green">{project.title}</p>
             <p className="text-ctp-subtext1">{project.description}</p>
-            <div className="flex justify-between items-center mt-0">
-              <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 mt-2">
+              <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                   <Tag key={tag} tag={tag} />
                 ))}
@@ -238,7 +244,7 @@ const PublicationsSection: React.FC<{
             </span>
           ))}
         </p>
-        <div className="flex justify-between items-center mt-0 gap-4">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-4 mt-2">
           <div className="flex gap-4">
             <p className="text-ctp-subtext1">
               {pub.journal} ({formatDate(pub.publishedOn, "medium")})
@@ -289,7 +295,7 @@ const SkillsSection: React.FC<{ skills: Skills }> = ({ skills }) => {
         return (
           <Section
             key={category}
-            className="pl-6 pr-4 py-1 gap-4 flex items-baseline"
+            className="pl-6 pr-4 py-2 sm:py-1 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4"
           >
             <h3 className={`text-ctp-${color} font-mono font-semibold`}>
               {category}:
@@ -314,8 +320,8 @@ const AwardsSection: React.FC<{ awards: Award[] }> = ({ awards }) => {
       <Heading text="## awards" className="mb-2" />
       <div className="space-y-4">
         {awards.map((award) => (
-          <Section key={award.id} className="pl-6 pr-4 py-1">
-            <div className="flex justify-between items-center">
+          <Section key={award.id} className="pl-6 pr-4 py-2 sm:py-1">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0">
               <div className="flex justify-left items-center gap-4 text-ctp-green">
                 {award.title}
                 {award.amount && (
@@ -330,7 +336,9 @@ const AwardsSection: React.FC<{ awards: Award[] }> = ({ awards }) => {
               </p>
             </div>
             {award.description && (
-              <p className="text-sm text-ctp-subtext0">{award.description}</p>
+              <p className="text-sm text-ctp-subtext0 mt-2 sm:mt-0">
+                {award.description}
+              </p>
             )}
           </Section>
         ))}
@@ -345,15 +353,14 @@ const OrganizationsSection: React.FC<{ orgs: Organization[] }> = ({ orgs }) => {
       <Heading text="## organizations" className="mb-2" />
       <div className="space-y-4">
         {orgs.map((org) => (
-          <Section
-            key={org.id}
-            className="pl-6 pr-4 py-1 flex justify-between items-center"
-          >
-            <div className="flex justify-left items-center gap-2">
-              <h3 className="text-ctp-green">{org.name}</h3>-{" "}
-              <p className="text-ctp-subtext1">{org.position}</p>
+          <Section key={org.id} className="pl-6 pr-4 py-1">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0">
+              <div className="flex justify-left items-center gap-2">
+                <h3 className="text-ctp-green">{org.name}</h3>-{" "}
+                <p className="text-ctp-subtext1">{org.position}</p>
+              </div>
+              <p className="text-sm text-ctp-subtext0">{org.duration}</p>
             </div>
-            <p className="text-sm text-ctp-subtext0">{org.duration}</p>
           </Section>
         ))}
       </div>
