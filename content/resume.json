@@ -39,33 +39,143 @@
   "publications": [
     {
       "id": 1,
-      "title": "Artifact Detection in Arterial Blood Pressure Waveforms",
-      "journal": "Journal of Biomedical Engineering",
-      "authors": ["Tony Kabilan Okeke", "John Doe"],
-      "me": 1,
-      "publishedOn": "2024-01-15",
-      "isPublished": false,
-      "citation": "Niroshana, S. I., Kuroda, S., Tanaka, K., & Chen, W. (2023). Beat-wise segmentation of electrocardiogram using adaptive windowing and deep neural network. Scientific Reports, 13(1), 11039.",
-      "url": "",
-      "pdfPath": "/pdf/paper/artifact-detection.pdf"
+      "title": "dynamic changes in central and peripheral neuro-injury vs. neuroprotective serum markers in covid-19 are modulated by different types of anti-viral treatments but do not affect the incidence of late and early strokes",
+      "journal": "biomedicines",
+      "authors": [
+        "krzysztof laudanski",
+        "jihane hajj",
+        "mariana restrepo",
+        "kumal siddiq",
+        "tony okeke",
+        "daniel j. rader"
+      ],
+      "me": 5,
+      "publishedOn": "2021-11-29",
+      "isPublished": true,
+      "citation": "k. laudanski, j. hajj, m. restrepo, k. siddiq, t. okeke, and d. j. rader, \"dynamic changes in central and peripheral neuro-injury vs. neuroprotective serum markers in covid-19 are modulated by different types of anti-viral treatments but do not affect the incidence of late and early strokes,\" biomedicines, vol. 9, no. 12, p. 1791, 2021.",
+      "url": "https://doi.org/10.3390/biomedicines9121791",
+      "pdfPath": "/pdf/paper/laudanski_dynamic_2021.pdf"
     },
     {
       "id": 2,
-      "title": "Persistent Depletion of Neuroprotective Factors Accompanies Neuroinflammatory, Neurodegenerative, and Vascular Remodeling Spectra in Serum Three Months after Non-Emergent Cardiac Surger",
-      "journal": "Journal of Biomedical Engineering",
+      "title": "unbiased analysis of temporal changes in immune serum markers in acute covid-19 infection with emphasis on organ failure, anti-viral treatment, and demographic characteristics",
+      "journal": "frontiers in immunology",
       "authors": [
-        "Laudanski, K.",
-        "Liu, D.",
-        "Okeke, T.",
-        "Restrepo, M.",
-        "Szeto, W.Y."
+        "krzysztof laudanski",
+        "jihane hajj",
+        "brook antalosky",
+        "danyal ghani",
+        "uyen phan",
+        "ruth hernandez",
+        "tony okeke",
+        "junnan wu",
+        "daniel rader",
+        "katalin susztak"
+      ],
+      "me": 7,
+      "publishedOn": "2021-06-11",
+      "isPublished": true,
+      "citation": "k. laudanski et al., \"unbiased analysis of temporal changes in immune serum markers in acute covid-19 infection with emphasis on organ failure, anti-viral treatment, and demographic characteristics,\" frontiers in immunology, vol. 12, p. 650465, 2021.",
+      "url": "https://doi.org/10.3389/fimmu.2021.650465",
+      "pdfPath": "/pdf/paper/laudanski_unbiased_2021.pdf"
+    },
+    {
+      "id": 3,
+      "title": "longitudinal urinary biomarkers of immunological activation in covid-19 patients without clinically apparent kidney disease versus acute and chronic failure",
+      "journal": "scientific reports",
+      "authors": [
+        "krzysztof laudanski",
+        "tony okeke",
+        "jihane hajj",
+        "kumal siddiq",
+        "daniel rader",
+        "junnan wu",
+        "katalin susztak"
+      ],
+      "me": 2,
+      "publishedOn": "2021-10-04",
+      "isPublished": true,
+      "citation": "k. laudanski et al., \"longitudinal urinary biomarkers of immunological activation in covid-19 patients without clinically apparent kidney disease versus acute and chronic failure,\" scientific reports, vol. 11, no. 1, p. 19675, 2021.",
+      "url": "https://doi.org/10.1038/s41598-021-99102-5",
+      "pdfPath": "/pdf/paper/laudanski_longitudinal_2021.pdf"
+    },
+    {
+      "id": 4,
+      "title": "a decline of protective apolipoprotein j and complement factor h concomitant with increase in c5a 3 months after cardiac surgery—evidence of long-term complement perturbations",
+      "journal": "frontiers in cardiovascular medicine",
+      "authors": [
+        "krzysztof laudanski",
+        "da liu",
+        "damodar gullipalli",
+        "wen-chao song",
+        "tony okeke",
+        "wilson y. szeto"
+      ],
+      "me": 5,
+      "publishedOn": "2022-12-20",
+      "isPublished": true,
+      "citation": "k. laudanski, d. liu, d. gullipalli, w.-c. song, t. okeke, and w. y. szeto, \"a decline of protective apolipoprotein j and complement factor h concomitant with increase in c5a 3 months after cardiac surgery—evidence of long-term complement perturbations,\" frontiers in cardiovascular medicine, vol. 9, p. 983617, 2022.",
+      "url": "https://doi.org/10.3389/fcvm.2022.983617",
+      "pdfPath": "/pdf/paper/laudanski_decline_2022.pdf"
+    },
+    {
+      "id": 5,
+      "title": "persistent depletion of neuroprotective factors accompanies neuroinflammatory, neurodegenerative, and vascular remodeling spectra in serum three months after non-emergent cardiac surgery",
+      "journal": "biomedicines",
+      "authors": [
+        "krzysztof laudanski",
+        "da liu",
+        "tony okeke",
+        "mariana restrepo",
+        "wilson y. szeto"
       ],
       "me": 3,
-      "publishedOn": "2022-01-15",
+      "publishedOn": "2022-09-22",
       "isPublished": true,
-      "citation": "Niroshana, S. I., Kuroda, S., Tanaka, K., & Chen, W. (2023). Beat-wise segmentation of electrocardiogram using adaptive windowing and deep neural network. Scientific Reports, 13(1), 11039.",
-      "url": "https://doi.org/10.1038/s41598-023-37773-y",
-      "pdfPath": "/pdf/publication/artifact-detection.pdf"
+      "citation": "k. laudanski, d. liu, t. okeke, m. restrepo, and w. y. szeto, \"persistent depletion of neuroprotective factors accompanies neuroinflammatory, neurodegenerative, and vascular remodeling spectra in serum three months after non-emergent cardiac surgery,\" biomedicines, vol. 10, no. 10, p. 2364, 2022.",
+      "url": "https://doi.org/10.3390/biomedicines10102364",
+      "pdfPath": "/pdf/paper/laudanski_persistent_2023.pdf"
+    },
+    {
+      "id": 6,
+      "title": "a disturbed balance between blood complement protective factors (fh, apoe) and common pathway effectors (c5a, tcc) in acute covid-19 and during convalesce",
+      "journal": "scientific reports",
+      "authors": [
+        "krzysztof laudanski",
+        "tony okeke",
+        "kumal siddiq",
+        "jihane hajj",
+        "mariana restrepo",
+        "damodar gullipalli",
+        "wen-chao song"
+      ],
+      "me": 2,
+      "publishedOn": "2022-11-11",
+      "isPublished": true,
+      "citation": "k. laudanski et al., \"a disturbed balance between blood complement protective factors (fh, apoe) and common pathway effectors (c5a, tcc) in acute covid-19 and during convalesce,\" scientific reports, vol. 12, no. 1, p. 13658, 2022.",
+      "url": "https://doi.org/10.1038/s41598-022-17011-7",
+      "pdfPath": "/pdf/paper/laudanski_disturbed_2022.pdf"
+    },
+    {
+      "id": 7,
+      "title": "evaluating artifact detection algorithms for the arterial blood pressure waveform acquired from the intensive care unit: a precicecap informatics approach",
+      "journal": "ieee transactions on biomedical engineering",
+      "authors": [
+        "tony k. okeke",
+        "manil shrestha",
+        "ethan moyer",
+        "karen g. hirsch",
+        "teresa l. may",
+        "zihuai he",
+        "richard moberg",
+        "jonathan elmer"
+      ],
+      "me": 1,
+      "publishedOn": "2024-11-19",
+      "isPublished": false,
+      "citation": "",
+      "url": "",
+      "pdfPath": "/pdf/paper/okeke_abp_artifact_2024.pdf"
     }
   ],
   "abstracts": [
