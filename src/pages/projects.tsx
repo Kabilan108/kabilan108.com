@@ -1,7 +1,13 @@
+import { useEffect } from "react";
 import { TaggedItemList } from "../components/tagged-item-list";
 import { getProjects } from "../lib/content";
+import { setPageTitle } from "../lib/utils";
 
 const ProjectsPage: React.FC = () => {
+  useEffect(() => {
+    setPageTitle("projects");
+  }, []);
+
   const projects = getProjects();
   if (!projects || projects.length === 0) return null;
 

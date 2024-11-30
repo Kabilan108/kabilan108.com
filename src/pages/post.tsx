@@ -5,6 +5,7 @@ import { MD } from "../components/md";
 import { Section, Tag } from "../components/ui";
 import { getPostBySlug } from "../lib/content";
 import type { Post } from "../lib/types";
+import { setPageTitle } from "../lib/utils";
 
 const PostPage: FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -25,6 +26,13 @@ const PostPage: FC = () => {
       setPost(fetchedPost);
     });
   }, [slug, navigate]);
+
+  useEffect(() => {
+    if (post) {
+      setPageTitle(post.title);
+    }
+    return () => setPageTitle();
+  }, [post]);
 
   if (!post) return null;
 

@@ -6,8 +6,13 @@ import { Heading, Section, SocialLinks } from "../components/ui";
 import { getPosts, getProfile, getProjects } from "../lib/content";
 import type { Post, Profile, Project } from "../lib/types";
 import { groupFeaturedItems } from "../lib/utils";
+import { setPageTitle } from "../lib/utils";
 
 const HomePage: React.FC = () => {
+  useEffect(() => {
+    setPageTitle();
+  }, []);
+
   return (
     <div className="space-y-8">
       <Bio />

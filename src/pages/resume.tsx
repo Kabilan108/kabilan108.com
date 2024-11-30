@@ -1,5 +1,5 @@
 import { Copy, CopyCheck, ExternalLink, FileDown, Github } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import PDF from "../assets/pdf.svg?react";
@@ -25,9 +25,13 @@ import type {
   Skills,
   WorkExperience,
 } from "../lib/types";
-import { cn, formatDate } from "../lib/utils";
+import { cn, formatDate, setPageTitle } from "../lib/utils";
 
 const ResumePage: React.FC = () => {
+  useEffect(() => {
+    setPageTitle("resume");
+  }, []);
+
   const resume = getResume();
   const profile = getProfile();
   const projects = getProjects();

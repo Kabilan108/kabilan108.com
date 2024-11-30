@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { TaggedItemList } from "../components/tagged-item-list";
 import { getPosts } from "../lib/content";
 import type { Post } from "../lib/types";
+import { setPageTitle } from "../lib/utils";
 
 const PostsPage: FC = () => {
   const [posts, setPosts] = useState<Post[] | null>(null);
@@ -17,6 +18,10 @@ const PostsPage: FC = () => {
     };
 
     loadPosts();
+  }, []);
+
+  useEffect(() => {
+    setPageTitle("writing");
   }, []);
 
   if (isLoading) return <div>Loading...</div>;

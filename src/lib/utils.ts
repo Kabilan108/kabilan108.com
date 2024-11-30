@@ -71,3 +71,7 @@ export function groupFeaturedItems<T extends TaggedItem>(
     n ? archived.slice(0, n) : archived,
   ];
 }
+
+export const setPageTitle = (title?: string) => {
+  document.title = title ? `${title} | kabilan108` : "kabilan108";
+};
