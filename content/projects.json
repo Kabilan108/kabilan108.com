@@ -1,31 +1,42 @@
 [
   {
     "id": 1,
-    "title": "Predictive_Maintenance_ML",
-    "description": "Machine learning model to predict equipment failures, reducing downtime by 30%.",
-    "tags": ["Python", "TensorFlow", "Scikit-learn"],
-    "github": "https://github.com/johndoe/predictive-maintenance",
-    "demo": "https://demo.predictive-maintenance.com",
-    "featured": false,
-    "date": "2024-01-15"
+    "title": "geass",
+    "description": "a wrapper for generating transcripts with whisper using local or cloud compute",
+    "tags": ["whisper", "fastapi", "modal", "transformers"],
+    "github": "https://github.com/kabilan108/geass",
+    "demo": "",
+    "featured": true,
+    "date": "2024-11-30"
   },
   {
     "id": 2,
-    "title": "Realtime_Data_Pipeline",
-    "description": "Scalable data pipeline using Apache Kafka and Spark for processing millions of events per second.",
-    "tags": ["Scala", "Apache Kafka", "Apache Spark"],
-    "github": "https://github.com/johndoe/realtime-pipeline",
-    "featured": false,
-    "date": "2024-01-10"
+    "title": "identifying connectomic biomarkers for autism",
+    "description": "training models to identify biomarkers for autism from connectomes (graph representations of the brain)",
+    "tags": ["bctpy", "sklearn", "ml", "biomarkers"],
+    "github": "https://github.com/kabilan108/asd-biomarkers",
+    "demo": "",
+    "featured": true,
+    "date": "2022-06-01"
   },
   {
     "id": 3,
-    "title": "NLP_Chatbot",
-    "description": "AI-powered chatbot capable of understanding and responding to complex queries in multiple languages.",
-    "tags": ["Python", "NLTK", "Transformer Models"],
-    "github": "https://github.com/johndoe/nlp-chatbot",
-    "demo": "https://chatbot-demo.johndoe.com",
+    "title": "developing autoencoders for predicting gene ontology terms",
+    "description": "using autoencoders to predict gene ontology terms from gene expression data",
+    "tags": ["keras", "sklearn", "ml", "autoencoder"],
+    "github": "https://github.com/kabilan108/mlgo/tree/submission",
+    "demo": "",
     "featured": true,
-    "date": "2024-01-05"
+    "date": "2023-11-01"
+  },
+  {
+    "id": 4,
+    "title": "wazobiacode.com",
+    "description": "website for a web development bootcamp for high school students",
+    "tags": ["nextjs", "react", "telegram"],
+    "github": "https://github.com/AbokiLearn/WazobiaCode",
+    "demo": "https://wazobiacode.com",
+    "featured": true,
+    "date": "2024-09-14"
   }
 ]
