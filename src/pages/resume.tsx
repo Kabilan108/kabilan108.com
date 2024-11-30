@@ -277,9 +277,11 @@ const PublicationsSection: React.FC<{
     <section className="pb-6 border-b border-ctp-surface1">
       <Heading text={title} className="mb-2" />
       <div className="space-y-4">
-        {publications.map((pub) => (
-          <PublicationItem key={pub.id} pub={pub} />
-        ))}
+        {publications
+          .sort((a, b) => b.publishedOn.getTime() - a.publishedOn.getTime())
+          .map((pub) => (
+            <PublicationItem key={pub.id} pub={pub} />
+          ))}
       </div>
     </section>
   );
