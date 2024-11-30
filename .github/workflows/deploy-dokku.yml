@@ -29,4 +29,4 @@ jobs:
             -i private_key.pem \
             -o UserKnownHostsFile=/dev/null \
             -o StrictHostKeyChecking=no" \
-          git push dokku `git subtree split --prefix frontend`:main -f
+          git push dokku main -f
