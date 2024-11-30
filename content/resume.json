@@ -3,38 +3,96 @@
   "education": [
     {
       "id": 2,
-      "degree": "M.S. in Biomedical Engineering",
-      "institution": "Drexel University",
-      "duration": "2022 - 2024",
-      "details": "Concentration in Bioinformatics",
-      "location": "Philadelphia, PA"
+      "degree": "m.s. in biomedical engineering",
+      "institution": "drexel university",
+      "duration": "sep 2022 - jun 2024",
+      "details": "concentration in bioinformatics & bioimaging",
+      "location": "philadelphia, pa"
     },
     {
       "id": 1,
-      "degree": "B.S. in Biomedical Engineering",
-      "institution": "Drexel University",
-      "duration": "2019 - 2024",
-      "details": "Concentration in Neuroengineering",
-      "location": "Philadelphia, PA"
+      "degree": "b.s. in biomedical engineering",
+      "institution": "drexel university",
+      "duration": "sep 2019 - jun 2024",
+      "details": "concentration in neuroengineering",
+      "location": "philadelphia, pa"
     }
   ],
   "workExperience": [
     {
       "id": 1,
-      "position": "Machine Learning Engineer",
-      "company": "Moberg Analytics",
-      "startDate": "2024-08-01",
+      "position": "machine learning engineer",
+      "company": "moberg analytics",
+      "startDate": "2024-08-05",
       "endDate": null,
-      "location": "Philadelphia, PA",
+      "location": "philadelphia, pa",
       "responsibilities": [
-        "Developing models for artifact detection in arterial blood pressure waveforms. lorem lipsum dolor sit amet, consectetur adipiscing elit.",
-        "Developing models for artifact detection in arterial blood pressure waveforms. lorem lipsum dolor sit amet, consectetur adipiscing elit."
+        "developing state-of-the-art algorithms for detecting and removing artifacts in high-resolution multimodal neuroimaging datasets in collaboration with clinicians and researchers",
+        "developing the autonomous communications medical ecosystem (acme) - a dod-funded passive sensor suite that uses video, audio, and motion capture sensors to automatically document casualty care"
+      ]
+    },
+    {
+      "id": 2,
+      "position": "founder & ceo",
+      "company": "meddibia",
+      "startDate": "2024-08-05",
+      "endDate": null,
+      "location": "philadelphia, pa",
+      "responsibilities": [
+        "building electronic medical record (emr) software for healthcare providers in developing countries using multimodal ai to automate the digitization of historical medical records",
+        "raised $25_000 in funding through competitive pitch competitions"
+      ]
+    },
+    {
+      "id": 3,
+      "position": "data scientist",
+      "company": "gsk",
+      "startDate": "2023-04-01",
+      "endDate": "2023-09-29",
+      "location": "collegeville, pa",
+      "responsibilities": [
+        "developed data integration pipelines for joint analysis of spatial transcriptomics and single cell rna-seq data",
+        "trained and evaluated machine learning models to predict carcinogenicity initiationg events for target molecules using transcriptional profiles and chemical structures"
+      ]
+    },
+    {
+      "id": 4,
+      "position": "data scientist",
+      "company": "gsk",
+      "startDate": "2022-04-01",
+      "endDate": "2022-09-29",
+      "location": "collegeville, pa",
+      "responsibilities": [
+        "built and deployed internal tools for running statistical analyses and biomarker discovery on high-content imaging datasets using dask, dash and flask",
+        "trained, evaluated and deployed machine learning models for biomarker identification in toxicology studies",
+        "implemented noise2void and cellpose to improve the performance of automated image segmentation and feature extraction pipelines"
+      ]
+    },
+    {
+      "id": 5,
+      "position": "computational research assistant",
+      "company": "invenio lab, penn medicine",
+      "startDate": "2021-03-01",
+      "endDate": "2022-08-29",
+      "location": "philadelphia, pa",
+      "responsibilities": [
+        "developed statistical models analyzing immune responses in covid-19 patients through comprehensive analysis of serum, urinary, and neurological biomarkers",
+        "developed tools to automate the ingestion, quality control, and analysis of data from elisa and next generation sequencing assays"
       ]
     }
   ],
   "skills": {
-    "programming languages": ["Python", "R", "SQL"],
-    "frameworks": ["PyTorch", "TensorFlow", "Scikit-learn"]
+    "programming": ["python", "r", "bash", "c++", "sql", "js/ts", "kotlin"],
+    "ai/ml": [
+      "pytorch",
+      "transformers",
+      "sklearn",
+      "wandb",
+      "openai",
+      "anthropic"
+    ],
+    "tools": ["fastapi", "react", "nextjs", "docker", "git"],
+    "comp bio": ["seurat", "squidpy", "scanpy", "bioconductor", "cellprofiler"]
   },
   "publications": [
     {
@@ -181,45 +239,132 @@
   "abstracts": [
     {
       "id": 1,
-      "title": "Artifact Detection in Arterial Blood Pressure Waveforms",
-      "journal": "Journal of Biomedical Engineering",
-      "authors": ["Tony Kabilan Okeke", "John Doe"],
+      "title": "181: patterns of urinary biomarkers of immunologic activation and sepsis in patients with covid-19",
+      "journal": "critical care medicine",
+      "authors": [
+        "tony okeke",
+        "kumal siddiq",
+        "mariana restrepo",
+        "pranav tadikonda",
+        "krzysztof laudanski"
+      ],
       "me": 1,
-      "publishedOn": "2024-01-15",
+      "publishedOn": "2022-01-01",
+      "isPublished": true,
+      "citation": "181: patterns of urinary biomarkers of immunologic activation and sepsis in patients with covid-19. accessed: sep. 27, 2023. [online]. available: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kpkt6saaaaaj&sortby=pubdate&citation_for_view=kpkt6saaaaaj:uehwp8x0ceic",
+      "url": "https://doi.org/10.1097/01.ccm.0000807048.74105.59",
+      "pdfPath": "/pdf/abstract/okeke_sccm_2022.pdf"
+    },
+    {
+      "id": 2,
+      "title": "174: longitudinal changes of neuro-specific serum proteins in covid-19 patients",
+      "journal": "critical care medicine",
+      "authors": [
+        "mariana restrepo",
+        "tony okeke",
+        "kumal siddiq",
+        "pranav tadikonda",
+        "krzysztof laudanski"
+      ],
+      "me": 2,
+      "publishedOn": "2022-01-01",
+      "isPublished": true,
+      "citation": "174: longitudinal changes of neuro-specific serum proteins in covid-19 patients. accessed: sep. 27, 2023. [online]. available: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=kpkt6saaaaaj&citation_for_view=kpkt6saaaaaj:ijcspb-oge4c",
+      "url": "https://doi.org/10.1097/01.ccm.0000807020.73561.ed",
+      "pdfPath": ""
+    },
+    {
+      "id": 3,
+      "title": "utilizing neural network autoencoders for unsupervised feature learning from rna-seq differential expression analysis towards gene ontology term prediction",
+      "journal": "poster presented at sot annual meeting, salt lake city, ut",
+      "authors": ["tony k. okeke", "ahmet sacan"],
+      "me": 1,
+      "publishedOn": "2024-03-15",
       "isPublished": true,
       "citation": "",
       "url": "",
-      "pdfPath": "/pdf/abstract/artifact-detection.pdf"
+      "pdfPath": "/pdf/abstract/okeke_sot_2024.pdf"
+    },
+    {
+      "id": 4,
+      "title": "case-based reasoning to aid in clinical decision support of tbi",
+      "journal": "poster presented at nebec, hoboken, nj",
+      "authors": [
+        "ethan moyer",
+        "gabriella grym",
+        "tony k. okeke",
+        "caroline vitkovitsky",
+        "ali youssef",
+        "edward kim",
+        "dmitriy petrov",
+        "dick moberg"
+      ],
+      "me": 3,
+      "publishedOn": "2024-04-15",
+      "isPublished": true,
+      "citation": "",
+      "url": "",
+      "pdfPath": "/pdf/abstract/okeke_nebec_2024.pdf"
     }
   ],
   "awards": [
     {
       "id": 1,
-      "title": "Drexel University Dean's List",
-      "startDate": "2022-05-01",
-      "endDate": "2024-05-01"
+      "title": "drexel university dean's list",
+      "startDate": "2019-12-15",
+      "endDate": "2024-06-15"
     },
     {
       "id": 2,
-      "title": "Drexel Startups Fund",
-      "amount": 1000,
-      "startDate": "2022-05-01",
+      "title": "drexel startups fund",
+      "amount": 20000,
+      "startDate": "2024-05-11",
       "endDate": null,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      "description": "top prize in the drexel startups fund pitch competition for the development of ai-powered emr software for developing countries."
+    },
+    {
+      "id": 3,
+      "title": "drexel baiada institute innovation tournament",
+      "amount": 5000,
+      "startDate": "2024-02-11",
+      "endDate": null,
+      "description": "top prize in the drexel baiada institute innovation tournament for the wazobiacode coding bootcamp."
+    },
+    {
+      "id": 4,
+      "title": "hesi gttc professional development award",
+      "amount": 1000,
+      "startDate": "2023-09-11",
+      "endDate": null,
+      "description": ""
+    },
+    {
+      "id": 5,
+      "title": "philly codefest collaborative team award",
+      "amount": 5000,
+      "startDate": "2023-04-11",
+      "endDate": null,
+      "description": "awarded for the meddibia mvp - a mobile application with a llm chatbot for health advice and multimodal models for skin lesion identification"
     }
   ],
   "organizations": [
     {
       "id": 1,
-      "name": "IEEE",
-      "position": "Member",
-      "duration": "2022 - Present"
+      "name": "tau beta pi",
+      "position": "member",
+      "duration": "dec 2021 - present"
     },
     {
       "id": 2,
-      "name": "Tau Beta Pi",
-      "position": "Member",
-      "duration": "2022 - Present"
+      "name": "mid-atlantic society of toxicology",
+      "position": "member",
+      "duration": "oct 2023 - present"
+    },
+    {
+      "id": 3,
+      "name": "drexel computational design",
+      "position": "vice-president & co-founder",
+      "duration": "mar 2021 - mar 2024"
     }
   ]
 }
