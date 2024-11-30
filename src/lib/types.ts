@@ -104,4 +104,5 @@ export interface Resume {
   awards: Award[];
   organizations: Organization[];
   featuredProjects?: Project[];
+  pdfPath: string;
 }

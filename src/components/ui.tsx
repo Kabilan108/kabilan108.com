@@ -2,6 +2,7 @@ import {
   Check,
   Copy,
   ExternalLink,
+  FileDown,
   Github,
   Globe,
   Linkedin,
@@ -249,6 +250,29 @@ export const CopyButton: React.FC<{
       ) : (
         <Copy className={iconSize} />
       )}
+    </TooltipButton>
+  );
+};
+
+export const DownloadButton: React.FC<{
+  url: string;
+  tooltip: string;
+  size?: number;
+  color?: string;
+}> = ({ url, tooltip, size = 4, color = "blue" }) => {
+  const handleDownload = async () => {
+    window.open(url, "_blank");
+  };
+  const iconSize = `w-${size} h-${size}`;
+  const iconColor = `text-ctp-${color}`;
+
+  return (
+    <TooltipButton
+      tooltip={tooltip}
+      onClick={handleDownload}
+      className={iconColor}
+    >
+      <FileDown className={iconSize} />
     </TooltipButton>
   );
 };

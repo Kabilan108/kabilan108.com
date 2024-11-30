@@ -1,14 +1,13 @@
-import { ExternalLink, FileDown, Github } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import PDF from "../assets/pdf.svg?react";
 import {
   Badge,
   BadgeColor,
   CopyButton,
+  DownloadButton,
   Heading,
-  IconWrapper,
   Section,
   SocialLinks,
   Tag,
@@ -42,7 +41,7 @@ const ResumePage: React.FC = () => {
 
   return (
     <div className="space-y-8">
-      <BioSection profile={profile} />
+      <BioSection profile={profile} pdfPath={resume.pdfPath} />
       {resume.education.length > 0 && (
         <EducationSection education={resume.education} />
       )}
@@ -75,9 +74,12 @@ const ResumePage: React.FC = () => {
   );
 };
 
-const BioSection: React.FC<{ profile: Profile }> = ({ profile }) => {
+const BioSection: React.FC<{ profile: Profile; pdfPath: string }> = ({
+  profile,
+  pdfPath,
+}) => {
   return (
-    <section className="flex justify-between items-start">
+    <section className="flex justify-between items-start pr-4">
       <div>
         <h1 className="text-2xl font-bold mb-4 text-ctp-mauve">
           {profile.name}
@@ -86,16 +88,12 @@ const BioSection: React.FC<{ profile: Profile }> = ({ profile }) => {
           <SocialLinks links={profile.links} useIcons={false} />
         </div>
       </div>
-      <TooltipButton
-        tooltip="Download Resume"
-        onClick={() => {
-          // TODO: Implement resume download
-          console.log("Download resume");
-        }}
-        className="text-ctp-blue hover:text-ctp-lavender transition-colors pr-4"
-      >
-        <IconWrapper icon={PDF} size={36} className="fill-ctp-green" />
-      </TooltipButton>
+      <DownloadButton
+        url={pdfPath}
+        tooltip="Download PDF"
+        color="blue"
+        size={36}
+      />
     </section>
   );
 };
@@ -248,13 +246,12 @@ const PublicationsSection: React.FC<{
           </div>
           <div className="flex gap-4">
             {pub.pdfPath && (
-              <TooltipButton
+              <DownloadButton
+                url={pub.pdfPath}
                 tooltip="Download PDF"
-                onClick={() => window.open(pub.pdfPath, "_blank")}
-                className="text-ctp-blue hover:text-ctp-pink transition-colors"
-              >
-                <FileDown className="w-5 h-5" />
-              </TooltipButton>
+                color="blue"
+                size={5}
+              />
             )}
             {pub.citation && (
               <CopyButton

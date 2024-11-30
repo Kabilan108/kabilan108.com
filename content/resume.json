@@ -1,4 +1,5 @@
 {
+  "pdfPath": "/pdf/resume.pdf",
   "education": [
     {
       "id": 2,
@@ -46,7 +47,7 @@
       "isPublished": false,
       "citation": "Niroshana, S. I., Kuroda, S., Tanaka, K., & Chen, W. (2023). Beat-wise segmentation of electrocardiogram using adaptive windowing and deep neural network. Scientific Reports, 13(1), 11039.",
       "url": "",
-      "pdfPath": "/pdf/publication/artifact-detection.pdf"
+      "pdfPath": "/pdf/paper/artifact-detection.pdf"
     },
     {
       "id": 2,
