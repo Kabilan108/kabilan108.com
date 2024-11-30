@@ -4,7 +4,6 @@ on:
   push:
     branches: [main]
 
-# cancel previous jobs to avoid deploy locks on dokku
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
@@ -25,7 +24,7 @@ jobs:
 
       - name: Add remote and push
         run: |
-          git remote add dokku dokku@${{ secrets.DOKKU_HOST }}:blog.meddibia.com
+          git remote add dokku dokku@${{ secrets.DOKKU_HOST }}:kabilan108.com
           GIT_SSH_COMMAND="ssh -v \
             -i private_key.pem \
             -o UserKnownHostsFile=/dev/null \
