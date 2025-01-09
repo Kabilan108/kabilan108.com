@@ -1,18 +1,54 @@
-{{ range $port_map := .PROXY_PORT_MAP | split " " }}
-{{ $port_map_list := $port_map | split ":" }}
-{{ $scheme := index $port_map_list 0 }}
-{{ $listen_port := index $port_map_list 1 }}
-{{ $upstream_port := index $port_map_list 2 }}
+{{ define "SERVER" }}
+server {
+  listen      [::]:{{ var "NGINX_PORT" "80" }};
+  listen      {{ var "NGINX_PORT" "80" }};
+  server_name {{ var "NOSSL_SERVER_NAME" "_" }};
+
+  access_log  /var/log/nginx/{{ var "APP" "dokku" }}-access.log;
+  error_log   /var/log/nginx/{{ var "APP" "dokku" }}-error.log;
+
+  root        /usr/share/nginx/html;
+  index       index.html;
+
+  location / {
+    try_files $uri $uri/ /index.html;
+    expires -1;
+  }
+
+  location = /favicon.ico { access_log off; log_not_found off; }
+  location = /robots.txt  { access_log off; log_not_found off; }
+
+  # Media: images, icons, video, audio, HTC
+  location ~* \.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|mp4|ogg|ogv|webm|htc|woff2|woff)$ {
+    expires 1M;
+    access_log off;
+    add_header Cache-Control "public";
+  }
+
+  # CSS and Javascript
+  location ~* \.(?:css|js)$ {
+    expires 1y;
+    access_log off;
+  }
+}
+{{ end }}
+
+{{ if not (eq (var "DOKKU_APP_LISTENERS" "") "") }}
+{{ range $listeners := var "DOKKU_APP_LISTENERS" | split ";" }}
+{{ $port_map := $listeners | split ":" }}
+  upstream {{ $.APP }}-{{ index $port_map 0 }} {
+    server {{ index $port_map 1 }};
+  }
+{{ end }}
+{{ end }}
 
 server {
-  listen      [::]:{{ $listen_port }};
-  listen      {{ $listen_port }};
-  server_name {{ $.NOSSL_SERVER_NAME }};
-  access_log  /var/log/nginx/{{ $.APP }}-access.log;
-  error_log   /var/log/nginx/{{ $.APP }}-error.log;
+  listen      [::]:80;
+  listen      80;
+  server_name {{ var "NOSSL_SERVER_NAME" "_" }};
 
   location    / {
-    proxy_pass  http://{{ $.APP }}-{{ $upstream_port }};
+    proxy_pass  http://{{ var "APP" "dokku" }}-5000;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection $http_connection;
@@ -27,27 +63,18 @@ server {
     try_files $uri $uri/ /index.html;
   }
 }
-{{ end }}
 
-{{ if $.SSL_INUSE }}
-{{ range $port_map := .SSL_PROXY_PORT_MAP | split " " }}
-{{ $port_map_list := $port_map | split ":" }}
-{{ $scheme := index $port_map_list 0 }}
-{{ $listen_port := index $port_map_list 1 }}
-{{ $upstream_port := index $port_map_list 2 }}
-
+{{ if eq (var "DOKKU_APP_SSL" "") "1" }}
 server {
-  listen      [::]:{{ $listen_port }} ssl http2;
-  listen      {{ $listen_port }} ssl http2;
-  server_name {{ $.NOSSL_SERVER_NAME }};
-  access_log  /var/log/nginx/{{ $.APP }}-access.log;
-  error_log   /var/log/nginx/{{ $.APP }}-error.log;
+  listen      [::]:443 ssl http2;
+  listen      443 ssl http2;
+  server_name {{ var "NOSSL_SERVER_NAME" "_" }};
 
-  ssl_certificate     {{ $.APP_SSL_PATH }}/server.crt;
-  ssl_certificate_key {{ $.APP_SSL_PATH }}/server.key;
+  ssl_certificate     {{ var "APP_SSL_PATH" }}/server.crt;
+  ssl_certificate_key {{ var "APP_SSL_PATH" }}/server.key;
 
   location    / {
-    proxy_pass  http://{{ $.APP }}-{{ $upstream_port }};
+    proxy_pass  http://{{ var "APP" "dokku" }}-5000;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection $http_connection;
@@ -57,10 +84,7 @@ server {
     proxy_set_header X-Forwarded-Port $server_port;
     proxy_set_header X-Request-Start $msec;
 
-    # First attempt to serve request as file, then
-    # as directory, then fall back to displaying index.html
     try_files $uri $uri/ /index.html;
   }
 }
-{{ end }}
 {{ end }}
