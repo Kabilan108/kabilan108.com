@@ -14,6 +14,7 @@
     "@types/react-syntax-highlighter": "^15.5.13",
     "axios": "^1.7.7",
     "buffer": "^6.0.3",
+    "caniuse-lite": "^1.0.30001707",
     "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.298.0",
