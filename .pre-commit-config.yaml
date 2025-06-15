@@ -7,15 +7,13 @@ repos:
       - id: check-yaml
       - id: check-added-large-files
         args: ["--maxkb=20480"]
-
-  - repo: https://github.com/biomejs/pre-commit
-    rev: v0.5.0
-    hooks:
-      - id: biome-check
-        additional_dependencies: ["@biomejs/biome@1.9.4"]
-
   - repo: local
     hooks:
+      - id: biome-check
+        name: biome check
+        entry: npx biome check .
+        language: system
+        types: [javascript, jsx, tsx, json]
       - id: ruff-check
         name: ruff check
         entry: ruff check
