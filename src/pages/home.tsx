@@ -79,7 +79,7 @@ const Posts: React.FC = () => {
 const Projects: React.FC = () => {
   const projects: Project[] | null = getProjects();
   if (!projects) return null;
-  const [featuredProjects] = groupFeaturedItems<Project>(projects, 4);
+  const [featuredProjects] = groupFeaturedItems<Project>(projects, 8);
 
   return (
     <section className="pb-10">

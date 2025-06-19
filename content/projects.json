@@ -2,8 +2,8 @@
   {
     "id": 1,
     "title": "geass",
-    "description": "a wrapper for generating transcripts with whisper using local or cloud compute",
-    "tags": ["whisper", "fastapi", "modal", "transformers"],
+    "description": "CLI tool for audio transcription using faster-whisper with local and remote GPU support",
+    "tags": ["faster-whisper", "modal", "transcription", "cli", "python"],
     "github": "https://github.com/kabilan108/geass",
     "demo": "",
     "featured": true,
@@ -38,5 +38,25 @@
     "demo": "https://wazobiacode.com",
     "featured": true,
     "date": "2024-09-14"
+  },
+  {
+    "id": 5,
+    "title": "diffgpt",
+    "description": "AI-powered commit message generator that learns from your repository's commit style",
+    "tags": ["go", "git", "ai", "cli", "openai"],
+    "github": "https://github.com/kabilan108/diffgpt",
+    "demo": "",
+    "featured": true,
+    "date": "2025-03-30"
+  },
+  {
+    "id": 6,
+    "title": "dump",
+    "description": "CLI tool for extracting and formatting text files from directories for use with LLMs",
+    "tags": ["go", "cli", "llm", "prompt engineering"],
+    "github": "https://github.com/kabilan108/dump",
+    "demo": "",
+    "featured": true,
+    "date": "2024-03-30"
   }
 ]
