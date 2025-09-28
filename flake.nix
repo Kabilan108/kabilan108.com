@@ -11,7 +11,7 @@
   in {
     devShell.${system} = pkgs.mkShell {
       buildInputs = [
-        pkgs.nodejs_20
+        pkgs.nodejs_22
         pkgs.bun
       ];
 
