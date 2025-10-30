@@ -13,14 +13,7 @@
       ];
 
       shellHook = ''
-        export NPM_CONFIG_PREFIX="$HOME/.npm-global"
-        export PATH="$HOME/.npm-global/bin:$PATH"
-        if [ ! -f "$HOME/.npm-global/bin/claude" ]; then
-          npm install -g @anthropic-ai/claude-code
-        fi
-        if [ ! -f "$HOME/.npm-global/bin/ccusage" ]; then
-          npm install -g ccusage
-        fi
+        export CHROMIUM_BINARY="${pkgs.chromium}/bin/chromium"
       '';
     };
   };

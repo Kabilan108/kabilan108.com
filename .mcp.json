@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "chrome-devtools": {
+      "command": "bunx",
+      "args": [
+        "chrome-devtools-mcp@latest",
+        "--executablePath=${CHROMIUM_BINARY:-/etc/profiles/per-user/kabilan/bin/chromium}",
+        "--isolated"
+      ]
+    }
+  }
+}
