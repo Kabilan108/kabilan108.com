@@ -28,3 +28,4 @@ __pycache__
 .aider*
 .env
 .direnv
+*.tsbuildinfo

@@ -166,13 +166,14 @@ export const MD: FC<{ content: string; className?: string }> = ({
   className = "",
 }) => {
   return (
-    <Markdown
-      components={components}
-      className={cn("prose prose-invert max-w-none markdown", className)}
-      remarkPlugins={[remarkGfm, remarkMath]}
-      rehypePlugins={[[rehypeKatex, { displayMode: true, fleqn: true }]]}
-    >
-      {content}
-    </Markdown>
+    <div className={cn("prose prose-invert max-w-none markdown", className)}>
+      <Markdown
+        components={components}
+        remarkPlugins={[remarkGfm, remarkMath]}
+        rehypePlugins={[[rehypeKatex, { displayMode: true, fleqn: true }]]}
+      >
+        {content}
+      </Markdown>
+    </div>
   );
 };
