@@ -7,6 +7,7 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react"
 
 import { SocialLinks } from "./components/ui";
 import { getNumPosts, getProfile } from "./lib/content";
@@ -46,6 +47,7 @@ const App = () => {
         </main>
         <Footer profile={profile} />
       </div>
+      <Analytics />
     </BrowserRouter>
   );
 };
