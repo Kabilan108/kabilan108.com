@@ -8,6 +8,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 import { SocialLinks } from "./components/ui";
 import { getNumPosts, getProfile } from "./lib/content";
@@ -48,6 +49,7 @@ const App = () => {
         <Footer profile={profile} />
       </div>
       <Analytics />
+      <SpeedInsights />
     </BrowserRouter>
   );
 };
