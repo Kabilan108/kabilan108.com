@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "@catppuccin/tailwindcss/mocha.css";
 
 .markdown > .heading {
   @apply mt-4;
@@ -9,7 +8,7 @@
 .markdown > p {
   @apply leading-relaxed;
   @apply pl-6 pr-2 py-1 border-l-4 border-ctp-surface0;
-  @apply hover:border-ctp-blue hover:bg-ctp-surface0 hover:bg-opacity-50 transition-colors;
+  @apply hover:border-ctp-blue hover:bg-ctp-surface0/50 transition-colors;
 }
 
 .markdown > p > img {
@@ -19,12 +18,12 @@
 .markdown > blockquote {
   @apply italic text-ctp-overlay0;
   @apply pl-6 pr-4 py-2 border-l-4 border-ctp-blue rounded-md;
-  @apply bg-ctp-blue bg-opacity-20 my-4;
+  @apply bg-ctp-blue/20 my-4;
 }
 
 .markdown > blockquote > code,
 .markdown > blockquote > p > code {
-  @apply bg-ctp-mantle bg-opacity-50 text-ctp-sapphire rounded-md px-1 py-0.5;
+  @apply bg-ctp-mantle/50 text-ctp-sapphire rounded-md px-1 py-0.5;
 }
 
 .markdown > p > a,
@@ -42,15 +41,15 @@
 
 .markdown > ul {
   @apply pl-10 pr-2 py-1 border-l-4 border-ctp-surface0;
-  @apply hover:bg-ctp-surface0 hover:bg-opacity-50 transition-colors;
+  @apply hover:bg-ctp-surface0/50 transition-colors;
 }
 
 .markdown > ol {
   @apply pl-12 pr-2 py-1 border-l-4 border-ctp-surface0;
-  @apply hover:bg-ctp-surface0 hover:bg-opacity-50 transition-colors;
+  @apply hover:bg-ctp-surface0/50 transition-colors;
 }
 
 .katex-display {
   @apply pl-0 pr-4 pt-2 pb-1 border-l-4 border-ctp-surface0;
-  @apply hover:bg-ctp-surface0 hover:bg-opacity-50 transition-colors;
+  @apply hover:bg-ctp-surface0/50 transition-colors;
 }

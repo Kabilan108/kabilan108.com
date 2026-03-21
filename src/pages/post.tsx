@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import type { FC } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 
 import { MD } from "../components/md";
 import { Tag } from "../components/ui";
@@ -8,25 +7,23 @@ import { getPostBySlug } from "../lib/content";
 import type { Post } from "../lib/types";
 import { formatDate, setPageTitle } from "../lib/utils";
 
-const PostPage: FC = () => {
-  const { slug } = useParams<{ slug: string }>();
-  const navigate = useNavigate();
+const PostPage: FC<{ slug: string }> = ({ slug }) => {
   const [post, setPost] = useState<Post | undefined>();
 
   useEffect(() => {
     if (!slug) {
-      navigate("/posts");
+      window.location.assign("/posts");
       return;
     }
 
     getPostBySlug(slug).then((fetchedPost) => {
       if (!fetchedPost) {
-        navigate("/posts");
+        window.location.assign("/posts");
         return;
       }
       setPost(fetchedPost);
     });
-  }, [slug, navigate]);
+  }, [slug]);
 
   useEffect(() => {
     if (post) {

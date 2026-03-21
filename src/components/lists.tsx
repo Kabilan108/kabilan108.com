@@ -1,5 +1,4 @@
 import { ChevronRight, Dot, ExternalLink, Github } from "lucide-react";
-import { Link } from "react-router-dom";
 
 import type { Post, Project } from "../lib/types";
 import { formatDate } from "../lib/utils";
@@ -29,13 +28,13 @@ export const PostList: React.FC<ListProps<Post>> = ({
           <h2 className="font-mono text-sm md:text-base text-ctp-subtext1 pl-4 sm:pl-0">
             <div className="flex flex-wrap items-center">
               <span className="flex items-center whitespace-nowrap">
-                <Dot className="w-6 h-6 text-ctp-subtext0 flex-shrink-0 hidden sm:block" />
+                <Dot className="w-6 h-6 text-ctp-subtext0 shrink-0 hidden sm:block" />
                 {formatDate(post.date)}
                 <span className="mx-2">-</span>
               </span>
-              <Link to={`/posts/${post.slug}`} className="text-ctp-green hover:underline">
+              <a href={`/posts/${post.slug}`} className="text-ctp-green hover:underline">
                 {post.title}
-              </Link>
+              </a>
             </div>
           </h2>
           <p className="text-sm md:text-base text-ctp-subtext0 pl-4 md:pl-6 pr-2 md:pr-4">
@@ -67,7 +66,7 @@ export const ProjectList: React.FC<ListProps<Project>> = ({
       {projects.map((project, index) => (
         <NumberedSection key={project.title} index={startIndex + index}>
           <h2 className="font-mono text-sm md:text-base text-ctp-green flex items-center gap-2 pl-4 sm:pl-0">
-            <ChevronRight className="w-4 h-4 flex-shrink-0 hidden sm:block" />
+            <ChevronRight className="w-4 h-4 shrink-0 hidden sm:block" />
             {project.title}
           </h2>
           <p className="text-sm md:text-base text-ctp-subtext0 pl-4 md:pl-6">

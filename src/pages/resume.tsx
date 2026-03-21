@@ -1,6 +1,5 @@
 import { ExternalLink, Github } from "lucide-react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 
 import {
   Badge,
@@ -184,14 +183,14 @@ const PublicationsSection: React.FC<{
             <Badge color={BadgeColor.Peach}>under review</Badge>
           </Tooltip>
         )}
-        <Link
-          to={pub.url || ""}
+        <a
+          href={pub.url || "#"}
           className={cn("text-ctp-yellow", pub.url && "hover:text-ctp-pink transition-colors")}
           target={pub.url ? "_blank" : "_self"}
           rel={pub.url ? "noopener noreferrer" : "self"}
         >
           {pub.title}
-        </Link>
+        </a>
         <p className="text-ctp-subtext0">
           {pub.authors.map((author, index) => (
             <span key={author}>
