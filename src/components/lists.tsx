@@ -33,10 +33,7 @@ export const PostList: React.FC<ListProps<Post>> = ({
                 {formatDate(post.date)}
                 <span className="mx-2">-</span>
               </span>
-              <Link
-                to={`/posts/${post.slug}`}
-                className="text-ctp-green hover:underline"
-              >
+              <Link to={`/posts/${post.slug}`} className="text-ctp-green hover:underline">
                 {post.title}
               </Link>
             </div>
@@ -94,10 +91,7 @@ export const ProjectList: React.FC<ListProps<Project>> = ({
                 </TooltipButton>
               )}
               {project.demo && (
-                <TooltipButton
-                  tooltip="Demo"
-                  onClick={() => window.open(project.demo, "_blank")}
-                >
+                <TooltipButton tooltip="Demo" onClick={() => window.open(project.demo, "_blank")}>
                   <a
                     href={project.demo}
                     className="inline-flex items-center gap-1 hover:text-ctp-peach transition-colors"

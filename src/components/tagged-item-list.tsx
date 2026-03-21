@@ -50,9 +50,7 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
 
   const handleTagClick = (tag: string) => {
     setSelectedTags((prevTags) =>
-      prevTags.includes(tag)
-        ? prevTags.filter((t) => t !== tag)
-        : [...prevTags, tag],
+      prevTags.includes(tag) ? prevTags.filter((t) => t !== tag) : [...prevTags, tag],
     );
   };
 
@@ -63,16 +61,12 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
 
   const filteredFeaturedItems =
     selectedTags.length > 0
-      ? featuredItems.filter((item) =>
-          item.tags.some((tag) => selectedTags.includes(tag)),
-        )
+      ? featuredItems.filter((item) => item.tags.some((tag) => selectedTags.includes(tag)))
       : featuredItems;
 
   const filteredArchivedItems =
     selectedTags.length > 0
-      ? archivedItems.filter((item) =>
-          item.tags.some((tag) => selectedTags.includes(tag)),
-        )
+      ? archivedItems.filter((item) => item.tags.some((tag) => selectedTags.includes(tag)))
       : archivedItems;
 
   const renderList = (items: (Post | Project)[], startIndex = 0) => {
@@ -80,25 +74,13 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
       if (!items.every(isPost)) {
         throw new Error("Invalid item type: expected Post[]");
       }
-      return (
-        <PostList
-          items={items}
-          startIndex={startIndex}
-          handleTagClick={handleTagClick}
-        />
-      );
+      return <PostList items={items} startIndex={startIndex} handleTagClick={handleTagClick} />;
     }
 
     if (!items.every(isProject)) {
       throw new Error("Invalid item type: expected Project[]");
     }
-    return (
-      <ProjectList
-        items={items}
-        startIndex={startIndex}
-        handleTagClick={handleTagClick}
-      />
-    );
+    return <ProjectList items={items} startIndex={startIndex} handleTagClick={handleTagClick} />;
   };
 
   return (
@@ -130,9 +112,7 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
               type="button"
               onClick={() => handleTagClick(tag)}
               className={`px-2 py-0.5 rounded text-sm ${
-                selectedTags.includes(tag)
-                  ? "bg-ctp-surface0 text-ctp-green"
-                  : "text-ctp-subtext0"
+                selectedTags.includes(tag) ? "bg-ctp-surface0 text-ctp-green" : "text-ctp-subtext0"
               } transition-colors`}
             >
               <Tag tag={tag} />
@@ -174,10 +154,7 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
               showArchived ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
             }`}
           >
-            {renderList(
-              filteredArchivedItems as Project[],
-              filteredFeaturedItems.length,
-            )}
+            {renderList(filteredArchivedItems as Project[], filteredFeaturedItems.length)}
           </div>
         </>
       )}

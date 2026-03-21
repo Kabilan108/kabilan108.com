@@ -22,11 +22,7 @@ const Heading: FC<{
   color?: string;
   font?: string;
 }> = ({ level, color = "text-ctp-lavender", font = "text-2xl", children }) => {
-  return (
-    <p className={cn("heading", color, font)}>
-      {`${"#".repeat(level)} ${children}`}
-    </p>
-  );
+  return <p className={cn("heading", color, font)}>{`${"#".repeat(level)} ${children}`}</p>;
 };
 
 const CodeBlock: Components["pre"] = ({ className, ...props }) => {
@@ -71,79 +67,41 @@ const components = {
     </Heading>
   ),
   h2: ({ children, ...props }: ComponentProps<HTMLHeadingElement>) => (
-    <Heading
-      level={2}
-      color="text-ctp-green"
-      font="text-2xl font-semibold mb-2"
-      {...props}
-    >
+    <Heading level={2} color="text-ctp-green" font="text-2xl font-semibold mb-2" {...props}>
       {children}
     </Heading>
   ),
   h3: ({ children, ...props }: ComponentProps<HTMLHeadingElement>) => (
-    <Heading
-      level={3}
-      color="text-ctp-blue"
-      font="text-xl font-semibold mb-2"
-      {...props}
-    >
+    <Heading level={3} color="text-ctp-blue" font="text-xl font-semibold mb-2" {...props}>
       {children}
     </Heading>
   ),
   h4: ({ children, ...props }: ComponentProps<HTMLHeadingElement>) => (
-    <Heading
-      level={4}
-      color="text-ctp-sapphire"
-      font="text-lg font-semibold mb-0"
-      {...props}
-    >
+    <Heading level={4} color="text-ctp-sapphire" font="text-lg font-semibold mb-0" {...props}>
       {children}
     </Heading>
   ),
   h5: ({ children, ...props }: ComponentProps<HTMLHeadingElement>) => (
-    <Heading
-      level={5}
-      color="text-ctp-teal"
-      font="text-base font-semibold mb-0"
-      {...props}
-    >
+    <Heading level={5} color="text-ctp-teal" font="text-base font-semibold mb-0" {...props}>
       {children}
     </Heading>
   ),
   p: ({ className, ...props }: ComponentProps<HTMLParagraphElement>) => (
     <p className={cn("text-ctp-text", className)} {...props} />
   ),
-  blockquote: ({
-    className,
-    children,
-    ...props
-  }: ComponentProps<HTMLQuoteElement>) => (
+  blockquote: ({ className, children, ...props }: ComponentProps<HTMLQuoteElement>) => (
     <blockquote className={className} {...props}>
       {children}
     </blockquote>
   ),
   a: ({ className, ...props }: ComponentProps<HTMLAnchorElement>) => (
-    <a
-      target="_blank"
-      rel="noopener noreferrer"
-      className={className}
-      {...props}
-    />
+    <a target="_blank" rel="noopener noreferrer" className={className} {...props} />
   ),
   ul: ({ className, ...props }: ComponentProps<HTMLUListElement>) => (
-    <ul
-      className={cn("list-disc list-outside pl-4 my-0", className)}
-      {...props}
-    />
+    <ul className={cn("list-disc list-outside pl-4 my-0", className)} {...props} />
   ),
-  ol: ({
-    className,
-    ...props
-  }: { className?: string } & OlHTMLAttributes<HTMLOListElement>) => (
-    <ol
-      className={cn("list-decimal list-outside pl-8 my-0", className)}
-      {...props}
-    />
+  ol: ({ className, ...props }: { className?: string } & OlHTMLAttributes<HTMLOListElement>) => (
+    <ol className={cn("list-decimal list-outside pl-8 my-0", className)} {...props} />
   ),
   li: ({ className, ...props }: ComponentProps<HTMLLIElement>) => (
     <li className={cn("text-ctp-text", className)} {...props} />
@@ -161,10 +119,7 @@ const components = {
   },
 };
 
-export const MD: FC<{ content: string; className?: string }> = ({
-  content,
-  className = "",
-}) => {
+export const MD: FC<{ content: string; className?: string }> = ({ content, className = "" }) => {
   return (
     <div className={cn("prose prose-invert max-w-none markdown", className)}>
       <Markdown

@@ -1,13 +1,4 @@
-import {
-  Check,
-  Copy,
-  ExternalLink,
-  FileDown,
-  Github,
-  Globe,
-  Linkedin,
-  Mail,
-} from "lucide-react";
+import { Check, Copy, ExternalLink, FileDown, Github, Globe, Linkedin, Mail } from "lucide-react";
 
 import { useState } from "react";
 import XLogo from "../assets/x-logo.svg?react";
@@ -20,11 +11,7 @@ interface IconWrapperProps {
   className?: string;
 }
 
-export const IconWrapper: React.FC<IconWrapperProps> = ({
-  icon: Icon,
-  size = 24,
-  className,
-}) => {
+export const IconWrapper: React.FC<IconWrapperProps> = ({ icon: Icon, size = 24, className }) => {
   return (
     <Icon
       className={cn("fill-current text-inherit", className)}
@@ -88,15 +75,8 @@ export const Tag: React.FC<{
   );
 };
 
-export const Heading: React.FC<{ text: string; className?: string }> = ({
-  text,
-  className,
-}) => {
-  return (
-    <h1 className={cn("text-ctp-mauve text-xl font-bold mb-4", className)}>
-      {text}
-    </h1>
-  );
+export const Heading: React.FC<{ text: string; className?: string }> = ({ text, className }) => {
+  return <h1 className={cn("text-ctp-mauve text-xl font-bold mb-4", className)}>{text}</h1>;
 };
 
 export const SocialLinks: React.FC<{
@@ -105,13 +85,7 @@ export const SocialLinks: React.FC<{
   useIcons?: boolean;
   color?: string;
   hoverColor?: string;
-}> = ({
-  links,
-  size = 24,
-  useIcons = true,
-  color = "overlay0",
-  hoverColor = "pink",
-}) => {
+}> = ({ links, size = 24, useIcons = true, color = "overlay0", hoverColor = "pink" }) => {
   const iconMap = {
     github: Github,
     x_dot_com: XLogo,
@@ -123,8 +97,7 @@ export const SocialLinks: React.FC<{
   return (
     <>
       {Object.entries(links).map(([key, url]) => {
-        const IconComponent =
-          iconMap[key as keyof typeof iconMap] || ExternalLink;
+        const IconComponent = iconMap[key as keyof typeof iconMap] || ExternalLink;
         return (
           <a
             key={key}
@@ -245,11 +218,7 @@ export const CopyButton: React.FC<{
 
   return (
     <TooltipButton tooltip={tooltip} onClick={handleCopy} className={iconColor}>
-      {isCopied ? (
-        <Check className={iconSize} />
-      ) : (
-        <Copy className={iconSize} />
-      )}
+      {isCopied ? <Check className={iconSize} /> : <Copy className={iconSize} />}
     </TooltipButton>
   );
 };
@@ -267,11 +236,7 @@ export const DownloadButton: React.FC<{
   const iconColor = `text-ctp-${color}`;
 
   return (
-    <TooltipButton
-      tooltip={tooltip}
-      onClick={handleDownload}
-      className={iconColor}
-    >
+    <TooltipButton tooltip={tooltip} onClick={handleDownload} className={iconColor}>
       <FileDown className={iconSize} />
     </TooltipButton>
   );

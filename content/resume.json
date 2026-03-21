@@ -83,14 +83,7 @@
   ],
   "skills": {
     "programming": ["python", "r", "bash", "c++", "sql", "js/ts", "kotlin"],
-    "ai/ml": [
-      "pytorch",
-      "transformers",
-      "sklearn",
-      "wandb",
-      "openai",
-      "anthropic"
-    ],
+    "ai/ml": ["pytorch", "transformers", "sklearn", "wandb", "openai", "anthropic"],
     "tools": ["fastapi", "react", "nextjs", "docker", "git"],
     "comp bio": ["seurat", "squidpy", "scanpy", "bioconductor", "cellprofiler"]
   },

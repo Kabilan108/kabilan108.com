@@ -42,65 +42,39 @@ const ResumePage: React.FC = () => {
   return (
     <div className="space-y-8">
       <BioSection profile={profile} pdfPath={resume.pdfPath} />
-      {resume.education.length > 0 && (
-        <EducationSection education={resume.education} />
-      )}
-      {resume.workExperience.length > 0 && (
-        <ExperienceSection experience={resume.workExperience} />
-      )}
+      {resume.education.length > 0 && <EducationSection education={resume.education} />}
+      {resume.workExperience.length > 0 && <ExperienceSection experience={resume.workExperience} />}
       {resume.featuredProjects && resume.featuredProjects.length > 0 && (
         <ProjectsSection projects={resume.featuredProjects} />
       )}
       {resume.publications.length > 0 && (
-        <PublicationsSection
-          publications={resume.publications}
-          title="## publications"
-        />
+        <PublicationsSection publications={resume.publications} title="## publications" />
       )}
       {resume.abstracts.length > 0 && (
-        <PublicationsSection
-          publications={resume.abstracts}
-          title="## conference abstracts"
-        />
+        <PublicationsSection publications={resume.abstracts} title="## conference abstracts" />
       )}
-      {Object.keys(resume.skills).length > 0 && (
-        <SkillsSection skills={resume.skills} />
-      )}
+      {Object.keys(resume.skills).length > 0 && <SkillsSection skills={resume.skills} />}
       {resume.awards.length > 0 && <AwardsSection awards={resume.awards} />}
-      {resume.organizations.length > 0 && (
-        <OrganizationsSection orgs={resume.organizations} />
-      )}
+      {resume.organizations.length > 0 && <OrganizationsSection orgs={resume.organizations} />}
     </div>
   );
 };
 
-const BioSection: React.FC<{ profile: Profile; pdfPath: string }> = ({
-  profile,
-  pdfPath,
-}) => {
+const BioSection: React.FC<{ profile: Profile; pdfPath: string }> = ({ profile, pdfPath }) => {
   return (
     <section className="flex justify-between items-start pr-4">
       <div>
-        <h1 className="text-2xl font-bold mb-4 text-ctp-mauve">
-          {profile.name}
-        </h1>
+        <h1 className="text-2xl font-bold mb-4 text-ctp-mauve">{profile.name}</h1>
         <div className="flex flex-wrap gap-2 sm:gap-4">
           <SocialLinks links={profile.links} useIcons={false} />
         </div>
       </div>
-      <DownloadButton
-        url={pdfPath}
-        tooltip="Download PDF"
-        color="blue"
-        size={36}
-      />
+      <DownloadButton url={pdfPath} tooltip="Download PDF" color="blue" size={36} />
     </section>
   );
 };
 
-const EducationSection: React.FC<{ education: Education[] }> = ({
-  education,
-}) => {
+const EducationSection: React.FC<{ education: Education[] }> = ({ education }) => {
   return (
     <section className="pb-6 border-b border-ctp-surface1">
       <Heading text="## education" className="mb-2" />
@@ -109,15 +83,11 @@ const EducationSection: React.FC<{ education: Education[] }> = ({
           <Section key={edu.id} className="pl-6 pr-4">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
               <h3 className="text-ctp-green font-mono">{edu.degree}</h3>
-              <p className="text-sm text-ctp-subtext1 mt-1 sm:mt-0">
-                {edu.duration}
-              </p>
+              <p className="text-sm text-ctp-subtext1 mt-1 sm:mt-0">{edu.duration}</p>
             </div>
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-2 sm:mt-0">
               <p className="text-ctp-subtext1">{edu.institution}</p>
-              <p className="text-sm text-ctp-subtext0 mt-1 sm:mt-0">
-                {edu.location}
-              </p>
+              <p className="text-sm text-ctp-subtext0 mt-1 sm:mt-0">{edu.location}</p>
             </div>
             <p className="text-sm text-ctp-subtext0 mt-2">{edu.details}</p>
           </Section>
@@ -127,9 +97,7 @@ const EducationSection: React.FC<{ education: Education[] }> = ({
   );
 };
 
-const ExperienceSection: React.FC<{ experience: WorkExperience[] }> = ({
-  experience,
-}) => {
+const ExperienceSection: React.FC<{ experience: WorkExperience[] }> = ({ experience }) => {
   return (
     <section className="pb-6 border-b border-ctp-surface1">
       <Heading text="## experience" className="mb-2" />
@@ -145,9 +113,7 @@ const ExperienceSection: React.FC<{ experience: WorkExperience[] }> = ({
             </div>
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-2 sm:mt-0">
               <p className="text-ctp-subtext1">{exp.company}</p>
-              <p className="text-sm text-ctp-subtext0 mt-1 sm:mt-0">
-                {exp.location}
-              </p>
+              <p className="text-sm text-ctp-subtext0 mt-1 sm:mt-0">{exp.location}</p>
             </div>
             <ul className="list-disc pl-4 text-sm text-ctp-subtext0 mt-2 space-y-2">
               {exp.responsibilities.map((resp) => (
@@ -214,19 +180,13 @@ const PublicationsSection: React.FC<{
     return (
       <Section key={pub.id} className="pl-6 pr-4 text-sm">
         {!pub.isPublished && (
-          <Tooltip
-            tooltip="paper is pending review by journal"
-            className="mb-2"
-          >
+          <Tooltip tooltip="paper is pending review by journal" className="mb-2">
             <Badge color={BadgeColor.Peach}>under review</Badge>
           </Tooltip>
         )}
         <Link
           to={pub.url || ""}
-          className={cn(
-            "text-ctp-yellow",
-            pub.url && "hover:text-ctp-pink transition-colors",
-          )}
+          className={cn("text-ctp-yellow", pub.url && "hover:text-ctp-pink transition-colors")}
           target={pub.url ? "_blank" : "_self"}
           rel={pub.url ? "noopener noreferrer" : "self"}
         >
@@ -236,9 +196,7 @@ const PublicationsSection: React.FC<{
           {pub.authors.map((author, index) => (
             <span key={author}>
               {index > 0 && ", "}
-              <span
-                className={`italic ${index === pub.me - 1 ? "text-ctp-sky font-bold" : ""}`}
-              >
+              <span className={`italic ${index === pub.me - 1 ? "text-ctp-sky font-bold" : ""}`}>
                 {author}
               </span>
             </span>
@@ -252,20 +210,10 @@ const PublicationsSection: React.FC<{
           </div>
           <div className="flex gap-4">
             {pub.pdfPath && (
-              <DownloadButton
-                url={pub.pdfPath}
-                tooltip="Download PDF"
-                color="blue"
-                size={5}
-              />
+              <DownloadButton url={pub.pdfPath} tooltip="Download PDF" color="blue" size={5} />
             )}
             {pub.citation && (
-              <CopyButton
-                text={pub.citation}
-                tooltip="Copy citation"
-                color="blue"
-                size={5}
-              />
+              <CopyButton text={pub.citation} tooltip="Copy citation" color="blue" size={5} />
             )}
           </div>
         </div>
@@ -299,9 +247,7 @@ const SkillsSection: React.FC<{ skills: Skills }> = ({ skills }) => {
             key={category}
             className="pl-6 pr-4 py-2 sm:py-1 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4"
           >
-            <h3 className={`text-ctp-${color} font-mono font-semibold`}>
-              {category}:
-            </h3>
+            <h3 className={`text-ctp-${color} font-mono font-semibold`}>{category}:</h3>
             <div className="flex flex-wrap gap-2 items-baseline">
               {skills.map((skill) => (
                 <Badge key={skill} color={color}>
@@ -338,9 +284,7 @@ const AwardsSection: React.FC<{ awards: Award[] }> = ({ awards }) => {
               </p>
             </div>
             {award.description && (
-              <p className="text-sm text-ctp-subtext0 mt-2 sm:mt-0">
-                {award.description}
-              </p>
+              <p className="text-sm text-ctp-subtext0 mt-2 sm:mt-0">{award.description}</p>
             )}
           </Section>
         ))}

@@ -1,14 +1,8 @@
 import { Copyright, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import {
-  BrowserRouter,
-  Link,
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/react"
+import { BrowserRouter, Link, Route, Routes, useLocation } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import { SocialLinks } from "./components/ui";
 import { getNumPosts, getProfile } from "./lib/content";
@@ -54,13 +48,7 @@ const App = () => {
   );
 };
 
-const NavBar = ({
-  profile,
-  showPosts,
-}: {
-  profile: Profile;
-  showPosts: boolean;
-}) => {
+const NavBar = ({ profile, showPosts }: { profile: Profile; showPosts: boolean }) => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pages = [

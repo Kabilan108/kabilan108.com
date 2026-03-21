@@ -59,17 +59,12 @@ export function groupFeaturedItems<T extends TaggedItem>(
   items: Array<T>,
   n?: number,
 ): [Array<T>, Array<T>] {
-  const sorted = [...items].sort(
-    (a: T, b: T) => b.date.getTime() - a.date.getTime(),
-  );
+  const sorted = [...items].sort((a: T, b: T) => b.date.getTime() - a.date.getTime());
 
   const featured = sorted.filter((item) => item.featured);
   const archived = sorted.filter((item) => !item.featured);
 
-  return [
-    n ? featured.slice(0, n) : featured,
-    n ? archived.slice(0, n) : archived,
-  ];
+  return [n ? featured.slice(0, n) : featured, n ? archived.slice(0, n) : archived];
 }
 
 export const setPageTitle = (title?: string) => {

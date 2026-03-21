@@ -14,7 +14,7 @@ featured: true
 
 ##### Heading Level 5
 
-This is a paragraph with **bold text**, *italic text*, and ***bold italic text***. It also includes `inline code` and a [link to somewhere](https://example.com). This demonstrates various ways to format text in Markdown, which is a lightweight markup language designed to be easy to read and write.
+This is a paragraph with **bold text**, _italic text_, and **_bold italic text_**. It also includes `inline code` and a [link to somewhere](https://example.com). This demonstrates various ways to format text in Markdown, which is a lightweight markup language designed to be easy to read and write.
 
 ![Another image](../../public/img/profile.jpeg)
 
@@ -24,10 +24,9 @@ Here's a paragraph with ~~strikethrough text~~ and ==highlighted text==. Markdow
 
 The beauty of Markdown lies in its readability even in its raw form. Writers can focus on their content while still maintaining the ability to add formatting when needed. It's particularly popular among developers and technical writers who need to create documentation that can be easily maintained and version controlled.
 
-
 > This is a blockquote
 > It can span multiple **lines**
-> And include *formatting*
+> And include _formatting_
 > and some `inline code`
 
 > heres some code:
@@ -39,6 +38,7 @@ The beauty of Markdown lies in its readability even in its raw form. Writers can
 ## Lists
 
 ### Unordered Lists
+
 - First level item
 - Another item
   - Second level item
@@ -50,6 +50,7 @@ The beauty of Markdown lies in its readability even in its raw form. Writers can
 - Back to first level
 
 ### Ordered Lists
+
 1. First item
 2. Second item
    1. Sub-item one

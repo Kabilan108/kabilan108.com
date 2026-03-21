@@ -33,9 +33,7 @@ const Bio: React.FC = () => {
           <span className="text-ctp-mauve">{profile.name}</span>
         </h1>
         <div className="space-y-4">
-          <Section className="text-lg text-ctp-green pl-6 pb-1 pt-1">
-            {profile.title}
-          </Section>
+          <Section className="text-lg text-ctp-green pl-6 pb-1 pt-1">{profile.title}</Section>
           <Section className="text-sm sm:text-base text-ctp-subtext0 pl-6 space-y-4">
             <p>{profile.bio}</p>
             <div className="flex flex-wrap gap-4">

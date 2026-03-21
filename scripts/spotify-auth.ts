@@ -42,9 +42,7 @@ if (CLIENT_ID === "YOUR_CLIENT_ID" || CLIENT_SECRET === "YOUR_CLIENT_SECRET") {
 /**
  * Exchange authorization code for access and refresh tokens
  */
-async function exchangeCodeForTokens(
-  code: string,
-): Promise<SpotifyTokenResponse> {
+async function exchangeCodeForTokens(code: string): Promise<SpotifyTokenResponse> {
   const tokenUrl = "https://accounts.spotify.com/api/token";
   const body = new URLSearchParams({
     grant_type: "authorization_code",
@@ -227,15 +225,11 @@ async function main() {
     console.log("\n   {");
     console.log('     "access_token": "' + tokens.access_token + '",');
     console.log('     "refresh_token": "' + tokens.refresh_token + '",');
-    console.log(
-      '     "expires_at": ' + (Date.now() + tokens.expires_in * 1000),
-    );
+    console.log('     "expires_at": ' + (Date.now() + tokens.expires_in * 1000));
     console.log("   }\n");
     console.log("Or use the wrangler CLI:");
     console.log("\n   cd workers/spotify-now-playing");
-    console.log(
-      '   wrangler kv:key put --binding=SPOTIFY_KV "spotify:tokens" \\',
-    );
+    console.log('   wrangler kv:key put --binding=SPOTIFY_KV "spotify:tokens" \\');
     console.log(
       '     \'{"access_token":"' +
         tokens.access_token +
@@ -246,10 +240,7 @@ async function main() {
         "}'\\n",
     );
   } catch (err) {
-    console.error(
-      "\n❌ Error:",
-      err instanceof Error ? err.message : "Unknown error",
-    );
+    console.error("\n❌ Error:", err instanceof Error ? err.message : "Unknown error");
     process.exit(1);
   }
 }
