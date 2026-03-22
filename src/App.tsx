@@ -48,13 +48,7 @@ const App = () => {
   );
 };
 
-const NavBar = ({
-  profile,
-  showPosts,
-}: {
-  profile: Profile;
-  showPosts: boolean;
-}) => {
+const NavBar = ({ profile, showPosts }: { profile: Profile; showPosts: boolean }) => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pages = [

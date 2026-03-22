@@ -29,8 +29,7 @@ export const Section: React.FC<{
     <div
       className={cn(
         "relative pl-2 border-l-4 border-ctp-surface0 py-2",
-        hover &&
-          "hover:border-ctp-blue hover:bg-ctp-surface0/50 transition-colors",
+        hover && "hover:border-ctp-blue hover:bg-ctp-surface0/50 transition-colors",
         className,
       )}
     >
