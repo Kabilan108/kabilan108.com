@@ -1,5 +1,9 @@
-import { Menu, X } from "lucide-react";
+import { Copyright, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { BrowserRouter, Link, Route, Routes, useLocation } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
+
 import { SocialLinks } from "./components/ui";
 import { getNumPosts, getProfile } from "./lib/content";
 import type { Profile } from "./lib/types";
@@ -12,7 +16,6 @@ import ResumePage from "./pages/resume";
 const App = () => {
   const [showPosts, setShowPosts] = useState(false);
   const profile = getProfile();
-  const pathname = window.location.pathname;
 
   useEffect(() => {
     getNumPosts().then((n) => setShowPosts(n > 0));
@@ -21,49 +24,38 @@ const App = () => {
   if (!profile) return null;
 
   return (
-    <div className="min-h-screen font-mono ctp-mocha bg-ctp-mantle text-ctp-text flex flex-col">
-      <main className="flex-grow max-w-4xl w-full mx-auto px-6 sm:px-12 md:px-8">
-        <NavBar profile={profile} pathname={pathname} showPosts={showPosts} />
-        <CurrentPage pathname={pathname} showPosts={showPosts} />
-      </main>
-      <Footer profile={profile} />
-    </div>
+    <BrowserRouter>
+      <div className="min-h-screen font-mono ctp-mocha bg-ctp-mantle text-ctp-text flex flex-col">
+        <main className="flex-grow max-w-4xl w-full mx-auto px-6 sm:px-12 md:px-8">
+          <NavBar profile={profile} showPosts={showPosts} />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            {showPosts && (
+              <>
+                <Route path="/posts" element={<PostsPage />} />
+                <Route path="/posts/:slug" element={<PostPage />} />
+              </>
+            )}
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/resume" element={<ResumePage />} />
+          </Routes>
+        </main>
+        <Footer profile={profile} />
+      </div>
+      <Analytics />
+      <SpeedInsights />
+    </BrowserRouter>
   );
-};
-
-const CurrentPage = ({ pathname, showPosts }: { pathname: string; showPosts: boolean }) => {
-  if (pathname === "/") {
-    return <HomePage />;
-  }
-
-  if (pathname === "/projects") {
-    return <ProjectsPage />;
-  }
-
-  if (pathname === "/resume") {
-    return <ResumePage />;
-  }
-
-  if (showPosts && pathname === "/posts") {
-    return <PostsPage />;
-  }
-
-  if (showPosts && pathname.startsWith("/posts/")) {
-    return <PostPage slug={pathname.replace(/^\/posts\//, "")} />;
-  }
-
-  return <HomePage />;
 };
 
 const NavBar = ({
   profile,
-  pathname,
   showPosts,
 }: {
   profile: Profile;
-  pathname: string;
   showPosts: boolean;
 }) => {
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pages = [
     { name: "home", path: "/", show: true },
@@ -78,28 +70,28 @@ const NavBar = ({
   return (
     <header className="pt-4 pb-2 mb-8 border-b border-ctp-surface1">
       <nav className="flex justify-between items-center">
-        <a
-          href="/"
+        <Link
+          to="/"
           className="text-lg font-bold text-ctp-maroon hover:text-ctp-red transition-colors"
         >
           {profile.username}
-        </a>
+        </Link>
 
         <ul className="hidden md:flex space-x-6 text-md">
           {pages
             .filter((page) => page.show)
             .map((page) => (
               <li key={page.name}>
-                <a
-                  href={page.path}
+                <Link
+                  to={page.path}
                   className={`hover:text-ctp-peach transition-colors ${
-                    pathname === page.path
+                    location.pathname === page.path
                       ? "text-ctp-peach border-b border-ctp-peach"
                       : "text-ctp-yellow"
                   }`}
                 >
                   {page.name}
-                </a>
+                </Link>
               </li>
             ))}
         </ul>
@@ -130,16 +122,17 @@ const NavBar = ({
                 .filter((page) => page.show)
                 .map((page) => (
                   <li key={page.name}>
-                    <a
-                      href={page.path}
+                    <Link
+                      to={page.path}
+                      onClick={() => setIsMenuOpen(false)}
                       className={`hover:text-ctp-peach transition-colors ${
-                        pathname === page.path
+                        location.pathname === page.path
                           ? "text-ctp-peach border-b border-ctp-peach"
                           : "text-ctp-yellow"
                       }`}
                     >
                       {page.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
             </ul>
@@ -156,8 +149,13 @@ const NavBar = ({
 const Footer = ({ profile }: { profile: Profile }) => {
   return (
     <footer className="w-full max-w-4xl mx-auto pt-4 pb-2 border-t border-ctp-surface1">
-      <p className="text-sm text-ctp-subtext0">
-        {new Date().getFullYear()} - {profile.username}
+      <p className="flex items-center justify-center text-sm text-ctp-subtext0">
+        <Copyright className="mr-2 h-4 w-4" />
+        {new Date().getFullYear()}
+        {" -"}
+        <Link to="/" className="ml-2">
+          {profile.username}
+        </Link>
       </p>
     </footer>
   );

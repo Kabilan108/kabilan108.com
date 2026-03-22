@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { PostList, ProjectList } from "../components/lists";
 import { Heading, Section, SocialLinks } from "../components/ui";
@@ -65,9 +66,9 @@ const Posts: React.FC = () => {
 
   return (
     <section className="pb-10 border-b border-ctp-surface1">
-      <a href="/posts">
+      <Link to="/posts">
         <Heading text="## latest posts" />
-      </a>
+      </Link>
       <PostList items={featuredPosts} />
     </section>
   );
@@ -80,9 +81,9 @@ const Projects: React.FC = () => {
 
   return (
     <section className="pb-10">
-      <a href="/projects">
+      <Link to="/projects">
         <Heading text="## stuff i've built" />
-      </a>
+      </Link>
       <ProjectList items={featuredProjects} />
     </section>
   );

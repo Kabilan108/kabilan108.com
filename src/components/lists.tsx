@@ -1,4 +1,5 @@
 import { ChevronRight, Dot, ExternalLink, Github } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import type { Post, Project } from "../lib/types";
 import { formatDate } from "../lib/utils";
@@ -32,9 +33,9 @@ export const PostList: React.FC<ListProps<Post>> = ({
                 {formatDate(post.date)}
                 <span className="mx-2">-</span>
               </span>
-              <a href={`/posts/${post.slug}`} className="text-ctp-green hover:underline">
+              <Link to={`/posts/${post.slug}`} className="text-ctp-green hover:underline">
                 {post.title}
-              </a>
+              </Link>
             </div>
           </h2>
           <p className="text-sm md:text-base text-ctp-subtext0 pl-4 md:pl-6 pr-2 md:pr-4">
