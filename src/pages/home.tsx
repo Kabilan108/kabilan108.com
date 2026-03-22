@@ -8,8 +8,30 @@ import type { Post, Profile, Project } from "../lib/types";
 import { groupFeaturedItems } from "../lib/utils";
 import { setPageTitle } from "../lib/utils";
 
+const REDIRECTS: Record<string, Record<string, string>> = {
+  "https://github.com/moberg-analytics/oss-models": {
+    utm_source: "qr",
+    utm_medium: "offline",
+    utm_campaign: "sccm2026",
+  },
+};
+
+function matchRedirect(params: URLSearchParams): string | null {
+  for (const [url, required] of Object.entries(REDIRECTS)) {
+    if (Object.entries(required).every(([k, v]) => params.get(k) === v)) {
+      return url;
+    }
+  }
+  return null;
+}
+
 const HomePage: React.FC = () => {
   useEffect(() => {
+    const redirect = matchRedirect(new URLSearchParams(window.location.search));
+    if (redirect) {
+      window.location.replace(redirect);
+      return;
+    }
     setPageTitle();
   }, []);
 
