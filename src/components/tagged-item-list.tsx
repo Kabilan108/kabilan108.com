@@ -19,19 +19,25 @@ function isProject(item: TaggedItem): item is Project {
 interface TaggedItemListProps {
   items: Post[] | Project[];
   type: "post" | "project";
+  groupArchived?: boolean;
 }
 
-export function TaggedItemList({ items, type }: TaggedItemListProps) {
+export function TaggedItemList({ items, type, groupArchived = true }: TaggedItemListProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [showArchived, setShowArchived] = useState(false);
   const [isTagMenuOpen, setIsTagMenuOpen] = useState(false);
-
-  const [featuredItems, archivedItems] = useMemo(
-    () => groupFeaturedItems<TaggedItem>(items),
+  const sortedItems = useMemo(
+    () => [...items].sort((a, b) => b.date.getTime() - a.date.getTime()),
     [items],
   );
 
+  const [featuredItems, archivedItems] = useMemo(
+    () => groupFeaturedItems<TaggedItem>(sortedItems),
+    [sortedItems],
+  );
+
   useEffect(() => {
+    if (!groupArchived) return;
     if (selectedTags.length > 0) {
       const hasMatchingFeatured = featuredItems.some((item) =>
         item.tags.some((tag) => selectedTags.includes(tag)),
@@ -44,9 +50,9 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
         setShowArchived(true);
       }
     }
-  }, [selectedTags, featuredItems, archivedItems]);
+  }, [archivedItems, featuredItems, groupArchived, selectedTags]);
 
-  const allTags = Array.from(new Set(items.flatMap((item) => item.tags)));
+  const allTags = Array.from(new Set(sortedItems.flatMap((item) => item.tags)));
 
   const handleTagClick = (tag: string) => {
     setSelectedTags((prevTags) =>
@@ -68,6 +74,10 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
     selectedTags.length > 0
       ? archivedItems.filter((item) => item.tags.some((tag) => selectedTags.includes(tag)))
       : archivedItems;
+  const filteredItems =
+    selectedTags.length > 0
+      ? sortedItems.filter((item) => item.tags.some((tag) => selectedTags.includes(tag)))
+      : sortedItems;
 
   const renderList = (items: (Post | Project)[], startIndex = 0) => {
     if (type === "post") {
@@ -130,9 +140,11 @@ export function TaggedItemList({ items, type }: TaggedItemListProps) {
         </Section>
       </div>
 
-      {renderList(filteredFeaturedItems as Post[])}
+      {groupArchived
+        ? renderList(filteredFeaturedItems as Post[])
+        : renderList(filteredItems as Post[])}
 
-      {filteredArchivedItems.length > 0 && (
+      {groupArchived && filteredArchivedItems.length > 0 && (
         <>
           <div className="flex justify-center">
             <button

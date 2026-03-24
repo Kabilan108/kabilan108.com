@@ -1,4 +1,3 @@
-import { ExternalLink, Github } from "lucide-react";
 import { useEffect } from "react";
 
 import {
@@ -9,17 +8,14 @@ import {
   Heading,
   Section,
   SocialLinks,
-  Tag,
   Tooltip,
-  TooltipButton,
 } from "../components/ui";
-import { getProfile, getProjects, getResume } from "../lib/content";
+import { getProfile, getResume } from "../lib/content";
 import type {
   Award,
   Education,
   Organization,
   Profile,
-  Project,
   Publication,
   Skills,
   WorkExperience,
@@ -33,19 +29,13 @@ const ResumePage: React.FC = () => {
 
   const resume = getResume();
   const profile = getProfile();
-  const projects = getProjects();
   if (!profile || !resume) return null;
-
-  resume.featuredProjects = projects?.filter((project) => project.featured);
 
   return (
     <div className="space-y-8">
       <BioSection profile={profile} pdfPath={resume.pdfPath} />
       {resume.education.length > 0 && <EducationSection education={resume.education} />}
       {resume.workExperience.length > 0 && <ExperienceSection experience={resume.workExperience} />}
-      {resume.featuredProjects && resume.featuredProjects.length > 0 && (
-        <ProjectsSection projects={resume.featuredProjects} />
-      )}
       {resume.publications.length > 0 && (
         <PublicationsSection publications={resume.publications} title="## publications" />
       )}
@@ -74,11 +64,15 @@ const BioSection: React.FC<{ profile: Profile; pdfPath: string }> = ({ profile, 
 };
 
 const EducationSection: React.FC<{ education: Education[] }> = ({ education }) => {
+  const sortedEducation = [...education].sort(
+    (a, b) => getDurationSortKey(b.duration) - getDurationSortKey(a.duration),
+  );
+
   return (
     <section className="pb-6 border-b border-ctp-surface1">
       <Heading text="## education" className="mb-2" />
       <div className="space-y-4">
-        {education.map((edu) => (
+        {sortedEducation.map((edu) => (
           <Section key={edu.id} className="pl-6 pr-4">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
               <h3 className="text-ctp-green font-mono">{edu.degree}</h3>
@@ -97,11 +91,13 @@ const EducationSection: React.FC<{ education: Education[] }> = ({ education }) =
 };
 
 const ExperienceSection: React.FC<{ experience: WorkExperience[] }> = ({ experience }) => {
+  const sortedExperience = [...experience].sort((a, b) => getDateSortKey(b) - getDateSortKey(a));
+
   return (
     <section className="pb-6 border-b border-ctp-surface1">
       <Heading text="## experience" className="mb-2" />
       <div className="space-y-4">
-        {experience.map((exp) => (
+        {sortedExperience.map((exp) => (
           <Section key={exp.id} className="pl-6 pr-4">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
               <h3 className="text-ctp-green font-mono">{exp.position}</h3>
@@ -121,49 +117,6 @@ const ExperienceSection: React.FC<{ experience: WorkExperience[] }> = ({ experie
                 </li>
               ))}
             </ul>
-          </Section>
-        ))}
-      </div>
-    </section>
-  );
-};
-
-const ProjectsSection: React.FC<{ projects: Project[] }> = ({ projects }) => {
-  return (
-    <section className="pb-6 border-b border-ctp-surface1">
-      <Heading text="## projects" className="mb-2" />
-      <div className="space-y-4">
-        {projects.map((project) => (
-          <Section key={project.id} className="pl-6 pr-4 text-sm">
-            <p className="text-ctp-green">{project.title}</p>
-            <p className="text-ctp-subtext1">{project.description}</p>
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 mt-2">
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <Tag key={tag} tag={tag} />
-                ))}
-              </div>
-              <div className="flex gap-4">
-                {project.github && (
-                  <TooltipButton
-                    tooltip="Source Code"
-                    onClick={() => window.open(project.github, "_blank")}
-                    className="text-ctp-blue hover:text-ctp-pink transition-colors"
-                  >
-                    <Github className="w-5 h-5" />
-                  </TooltipButton>
-                )}
-                {project.demo && (
-                  <TooltipButton
-                    tooltip="Demo"
-                    onClick={() => window.open(project.demo, "_blank")}
-                    className="text-ctp-blue hover:text-ctp-pink transition-colors"
-                  >
-                    <ExternalLink className="w-5 h-5" />
-                  </TooltipButton>
-                )}
-              </div>
-            </div>
           </Section>
         ))}
       </div>
@@ -262,11 +215,17 @@ const SkillsSection: React.FC<{ skills: Skills }> = ({ skills }) => {
 };
 
 const AwardsSection: React.FC<{ awards: Award[] }> = ({ awards }) => {
+  const sortedAwards = [...awards].sort(
+    (a, b) =>
+      getDateSortKey({ startDate: b.startDate, endDate: b.endDate }) -
+      getDateSortKey({ startDate: a.startDate, endDate: a.endDate }),
+  );
+
   return (
     <section className="pb-6 border-b border-ctp-surface1">
       <Heading text="## awards" className="mb-2" />
       <div className="space-y-4">
-        {awards.map((award) => (
+        {sortedAwards.map((award) => (
           <Section key={award.id} className="pl-6 pr-4 py-2 sm:py-1">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0">
               <div className="flex justify-left items-center gap-4 text-ctp-green">
@@ -293,11 +252,15 @@ const AwardsSection: React.FC<{ awards: Award[] }> = ({ awards }) => {
 };
 
 const OrganizationsSection: React.FC<{ orgs: Organization[] }> = ({ orgs }) => {
+  const sortedOrgs = [...orgs].sort(
+    (a, b) => getDurationSortKey(b.duration) - getDurationSortKey(a.duration),
+  );
+
   return (
     <section className="pb-10">
       <Heading text="## organizations" className="mb-2" />
       <div className="space-y-4">
-        {orgs.map((org) => (
+        {sortedOrgs.map((org) => (
           <Section key={org.id} className="pl-6 pr-4 py-1">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0">
               <div className="flex justify-left items-center gap-2">
@@ -312,5 +275,58 @@ const OrganizationsSection: React.FC<{ orgs: Organization[] }> = ({ orgs }) => {
     </section>
   );
 };
+
+const monthIndex: Record<string, number> = {
+  jan: 0,
+  january: 0,
+  feb: 1,
+  february: 1,
+  mar: 2,
+  march: 2,
+  apr: 3,
+  april: 3,
+  may: 4,
+  jun: 5,
+  june: 5,
+  jul: 6,
+  july: 6,
+  aug: 7,
+  august: 7,
+  sep: 8,
+  sept: 8,
+  september: 8,
+  oct: 9,
+  october: 9,
+  nov: 10,
+  november: 10,
+  dec: 11,
+  december: 11,
+};
+
+function parseMonthYear(value: string): Date | null {
+  const normalized = value.trim().toLowerCase();
+  if (normalized === "present") {
+    return new Date("9999-12-31");
+  }
+
+  const [month, year] = normalized.split(/\s+/);
+  const monthValue = monthIndex[month];
+  const yearValue = Number.parseInt(year ?? "", 10);
+
+  if (monthValue === undefined || Number.isNaN(yearValue)) {
+    return null;
+  }
+
+  return new Date(yearValue, monthValue, 1);
+}
+
+function getDurationSortKey(duration: string): number {
+  const end = duration.split("-").at(-1);
+  return parseMonthYear(end ?? "")?.getTime() ?? 0;
+}
+
+function getDateSortKey(item: { startDate: Date; endDate: Date | null }): number {
+  return (item.endDate ?? item.startDate).getTime();
+}
 
 export default ResumePage;

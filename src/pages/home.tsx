@@ -9,7 +9,7 @@ import { groupFeaturedItems } from "../lib/utils";
 import { setPageTitle } from "../lib/utils";
 
 const REDIRECTS: Record<string, Record<string, string>> = {
-  "https://github.com/moberg-analytics/oss-models": {
+  "https://github.com/moberg-analytics/oss-models/tree/main/packages/okekeclean": {
     utm_source: "qr",
     utm_medium: "offline",
     utm_campaign: "sccm2026",
@@ -99,7 +99,7 @@ const Posts: React.FC = () => {
 const Projects: React.FC = () => {
   const projects: Project[] | null = getProjects();
   if (!projects) return null;
-  const [featuredProjects] = groupFeaturedItems<Project>(projects, 8);
+  const [featuredProjects] = groupFeaturedItems<Project>(projects, 5);
 
   return (
     <section className="pb-10">

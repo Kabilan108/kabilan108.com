@@ -16,7 +16,7 @@ const ProjectsPage: React.FC = () => {
       <h1 className="text-2xl font-bold mb-4 text-ctp-mauve">
         <span className="text-ctp-mauve">projects</span>
       </h1>
-      <TaggedItemList items={projects} type="project" />
+      <TaggedItemList items={projects} type="project" groupArchived={false} />
     </section>
   );
 };

@@ -1,13 +1,43 @@
 [
   {
-    "id": 1,
-    "title": "geass",
-    "description": "CLI tool for audio transcription using faster-whisper with local and remote GPU support",
-    "tags": ["faster-whisper", "modal", "transcription", "cli", "python"],
-    "github": "https://github.com/kabilan108/geass",
+    "id": 7,
+    "title": "xploit",
+    "description": "automated red-teaming suite for ai agents that coordinates adversarial attack agents and visualizes jailbreak attempts in real time",
+    "tags": ["python", "typescript", "fastapi", "react", "security"],
+    "github": "",
+    "demo": "https://devpost.com/software/xploit?ref_content=my-projects-tab&ref_feature=my_projects",
+    "featured": true,
+    "date": "2025-11-15"
+  },
+  {
+    "id": 9,
+    "title": "okekeclean",
+    "description": "python package for detecting artifacts in arterial blood pressure and ecg waveforms, with released inference code and downloadable model weights",
+    "tags": ["python", "pytorch", "abp", "ecg", "healthcare"],
+    "github": "https://github.com/moberg-analytics/oss-models/tree/main/packages/okekeclean",
     "demo": "",
     "featured": true,
-    "date": "2024-11-30"
+    "date": "2026-01-01"
+  },
+  {
+    "id": 10,
+    "title": "dictator",
+    "description": "voice typing daemon for linux that records speech, transcribes it with whisper-compatible apis, and types into any focused application",
+    "tags": ["go", "linux", "whisper", "nix", "systemd"],
+    "github": "https://github.com/Kabilan108/dictator",
+    "demo": "",
+    "featured": true,
+    "date": "2025-12-31"
+  },
+  {
+    "id": 11,
+    "title": "rollouts",
+    "description": "go cli and nixos deployment framework for generating traefik-ready container configs and deploying personal infrastructure with deploy-rs",
+    "tags": ["go", "nix", "nixos", "traefik", "deploy-rs"],
+    "github": "https://github.com/Kabilan108/rollouts",
+    "demo": "",
+    "featured": true,
+    "date": "2025-09-19"
   },
   {
     "id": 2,
@@ -16,27 +46,27 @@
     "tags": ["bctpy", "sklearn", "ml", "biomarkers"],
     "github": "https://github.com/kabilan108/asd-biomarkers",
     "demo": "",
-    "featured": true,
+    "featured": false,
     "date": "2022-06-01"
   },
   {
     "id": 3,
-    "title": "developing autoencoders for predicting gene ontology terms",
-    "description": "using autoencoders to predict gene ontology terms from gene expression data",
-    "tags": ["keras", "sklearn", "ml", "autoencoder"],
+    "title": "mlgo: machine learning for predicting GO enrichment",
+    "description": "autoencoder-based pipeline for reconstructing RNA-seq log fold-change profiles and predicting gene ontology enrichment",
+    "tags": ["python", "r", "pytorch", "limma", "autoencoder"],
     "github": "https://github.com/kabilan108/mlgo/tree/submission",
     "demo": "",
-    "featured": true,
-    "date": "2023-11-01"
+    "featured": false,
+    "date": "2022-09-01"
   },
   {
     "id": 4,
     "title": "wazobiacode.com",
-    "description": "website for a web development bootcamp for high school students",
-    "tags": ["nextjs", "react", "telegram"],
+    "description": "custom learning platform for a web development bootcamp serving Nigerian high school students with progress tracking and Telegram integration",
+    "tags": ["fastapi", "nextjs", "react", "telegram"],
     "github": "https://github.com/AbokiLearn/WazobiaCode",
     "demo": "https://wazobiacode.com",
-    "featured": true,
+    "featured": false,
     "date": "2024-09-14"
   },
   {
@@ -46,17 +76,17 @@
     "tags": ["go", "git", "ai", "cli", "openai"],
     "github": "https://github.com/kabilan108/diffgpt",
     "demo": "",
-    "featured": true,
+    "featured": false,
     "date": "2025-03-30"
   },
   {
     "id": 6,
     "title": "dump",
-    "description": "CLI tool for extracting and formatting text files from directories for use with LLMs",
-    "tags": ["go", "cli", "llm", "prompt engineering"],
+    "description": "cli tool for packaging local files, urls, and tmux panes into llm-ready markdown or xml context",
+    "tags": ["go", "cli", "llm", "exa", "tmux"],
     "github": "https://github.com/kabilan108/dump",
     "demo": "",
     "featured": true,
-    "date": "2024-03-30"
+    "date": "2025-10-01"
   }
 ]

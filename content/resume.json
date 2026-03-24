@@ -1,5 +1,5 @@
 {
-  "pdfPath": "/pdf/resume.pdf",
+  "pdfPath": "/pdf/cv.pdf",
   "education": [
     {
       "id": 2,
@@ -27,65 +27,91 @@
       "endDate": null,
       "location": "philadelphia, pa",
       "responsibilities": [
-        "developing state-of-the-art algorithms for detecting and removing artifacts in high-resolution multimodal neuroimaging datasets in collaboration with clinicians and researchers",
-        "developing the autonomous communications medical ecosystem (acme) - a dod-funded passive sensor suite that uses video, audio, and motion capture sensors to automatically document casualty care"
+        "developing full-stack features for the moberg clinical platform, including eeg review workflows, ui overhauls, and backend processing changes for neurocritical care teams",
+        "designing and implementing real-time signal processing pipelines for qEEG metric computation and visualization inside the clinical monitoring interface",
+        "leading development of an ai-powered copilot across the clinical platform and a jupyterhub-based analytics studio for natural-language analysis of neuromonitoring data",
+        "leading r&d for artifact detection and removal models for arterial blood pressure and electrocardiogram waveforms in high-resolution neuromonitoring datasets",
+        "leading development of the autonomous communications medical ecosystem (acme), a dod-funded multimodal sensor platform for combat casualty care",
+        "building internal developer tooling and workflow automations that integrate ai agents into the software development lifecycle",
+        "contributing to regulatory documentation and fda 510(k) submission processes"
       ]
     },
     {
       "id": 2,
-      "position": "founder & ceo",
-      "company": "meddibia",
-      "startDate": "2024-08-05",
-      "endDate": null,
-      "location": "philadelphia, pa",
-      "responsibilities": [
-        "building electronic medical record (emr) software for healthcare providers in developing countries using multimodal ai to automate the digitization of historical medical records",
-        "raised $25_000 in funding through competitive pitch competitions"
-      ]
-    },
-    {
-      "id": 3,
       "position": "data scientist",
       "company": "gsk",
       "startDate": "2023-04-01",
       "endDate": "2023-09-29",
       "location": "collegeville, pa",
       "responsibilities": [
-        "developed data integration pipelines for joint analysis of spatial transcriptomics and single cell rna-seq data",
-        "trained and evaluated machine learning models to predict carcinogenicity initiationg events for target molecules using transcriptional profiles and chemical structures"
+        "enhanced spatial transcriptomics analysis by introducing software and machine learning workflows for quality control, visualization, annotation, and gene expression quantification",
+        "collaborated with the hesi estar carcinogenicity working group to build a neural network for predicting molecular initiating events linked to liver carcinogenicity",
+        "used umap and t-sne on a large chembl dataset to cluster hesi compounds and develop biomarker models within each cluster",
+        "spearheaded development of an interactive analytics and visualization platform for geomx spatial transcriptomics data"
       ]
     },
     {
-      "id": 4,
+      "id": 3,
       "position": "data scientist",
       "company": "gsk",
       "startDate": "2022-04-01",
       "endDate": "2022-09-29",
       "location": "collegeville, pa",
       "responsibilities": [
-        "built and deployed internal tools for running statistical analyses and biomarker discovery on high-content imaging datasets using dask, dash and flask",
-        "trained, evaluated and deployed machine learning models for biomarker identification in toxicology studies",
-        "implemented noise2void and cellpose to improve the performance of automated image segmentation and feature extraction pipelines"
+        "developed an interactive web app for statistical analysis and biomarker discovery on high-content imaging datasets using dash, flask, dask, and rstudio connect",
+        "implemented decision trees, random forests, and svm models for biomarker discovery in high-content imaging datasets",
+        "implemented noise2void and cellpose to improve cellprofiler image segmentation and feature extraction pipelines"
       ]
     },
     {
-      "id": 5,
+      "id": 4,
       "position": "computational research assistant",
       "company": "invenio lab, penn medicine",
       "startDate": "2021-03-01",
       "endDate": "2022-08-29",
       "location": "philadelphia, pa",
       "responsibilities": [
-        "developed statistical models analyzing immune responses in covid-19 patients through comprehensive analysis of serum, urinary, and neurological biomarkers",
-        "developed tools to automate the ingestion, quality control, and analysis of data from elisa and next generation sequencing assays"
+        "led analytical work resulting in four peer-reviewed publications on immune response, urinary biomarkers, and neurological impacts in covid-19 patients",
+        "analyzed temporal changes in serum markers tied to organ failure and anti-viral treatments in covid-19 cohorts",
+        "developed python and r scripts to automate ingestion, quality control, and analysis of elisa and next generation sequencing datasets"
+      ]
+    },
+    {
+      "id": 5,
+      "position": "research assistant",
+      "company": "zhou lab, children's hospital of philadelphia",
+      "startDate": "2020-05-01",
+      "endDate": "2021-06-30",
+      "location": "philadelphia, pa",
+      "responsibilities": [
+        "contributed to the sesame package for analysis of infinium DNA methylation datasets",
+        "developed tests that validated package functionality against publicly available geo datasets"
       ]
     }
   ],
   "skills": {
-    "programming": ["python", "r", "bash", "c++", "sql", "js/ts", "kotlin"],
-    "ai/ml": ["pytorch", "transformers", "sklearn", "wandb", "openai", "anthropic"],
-    "tools": ["fastapi", "react", "nextjs", "docker", "git"],
-    "comp bio": ["seurat", "squidpy", "scanpy", "bioconductor", "cellprofiler"]
+    "programming languages": [
+      "python",
+      "typescript",
+      "r",
+      "go",
+      "c++",
+      "lua",
+      "nix",
+      "bash",
+      "sql",
+      "kotlin"
+    ],
+    "ai/ml": ["pytorch", "transformers", "scikit-learn", "weights & biases", "vllm"],
+    "frameworks & tools": [
+      "fastapi",
+      "flask",
+      "react",
+      "docker",
+      "seurat",
+      "squidpy",
+      "cellprofiler"
+    ]
   },
   "publications": [
     {
@@ -151,25 +177,6 @@
       "pdfPath": "/pdf/paper/laudanski_longitudinal_2021.pdf"
     },
     {
-      "id": 4,
-      "title": "a decline of protective apolipoprotein j and complement factor h concomitant with increase in c5a 3 months after cardiac surgery—evidence of long-term complement perturbations",
-      "journal": "frontiers in cardiovascular medicine",
-      "authors": [
-        "krzysztof laudanski",
-        "da liu",
-        "damodar gullipalli",
-        "wen-chao song",
-        "tony okeke",
-        "wilson y. szeto"
-      ],
-      "me": 5,
-      "publishedOn": "2022-12-20",
-      "isPublished": true,
-      "citation": "k. laudanski, d. liu, d. gullipalli, w.-c. song, t. okeke, and w. y. szeto, \"a decline of protective apolipoprotein j and complement factor h concomitant with increase in c5a 3 months after cardiac surgery—evidence of long-term complement perturbations,\" frontiers in cardiovascular medicine, vol. 9, p. 983617, 2022.",
-      "url": "https://doi.org/10.3389/fcvm.2022.983617",
-      "pdfPath": "/pdf/paper/laudanski_decline_2022.pdf"
-    },
-    {
       "id": 5,
       "title": "persistent depletion of neuroprotective factors accompanies neuroinflammatory, neurodegenerative, and vascular remodeling spectra in serum three months after non-emergent cardiac surgery",
       "journal": "biomedicines",
@@ -185,7 +192,7 @@
       "isPublished": true,
       "citation": "k. laudanski, d. liu, t. okeke, m. restrepo, and w. y. szeto, \"persistent depletion of neuroprotective factors accompanies neuroinflammatory, neurodegenerative, and vascular remodeling spectra in serum three months after non-emergent cardiac surgery,\" biomedicines, vol. 10, no. 10, p. 2364, 2022.",
       "url": "https://doi.org/10.3390/biomedicines10102364",
-      "pdfPath": "/pdf/paper/laudanski_persistent_2023.pdf"
+      "pdfPath": "/pdf/paper/laudanski_persistent_2022,.pdf"
     },
     {
       "id": 6,
@@ -210,7 +217,7 @@
     {
       "id": 7,
       "title": "evaluating artifact detection algorithms for the arterial blood pressure waveform acquired from the intensive care unit: a precicecap informatics approach",
-      "journal": "ieee transactions on biomedical engineering",
+      "journal": "under review",
       "authors": [
         "tony k. okeke",
         "manil shrestha",
@@ -222,14 +229,103 @@
         "jonathan elmer"
       ],
       "me": 1,
-      "publishedOn": "2024-11-19",
+      "publishedOn": "2025-01-01",
       "isPublished": false,
       "citation": "",
       "url": "",
-      "pdfPath": "/pdf/paper/okeke_abp_artifact_2024.pdf"
+      "pdfPath": ""
+    },
+    {
+      "id": 8,
+      "title": "automated artifact detection in electrocardiogram waveforms using transfer learning: a precicecap informatics approach",
+      "journal": "under review",
+      "authors": [
+        "tony k. okeke",
+        "ethan moyer",
+        "karen g. hirsch",
+        "teresa l. may",
+        "jonathan tam",
+        "laura favier",
+        "zihuai he",
+        "richard moberg",
+        "jonathan elmer"
+      ],
+      "me": 1,
+      "publishedOn": "2025-01-01",
+      "isPublished": false,
+      "citation": "",
+      "url": "",
+      "pdfPath": ""
     }
   ],
   "abstracts": [
+    {
+      "id": 8,
+      "title": "spectrogram-based transfer learning for electrocardiogram (ecg) artifact detection in the icu",
+      "journal": "research snapshot presented at neurocritical care society annual meeting",
+      "authors": [
+        "tony k. okeke",
+        "ethan moyer",
+        "karen g. hirsch",
+        "teresa l. may",
+        "zihuai he",
+        "jonathan tam",
+        "laura faiver",
+        "richard moberg",
+        "jonathan elmer"
+      ],
+      "me": 1,
+      "publishedOn": "2026-03-01",
+      "isPublished": true,
+      "citation": "",
+      "url": "",
+      "pdfPath": ""
+    },
+    {
+      "id": 7,
+      "title": "transfer learning for artifact detection in icu-collected arterial blood pressure waveforms",
+      "journal": "abstract presented at neurocritical care society annual meeting, montreal, qc, canada",
+      "authors": [
+        "tony k. okeke",
+        "manil shrestha",
+        "ethan moyer",
+        "karen g. hirsch",
+        "teresa l. may",
+        "zihuai he",
+        "richard moberg",
+        "jonathan elmer"
+      ],
+      "me": 1,
+      "publishedOn": "2025-09-01",
+      "isPublished": true,
+      "citation": "",
+      "url": "",
+      "pdfPath": ""
+    },
+    {
+      "id": 6,
+      "title": "acme: a body-worn multimodal sensor suite enabling autonomous documentation of prehospital care",
+      "journal": "abstract presented at medical autonomous care state of the science meeting, pittsburgh, pa",
+      "authors": ["tony k. okeke", "ethan moyer", "dick moberg"],
+      "me": 1,
+      "publishedOn": "2025-09-01",
+      "isPublished": true,
+      "citation": "",
+      "url": "",
+      "pdfPath": ""
+    },
+    {
+      "id": 5,
+      "title": "development of the autonomous communications medical ecosystem (acme): a multimodal sensor suite for passive data collection during combat casualty care",
+      "journal": "abstract presented at military health system research symposium, orlando, fl",
+      "authors": ["tony k. okeke", "ethan moyer", "dick moberg"],
+      "me": 1,
+      "publishedOn": "2025-08-01",
+      "isPublished": true,
+      "citation": "",
+      "url": "",
+      "pdfPath": ""
+    },
     {
       "id": 1,
       "title": "181: patterns of urinary biomarkers of immunologic activation and sepsis in patients with covid-19",
@@ -346,12 +442,6 @@
       "name": "tau beta pi",
       "position": "member",
       "duration": "dec 2021 - present"
-    },
-    {
-      "id": 2,
-      "name": "sigma xi",
-      "position": "member",
-      "duration": "march 2024 - present"
     },
     {
       "id": 3,
