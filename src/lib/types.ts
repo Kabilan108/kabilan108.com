@@ -63,6 +63,13 @@ export interface Publication {
   citation: string;
   url?: string;
   pdfPath: string;
+  assets?: PublicationAsset[];
+  highlights?: string[];
+}
+
+export interface PublicationAsset {
+  label: string;
+  url: string;
 }
 
 export interface WorkExperience {

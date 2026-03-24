@@ -279,7 +279,15 @@
       "isPublished": true,
       "citation": "",
       "url": "",
-      "pdfPath": ""
+      "pdfPath": "",
+      "assets": [
+        { "label": "abstract", "url": "/pdf/abstract/2026-sccm--abstract.pdf" },
+        {
+          "label": "research snapshot",
+          "url": "/pdf/abstract/2026-sccm--research-snapshot-presentation.pdf"
+        }
+      ],
+      "highlights": ["selected for rst"]
     },
     {
       "id": 7,
@@ -300,7 +308,12 @@
       "isPublished": true,
       "citation": "",
       "url": "",
-      "pdfPath": ""
+      "pdfPath": "",
+      "assets": [
+        { "label": "abstract", "url": "/pdf/abstract/2025-ncs--abstract.pdf" },
+        { "label": "poster", "url": "/pdf/abstract/2025-ncs--poster.pdf" }
+      ],
+      "highlights": ["selected for distinguished poster rounds (top 10%)"]
     },
     {
       "id": 6,
@@ -312,7 +325,11 @@
       "isPublished": true,
       "citation": "",
       "url": "",
-      "pdfPath": ""
+      "pdfPath": "",
+      "assets": [
+        { "label": "abstract", "url": "/pdf/abstract/2025-macsos--abstract.pdf" },
+        { "label": "poster", "url": "/pdf/abstract/2025-macsos--poster.pdf" }
+      ]
     },
     {
       "id": 5,
@@ -324,7 +341,11 @@
       "isPublished": true,
       "citation": "",
       "url": "",
-      "pdfPath": ""
+      "pdfPath": "",
+      "assets": [
+        { "label": "abstract", "url": "/pdf/abstract/2025-mhsrs--abstract.pdf" },
+        { "label": "poster", "url": "/pdf/abstract/2025-mhsrs--poster.pdf" }
+      ]
     },
     {
       "id": 1,

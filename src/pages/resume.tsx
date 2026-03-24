@@ -15,6 +15,7 @@ import type {
   Award,
   Education,
   Organization,
+  PublicationAsset,
   Profile,
   Publication,
   Skills,
@@ -128,6 +129,14 @@ const PublicationsSection: React.FC<{
   publications: Publication[];
   title: string;
 }> = ({ publications, title }) => {
+  const assetTooltip = (asset: PublicationAsset): string => {
+    const normalized = asset.label.toLowerCase();
+    if (normalized === "abstract") return "Open abstract PDF";
+    if (normalized === "poster") return "Open poster PDF";
+    if (normalized === "research snapshot") return "Open research snapshot PDF";
+    return `Open ${normalized}`;
+  };
+
   const PublicationItem: React.FC<{ pub: Publication }> = ({ pub }) => {
     return (
       <Section key={pub.id} className="pl-6 pr-4 text-sm">
@@ -154,13 +163,31 @@ const PublicationsSection: React.FC<{
             </span>
           ))}
         </p>
+        {pub.highlights && pub.highlights.length > 0 && (
+          <div className="flex flex-wrap gap-2 mt-2">
+            {pub.highlights.map((highlight) => (
+              <Badge key={highlight} color={BadgeColor.Green}>
+                {highlight}
+              </Badge>
+            ))}
+          </div>
+        )}
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-4 mt-2">
           <div className="flex gap-4">
             <p className="text-ctp-subtext1">
               {pub.journal} ({formatDate(pub.publishedOn, "medium")})
             </p>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-nowrap gap-2 items-center shrink-0">
+            {pub.assets?.map((asset) => (
+              <DownloadButton
+                key={`${pub.id}-${asset.label}-${asset.url}`}
+                url={asset.url}
+                tooltip={assetTooltip(asset)}
+                color="blue"
+                size={5}
+              />
+            ))}
             {pub.pdfPath && (
               <DownloadButton url={pub.pdfPath} tooltip="Download PDF" color="blue" size={5} />
             )}
