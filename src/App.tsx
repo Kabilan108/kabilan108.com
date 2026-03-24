@@ -4,6 +4,7 @@ import { BrowserRouter, Link, Route, Routes, useLocation } from "react-router-do
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
+import SccmModal from "./components/sccm-modal";
 import { SocialLinks } from "./components/ui";
 import { getNumPosts, getProfile } from "./lib/content";
 import type { Profile } from "./lib/types";
@@ -15,6 +16,14 @@ import ResumePage from "./pages/resume";
 
 const App = () => {
   const [showPosts, setShowPosts] = useState(false);
+  const [sccmModalOpen, setSccmModalOpen] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return (
+      params.get("utm_source") === "qr" &&
+      params.get("utm_medium") === "offline" &&
+      params.get("utm_campaign") === "sccm2026"
+    );
+  });
   const profile = getProfile();
 
   useEffect(() => {
@@ -29,7 +38,7 @@ const App = () => {
         <main className="flex-grow max-w-4xl w-full mx-auto px-6 sm:px-12 md:px-8">
           <NavBar profile={profile} showPosts={showPosts} />
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage onSccmOpen={() => setSccmModalOpen(true)} />} />
             {showPosts && (
               <>
                 <Route path="/posts" element={<PostsPage />} />
@@ -41,6 +50,7 @@ const App = () => {
           </Routes>
         </main>
         <Footer profile={profile} />
+        <SccmModal open={sccmModalOpen} onClose={() => setSccmModalOpen(false)} />
       </div>
       <Analytics />
       <SpeedInsights />

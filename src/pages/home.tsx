@@ -8,43 +8,21 @@ import type { Post, Profile, Project } from "../lib/types";
 import { groupFeaturedItems } from "../lib/utils";
 import { setPageTitle } from "../lib/utils";
 
-const REDIRECTS: Record<string, Record<string, string>> = {
-  "https://github.com/moberg-analytics/oss-models/tree/main/packages/okekeclean": {
-    utm_source: "qr",
-    utm_medium: "offline",
-    utm_campaign: "sccm2026",
-  },
-};
-
-function matchRedirect(params: URLSearchParams): string | null {
-  for (const [url, required] of Object.entries(REDIRECTS)) {
-    if (Object.entries(required).every(([k, v]) => params.get(k) === v)) {
-      return url;
-    }
-  }
-  return null;
-}
-
-const HomePage: React.FC = () => {
+const HomePage: React.FC<{ onSccmOpen: () => void }> = ({ onSccmOpen }) => {
   useEffect(() => {
-    const redirect = matchRedirect(new URLSearchParams(window.location.search));
-    if (redirect) {
-      window.location.replace(redirect);
-      return;
-    }
     setPageTitle();
   }, []);
 
   return (
     <div className="space-y-8">
-      <Bio />
+      <Bio onSccmClick={onSccmOpen} />
       <Posts />
       <Projects />
     </div>
   );
 };
 
-const Bio: React.FC = () => {
+const Bio: React.FC<{ onSccmClick: () => void }> = ({ onSccmClick }) => {
   const profile: Profile | null = getProfile();
   if (!profile) return null;
 
@@ -55,7 +33,16 @@ const Bio: React.FC = () => {
           <span className="text-ctp-mauve">{profile.name}</span>
         </h1>
         <div className="space-y-4">
-          <Section className="text-lg text-ctp-green pl-6 pb-1 pt-1">{profile.title}</Section>
+          <Section className="text-lg text-ctp-green pl-6 pb-1 pt-1">
+            <span>{profile.title}</span>
+            <button
+              type="button"
+              onClick={onSccmClick}
+              className="mt-1 flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-ctp-teal/10 text-ctp-teal hover:bg-ctp-teal/20 transition-colors w-fit md:inline-flex md:ml-3 md:mt-0"
+            >
+              presenting at sccm 2026 &rarr;
+            </button>
+          </Section>
           <Section className="text-sm sm:text-base text-ctp-subtext0 pl-6 space-y-4">
             <p>{profile.bio}</p>
             <div className="flex flex-wrap gap-4">
