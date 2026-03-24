@@ -3,8 +3,7 @@ import { cn } from "../lib/utils";
 
 const ABSTRACT_URL = "/pdf/abstract/2026-sccm--abstract.pdf";
 const PRESENTATION_URL = "/pdf/abstract/2026-sccm--research-snapshot-presentation.pdf";
-const GITHUB_URL =
-  "https://github.com/moberg-analytics/oss-models/tree/main/packages/okekeclean";
+const GITHUB_URL = "https://github.com/moberg-analytics/oss-models";
 
 interface SccmModalProps {
   open: boolean;
