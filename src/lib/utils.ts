@@ -68,5 +68,5 @@ export function groupFeaturedItems<T extends TaggedItem>(
 }
 
 export const setPageTitle = (title?: string) => {
-  document.title = title ? `${title} | kabilan108` : "kabilan108";
+  document.title = title ? `${title} | tony okeke` : "tony okeke";
 };
